@@ -1,0 +1,296 @@
+/* PrepaCards - feuille de style unique
+   ====================================
+   Un seul fichier CSS, sans framework : le site se charge en une requete et
+   s'affiche immediatement. La vitesse d'affichage est un critere de
+   classement reel, contrairement a beaucoup de recettes de referencement.
+   Les couleurs reprennent celles de l'application (bleu #1c7ed6). */
+
+:root {
+  --bleu: #1c7ed6;
+  --bleu-fonce: #1663ab;
+  --bleu-pale: #eaf4fd;
+  --encre: #16202a;
+  --texte: #33424f;
+  --gris: #6b7a88;
+  --bord: #e4e9ee;
+  --fond: #ffffff;
+  --fond-doux: #f6f9fc;
+  --vert: #2f9e44;
+  --rouge: #e03131;
+  --rayon: 12px;
+  --largeur: 1120px;
+  --largeur-texte: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--texte);
+  background: var(--fond);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; }
+
+a { color: var(--bleu); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4 {
+  color: var(--encre);
+  line-height: 1.22;
+  margin: 0 0 .6em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; margin-top: 2.2em; }
+h3 { font-size: 1.2rem; margin-top: 1.8em; }
+p { margin: 0 0 1.1em; }
+
+.conteneur { max-width: var(--largeur); margin: 0 auto; padding: 0 22px; }
+.conteneur-texte { max-width: var(--largeur-texte); margin: 0 auto; padding: 0 22px; }
+
+.saut-contenu {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--encre); color: #fff; padding: 10px 16px; z-index: 100;
+}
+.saut-contenu:focus { left: 8px; top: 8px; }
+
+/* --- En-tete ------------------------------------------------------- */
+
+.entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--bord);
+}
+.barre { display: flex; align-items: center; gap: 18px; height: 64px; }
+
+.marque {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 1.12rem; color: var(--encre); font-weight: 500;
+  text-decoration: none; flex-shrink: 0;
+}
+.marque strong { font-weight: 800; }
+.marque:hover { text-decoration: none; }
+
+.navigation { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.navigation a {
+  padding: 8px 12px; border-radius: 8px; color: var(--texte);
+  font-size: .95rem; text-decoration: none;
+}
+.navigation a:hover { background: var(--fond-doux); text-decoration: none; }
+.navigation a.actif { color: var(--bleu); font-weight: 600; }
+
+.bouton-nav {
+  background: var(--bleu); color: #fff !important;
+  padding: 9px 17px !important; border-radius: 999px !important;
+  font-weight: 600; margin-left: 8px;
+}
+.bouton-nav:hover { background: var(--bleu-fonce); }
+
+.burger { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+.burger span {
+  display: block; width: 22px; height: 2px; background: var(--encre);
+  margin: 4px 0; border-radius: 2px;
+}
+
+/* --- Boutons ------------------------------------------------------- */
+
+.bouton, .bouton-secondaire {
+  display: inline-block; padding: 14px 26px; border-radius: 999px;
+  font-weight: 600; font-size: 1rem; text-decoration: none;
+  transition: background .15s, transform .1s;
+}
+.bouton { background: var(--bleu); color: #fff; }
+.bouton:hover { background: var(--bleu-fonce); text-decoration: none; }
+.bouton:active { transform: translateY(1px); }
+.bouton-secondaire {
+  background: #fff; color: var(--encre); border: 1px solid var(--bord);
+}
+.bouton-secondaire:hover { background: var(--fond-doux); text-decoration: none; }
+
+.sous-bouton { font-size: .85rem; color: var(--gris); margin-top: 12px; }
+
+/* --- Section d'accroche -------------------------------------------- */
+
+.accroche {
+  padding: 68px 0 56px;
+  background: linear-gradient(180deg, var(--bleu-pale) 0%, #fff 100%);
+  border-bottom: 1px solid var(--bord);
+}
+.accroche .conteneur { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+.accroche h1 { font-size: 2.9rem; margin-bottom: .5em; }
+.accroche .chapeau { font-size: 1.18rem; color: var(--texte); margin-bottom: 1.6em; }
+.etiquette {
+  display: inline-block; background: #fff; border: 1px solid var(--bord);
+  color: var(--bleu); font-size: .82rem; font-weight: 600;
+  padding: 5px 13px; border-radius: 999px; margin-bottom: 20px;
+}
+.capture-accroche {
+  border: 1px solid var(--bord); border-radius: var(--rayon);
+  box-shadow: 0 18px 40px rgba(22, 32, 42, .13); background: #fff;
+}
+
+/* --- Blocs generiques --------------------------------------------- */
+
+.section { padding: 62px 0; }
+.section-douce { background: var(--fond-doux); border-top: 1px solid var(--bord); border-bottom: 1px solid var(--bord); }
+.section h2 { margin-top: 0; }
+.centre { text-align: center; }
+.centre .chapeau { max-width: 640px; margin: 0 auto 2em; }
+
+.chapeau { font-size: 1.1rem; color: var(--gris); }
+
+.grille-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.grille-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; align-items: center; }
+
+.carte {
+  background: #fff; border: 1px solid var(--bord); border-radius: var(--rayon);
+  padding: 26px;
+}
+.carte h3 { margin-top: 0; font-size: 1.1rem; }
+.carte p:last-child { margin-bottom: 0; }
+.carte .pictogramme { font-size: 1.7rem; line-height: 1; margin-bottom: 14px; display: block; }
+
+/* --- Tableau comparatif ------------------------------------------- */
+
+.tableau-enveloppe { overflow-x: auto; margin: 1.6em 0; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; min-width: 560px; }
+th, td { text-align: left; padding: 13px 15px; border-bottom: 1px solid var(--bord); }
+th { background: var(--fond-doux); font-weight: 700; color: var(--encre); }
+td strong { color: var(--encre); }
+.oui { color: var(--vert); font-weight: 700; }
+.non { color: var(--rouge); font-weight: 700; }
+
+/* --- Tarifs -------------------------------------------------------- */
+
+.grille-tarifs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 780px; margin: 0 auto; }
+.offre {
+  background: #fff; border: 1px solid var(--bord); border-radius: var(--rayon);
+  padding: 30px; display: flex; flex-direction: column;
+}
+.offre.mise-en-avant { border: 2px solid var(--bleu); box-shadow: 0 12px 30px rgba(28, 126, 214, .12); }
+.offre h3 { margin-top: 0; font-size: 1.3rem; }
+.prix { font-size: 2.4rem; font-weight: 800; color: var(--encre); line-height: 1; margin: 8px 0 4px; }
+.prix small { font-size: .9rem; font-weight: 500; color: var(--gris); }
+.offre ul { list-style: none; padding: 0; margin: 20px 0 24px; }
+.offre li { padding: 7px 0 7px 26px; position: relative; }
+.offre li::before {
+  content: "✓"; position: absolute; left: 0; color: var(--vert); font-weight: 700;
+}
+.offre li.absent::before { content: "—"; color: var(--gris); }
+.offre .bouton, .offre .bouton-secondaire { margin-top: auto; text-align: center; }
+
+/* --- Encarts ------------------------------------------------------- */
+
+.encart {
+  background: var(--bleu-pale); border-left: 3px solid var(--bleu);
+  padding: 18px 22px; border-radius: 8px; margin: 1.8em 0;
+}
+.encart p:last-child { margin-bottom: 0; }
+.encart-attention { background: #fff8e6; border-left-color: #f0a020; }
+
+.encart-cta {
+  background: var(--fond-doux); border: 1px solid var(--bord);
+  border-radius: var(--rayon); padding: 28px; margin: 3em 0 0; text-align: center;
+}
+.encart-cta h2 { margin-top: 0; font-size: 1.35rem; }
+
+/* --- Article et blog ---------------------------------------------- */
+
+.article { padding: 44px 0 70px; }
+.article h1 { font-size: 2.2rem; }
+.article h2 { font-size: 1.45rem; }
+.article ul, .article ol { padding-left: 24px; }
+.article li { margin-bottom: .5em; }
+.article img { border: 1px solid var(--bord); border-radius: 8px; margin: 1.5em 0; }
+.article blockquote {
+  margin: 1.6em 0; padding: 4px 0 4px 20px;
+  border-left: 3px solid var(--bord); color: var(--gris); font-style: italic;
+}
+
+.fil { font-size: .85rem; color: var(--gris); margin-bottom: 18px; }
+.art-meta { font-size: .88rem; color: var(--gris); margin-bottom: 1.4em; }
+
+.liste-articles { list-style: none; padding: 0; margin: 2em 0 0; }
+.liste-articles li { margin-bottom: 14px; }
+.liste-articles a {
+  display: block; padding: 22px; border: 1px solid var(--bord);
+  border-radius: var(--rayon); text-decoration: none; background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.liste-articles a:hover {
+  border-color: var(--bleu); box-shadow: 0 6px 18px rgba(22, 32, 42, .07);
+  text-decoration: none;
+}
+.art-date { display: block; font-size: .8rem; color: var(--gris); margin-bottom: 6px; }
+.liste-articles strong { display: block; color: var(--encre); font-size: 1.12rem; margin-bottom: 6px; }
+.art-desc { display: block; color: var(--texte); font-size: .95rem; }
+
+/* Contenu Markdown des pages simples : meme largeur de lecture */
+main > h1, main > h2, main > h3, main > p, main > ul, main > ol,
+main > table, main > blockquote, main > .encart, main > .tableau-enveloppe,
+main > .grille-tarifs, main > figure {
+  max-width: var(--largeur-texte);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+main > h1:first-child { margin-top: 48px; }
+main { padding-bottom: 70px; }
+
+figure { margin: 1.8em auto; }
+figcaption { font-size: .86rem; color: var(--gris); text-align: center; margin-top: 8px; }
+
+/* --- Pied de page -------------------------------------------------- */
+
+.pied {
+  background: var(--encre); color: #b9c4ce; padding: 46px 0 26px;
+  font-size: .92rem; margin-top: 0;
+}
+.pied a { color: #d7dfe6; }
+.pied-haut { display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px; }
+.pied-marque { display: block; }
+.pied-marque img { vertical-align: middle; }
+.pied-marque span { color: #fff; font-size: 1.05rem; vertical-align: middle; margin-left: 8px; }
+.pied-marque p { margin-top: 14px; max-width: 420px; color: #93a1ad; }
+.pied-liens { display: flex; flex-direction: column; gap: 9px; }
+.pied-bas {
+  border-top: 1px solid #2a3742; margin-top: 32px; padding-top: 20px;
+  color: #7d8b97; font-size: .85rem; margin-bottom: 0;
+}
+
+/* --- Adaptation aux petits ecrans --------------------------------- */
+
+@media (max-width: 900px) {
+  h1 { font-size: 2rem; }
+  .accroche h1 { font-size: 2.1rem; }
+  .accroche { padding: 44px 0 40px; }
+  .accroche .conteneur { grid-template-columns: 1fr; gap: 30px; }
+  .grille-3, .grille-2, .grille-tarifs, .pied-haut { grid-template-columns: 1fr; }
+  .burger { display: block; margin-left: auto; }
+  .navigation {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid var(--bord);
+    flex-direction: column; align-items: stretch; padding: 10px 14px 16px;
+    box-shadow: 0 14px 26px rgba(22, 32, 42, .09);
+  }
+  .navigation.ouvert { display: flex; }
+  .navigation a { padding: 12px; }
+  .bouton-nav { margin: 8px 0 0; text-align: center; }
+  .section { padding: 42px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

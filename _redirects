@@ -1,0 +1,7 @@
+# Redirections pour Cloudflare Pages et Netlify.
+# Ignore par un hebergement Apache comme OVH (voir .htaccess).
+#
+# Une seule adresse doit repondre, sinon Google voit deux sites identiques et
+# repartit la valeur entre les deux. On choisit la version SANS www.
+
+https://www.prepacards.fr/*  https://prepacards.fr/:splat  301
