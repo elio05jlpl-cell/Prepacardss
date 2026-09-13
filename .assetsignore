@@ -1,0 +1,11 @@
+# Fichiers presents dans le dossier mais qui ne doivent PAS etre servis.
+#
+# .git contient l'historique complet du depot : le publier exposerait tout,
+# y compris d'eventuels fichiers supprimes depuis. Wrangler ne l'exclut pas
+# de lui-meme quand le dossier d'assets est la racine.
+.git
+.gitignore
+
+# La configuration de deploiement n'a aucune raison d'etre lisible en ligne.
+wrangler.jsonc
+.assetsignore
