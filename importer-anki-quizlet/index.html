@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Importer ses paquets Anki et Quizlet dans PrépaCards</title>
+<meta name="description" content="Convertir un paquet Anki .apkg ou un jeu Quizlet en cartes PrépaCards, en gardant les sous-paquets et les textes à trous. Guide pas à pas.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prepacards.fr/importer-anki-quizlet/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PrépaCards">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Importer ses paquets Anki et Quizlet dans PrépaCards">
+<meta property="og:description" content="Convertir un paquet Anki .apkg ou un jeu Quizlet en cartes PrépaCards, en gardant les sous-paquets et les textes à trous. Guide pas à pas.">
+<meta property="og:url" content="https://prepacards.fr/importer-anki-quizlet/">
+<meta property="og:image" content="https://prepacards.fr/img/og-prepacards.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Importer ses paquets Anki et Quizlet dans PrépaCards">
+<meta name="twitter:description" content="Convertir un paquet Anki .apkg ou un jeu Quizlet en cartes PrépaCards, en gardant les sous-paquets et les textes à trous. Guide pas à pas.">
+<meta name="twitter:image" content="https://prepacards.fr/img/og-prepacards.png">
+
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<link rel="stylesheet" href="/style.css?v=1ba3e8ccf6">
+<link rel="preload" href="/fonts/manrope-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "PrépaCards lit-il vraiment les fichiers .apkg ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, les trois variantes du format produites par Anki au fil des versions : collection.anki2, collection.anki21 et la version compressée collection.anki21b des versions 2.1.50 et suivantes. Les fichiers .colpkg, qui sauvegardent une collection entière, sont également lus."}}, {"@type": "Question", "name": "Mes cartes Anki vont-elles garder leur avancement ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les intervalles d'Anki sont calculés par l'algorithme FSRS, PrépaCards utilise SM-2 : les transposer donnerait des dates de révision fausses. Vos cartes repartent comme neuves. C'est la seule perte que nous considérons comme vraiment gênante, et nous préférons l'annoncer plutôt que d'inventer une conversion approximative."}}, {"@type": "Question", "name": "Et si mon paquet contient des images ?", "acceptedAnswer": {"@type": "Answer", "text": "Les cartes sont importées avec leur texte, sans l'image. Avant de valider, l'application affiche le nombre exact de cartes concernées, ce qui permet de décider en connaissance de cause — et de garder Anki en parallèle si ces cartes vous sont indispensables."}}, {"@type": "Question", "name": "Puis-je importer plusieurs paquets ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, un fichier à la fois. Rien n'est écrasé : un import ajoute des cartes aux paquets existants sans toucher à celles qui s'y trouvent déjà. Les doublons exacts présents dans le fichier source sont écartés automatiquement."}}, {"@type": "Question", "name": "L'import fonctionne-t-il hors ligne ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La conversion se fait entièrement sur votre ordinateur, rien n'est envoyé à un serveur. Vos cartes ne quittent pas votre machine."}}]}</script>
+</head>
+<body>
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="conteneur barre">
+    <a class="marque" href="/">
+      <img src="/img/logo.png" width="30" height="30" alt="" loading="eager">
+      <span>Prépa<strong>Cards</strong></span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navigation" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/prepa/">Pour les prépas</a>
+        <a href="/importer-anki-quizlet/" class="actif">Importer</a>
+        <a href="/fonctionnalites/">Fonctionnalités</a>
+        <a href="/tarifs/">Tarifs</a>
+        <a href="/blog/">Blog</a>
+      <a class="bouton-nav" href="/telecharger/">Télécharger</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+<div class="feuille-texte">
+<h1 id="importer-ses-paquets-anki-et-quizlet">Importer ses paquets Anki et Quizlet</h1>
+<p>Changer d'outil de révision en milieu d'année n'a d'intérêt que si l'on ne
+recommence pas ses cartes de zéro. PrépaCards lit directement les paquets
+d'Anki et les jeux Quizlet — sans passer par un tableur.</p>
+<div class="encart">
+  <p>Tout se fait depuis le bouton <strong>Importer</strong> de l'écran
+  d'accueil, ou par <em>Fichier → Importer depuis Anki ou Quizlet</em>
+  (Ctrl+Maj+I).</p>
+</div>
+
+<h2 id="depuis-anki">Depuis Anki</h2>
+<ol>
+<li>Dans Anki, clic droit sur le paquet → <strong>Exporter</strong>, ou <em>Fichier → Exporter</em>.</li>
+<li>Choisissez le format <strong>Paquet Anki (.apkg)</strong>. Laissez les médias cochés ou
+   non, cela ne change rien pour l'import.</li>
+<li>Dans PrépaCards : <strong>Importer</strong> → <em>Depuis Anki (.apkg) ou Quizlet</em> →
+   <strong>Choisir un fichier</strong>.</li>
+</ol>
+<p>L'écran affiche alors le nombre de cartes, les paquets détectés, un aperçu des
+premières, et la liste de ce qui ne sera pas repris. Rien n'est écrit tant que
+vous n'avez pas cliqué sur <strong>Importer</strong>.</p>
+<h3 id="ce-qui-est-conserve">Ce qui est conservé</h3>
+<ul>
+<li><strong>Vos sous-paquets</strong>, à l'identique. <em>Anglais::Vocabulaire::Économie</em> reste
+  rangé de la même façon.</li>
+<li><strong>Les cartes à trous</strong> (<em>cloze</em>). Le trou est masqué au recto par <code>[...]</code> et
+  révélé au verso — exactement le comportement d'Anki. C'est important pour les
+  paquets d'histoire, de géopolitique et de culture générale, souvent composés
+  presque uniquement de ces cartes.</li>
+<li><strong>La mise en forme</strong>, ramenée en texte simple. Le gras, les listes et les
+  sauts de ligne sont convertis proprement.</li>
+<li><strong>Les cartes en cours de révision</strong>, y compris celles qui se trouvaient dans
+  un paquet filtré : elles retournent dans leur paquet d'origine.</li>
+</ul>
+<h3 id="ce-qui-ne-lest-pas">Ce qui ne l'est pas</h3>
+<p><strong>Les images et les sons.</strong> PrépaCards ne stocke que du texte. Une carte dont
+le verso était un schéma arrivera avec son texte seul. L'application compte
+exactement combien de cartes sont concernées et vous l'indique avant l'import,
+plutôt que de vous le laisser découvrir à la trentième révision.</p>
+<p><strong>L'historique de révision.</strong> Anki calcule ses intervalles avec FSRS,
+PrépaCards avec SM-2. Transposer les dates d'un algorithme à l'autre
+produirait des échéances fausses — une carte annoncée acquise pour six mois
+alors qu'elle ne l'est pas. Vos cartes arrivent donc comme neuves. C'est une
+perte réelle, assumée : mieux vaut trois semaines pour retrouver le bon rythme
+qu'un calendrier de révision erroné.</p>
+<p><strong>Les modèles à plusieurs champs.</strong> Anki fabrique plusieurs cartes à partir
+d'une note de six champs. PrépaCards n'a qu'un recto et un verso : le premier
+champ devient le recto, les autres sont regroupés au verso. Les modèles
+courants (Basique, Basique inversé, vocabulaire) passent sans perte.</p>
+<h3 id="ce-fichier-vient-dune-version-recente-danki">« Ce fichier vient d'une version récente d'Anki »</h3>
+<p>Depuis la version 2.1.50, Anki compresse ses exports. PrépaCards sait les lire,
+mais si ce message apparaît, refaites l'export en cochant <strong>Prendre en charge
+les anciennes versions d'Anki</strong> dans la fenêtre d'export.</p>
+<h2 id="depuis-quizlet">Depuis Quizlet</h2>
+<p>Quizlet ne produit pas de fichier : il affiche votre jeu sous forme de texte à
+copier.</p>
+<ol>
+<li>Ouvrez le jeu, menu <strong>⋯</strong> → <strong>Exporter</strong>.</li>
+<li>Copiez le texte proposé (Ctrl+C).</li>
+<li>Dans PrépaCards : <strong>Importer</strong> → <em>Depuis Anki (.apkg) ou Quizlet</em>, et collez
+   dans la zone de texte (Ctrl+V).</li>
+</ol>
+<p>Vous n'avez pas à toucher aux réglages de séparateurs. L'application les
+détecte en regardant lequel découpe le plus de lignes en exactement deux
+colonnes — tabulation, tiret, point-virgule ou barre verticale. Une virgule
+présente dans une définition ne la trompe pas.</p>
+<p>Si votre jeu vient d'un export ancien enregistré en fichier <code>.txt</code>, passez
+plutôt par <strong>Choisir un fichier</strong> : le résultat est le même.</p>
+<h2 id="choisir-ou-arrivent-les-cartes">Choisir où arrivent les cartes</h2>
+<p>Deux options, dans la même fenêtre :</p>
+<ul>
+<li><strong>Conserver les paquets d'origine</strong> — recommandé pour un import Anki, qui
+  apporte souvent toute une arborescence.</li>
+<li><strong>Tout mettre dans un seul paquet</strong> — plus simple pour un jeu Quizlet, qui
+  n'a de toute façon qu'un seul niveau.</li>
+</ul>
+<h2 id="questions-frequentes">Questions fréquentes</h2>
+<h3 id="prepacards-lit-il-vraiment-les-fichiers-apkg">PrépaCards lit-il vraiment les fichiers .apkg ?</h3>
+<p>Oui, les trois variantes du format produites par Anki au fil des versions : <code>collection.anki2</code>, <code>collection.anki21</code> et la version compressée <code>collection.anki21b</code> des versions 2.1.50 et suivantes. Les fichiers <code>.colpkg</code>, qui sauvegardent une collection entière, sont également lus.</p>
+<h3 id="mes-cartes-anki-vont-elles-garder-leur-avancement">Mes cartes Anki vont-elles garder leur avancement ?</h3>
+<p>Non. Les intervalles d'Anki sont calculés par l'algorithme FSRS, PrépaCards utilise SM-2 : les transposer donnerait des dates de révision fausses. Vos cartes repartent comme neuves. C'est la seule perte que nous considérons comme vraiment gênante, et nous préférons l'annoncer plutôt que d'inventer une conversion approximative.</p>
+<h3 id="et-si-mon-paquet-contient-des-images">Et si mon paquet contient des images ?</h3>
+<p>Les cartes sont importées avec leur texte, sans l'image. Avant de valider, l'application affiche le nombre exact de cartes concernées, ce qui permet de décider en connaissance de cause — et de garder Anki en parallèle si ces cartes vous sont indispensables.</p>
+<h3 id="puis-je-importer-plusieurs-paquets">Puis-je importer plusieurs paquets ?</h3>
+<p>Oui, un fichier à la fois. Rien n'est écrasé : un import ajoute des cartes aux paquets existants sans toucher à celles qui s'y trouvent déjà. Les doublons exacts présents dans le fichier source sont écartés automatiquement.</p>
+<h3 id="limport-fonctionne-t-il-hors-ligne">L'import fonctionne-t-il hors ligne ?</h3>
+<p>Oui. La conversion se fait entièrement sur votre ordinateur, rien n'est envoyé à un serveur. Vos cartes ne quittent pas votre machine.</p>
+<div class="encart">
+  <p>PrépaCards est gratuit pour Windows 10 et 11.
+  <a href="/telecharger/">Télécharger</a> ·
+  <a href="/alternative-anki/">Comparatif avec Anki</a> ·
+  <a href="/alternative-quizlet/">Comparatif avec Quizlet</a></p>
+</div>
+</div>
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-haut">
+      <div class="pied-marque">
+        <img src="/img/logo.png" width="26" height="26" alt="">
+        <span>Prépa<strong>Cards</strong></span>
+        <p>Flashcards à répétition espacée pour les classes préparatoires.
+           Vos cartes restent sur votre ordinateur.</p>
+      </div>
+      <nav class="pied-liens" aria-label="Liens de pied de page">
+          <a href="/telecharger/">Télécharger</a>
+          <a href="/alternative-anki/">Comparatif Anki</a>
+          <a href="/alternative-quizlet/">Comparatif Quizlet</a>
+          <a href="/mentions-legales/">Mentions légales</a>
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/cgv/">CGV</a>
+      </nav>
+    </div>
+    <p class="pied-bas">© 2026 PrépaCards — Application indépendante,
+       sans lien avec Anki ni Quizlet.</p>
+  </div>
+</footer>
+
+<script>
+// Menu mobile. Volontairement en JavaScript brut : quelques lignes suffisent,
+// et charger un framework pour cela ralentirait chaque page - ce qui pese
+// reellement sur le referencement.
+(function () {
+  var burger = document.querySelector('.burger');
+  var nav = document.querySelector('.navigation');
+  if (!burger || !nav) return;
+  burger.addEventListener('click', function () {
+    var ouvert = nav.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fonctionnalités : oral, formules, répétition espacée</title>
+<meta name="description" content="Ce que fait PrépaCards : répétition espacée SM-2, vérification de la prononciation au micro, lecture labiale, photo de formule convertie en LaTeX.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prepacards.fr/fonctionnalites/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PrépaCards">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Fonctionnalités : oral, formules, répétition espacée">
+<meta property="og:description" content="Ce que fait PrépaCards : répétition espacée SM-2, vérification de la prononciation au micro, lecture labiale, photo de formule convertie en LaTeX.">
+<meta property="og:url" content="https://prepacards.fr/fonctionnalites/">
+<meta property="og:image" content="https://prepacards.fr/img/og-prepacards.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fonctionnalités : oral, formules, répétition espacée">
+<meta name="twitter:description" content="Ce que fait PrépaCards : répétition espacée SM-2, vérification de la prononciation au micro, lecture labiale, photo de formule convertie en LaTeX.">
+<meta name="twitter:image" content="https://prepacards.fr/img/og-prepacards.png">
+
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<link rel="stylesheet" href="/style.css?v=1ba3e8ccf6">
+<link rel="preload" href="/fonts/manrope-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "La reconnaissance vocale fonctionne-t-elle hors ligne ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, après un premier téléchargement. Le modèle de reconnaissance vocale (environ 500 Mo) et celui de suivi du visage sont récupérés au premier usage, puis conservés sur votre ordinateur. Ensuite, tout fonctionne sans connexion. Seule la traduction automatique reste en ligne."}}, {"@type": "Question", "name": "Quelle configuration faut-il ?", "acceptedAnswer": {"@type": "Answer", "text": "Windows 10 ou 11, environ 1,5 Go d'espace disque au total avec les modèles, un micro pour l'oral et une webcam pour la lecture labiale. Aucune carte graphique dédiée n'est nécessaire : tout tourne sur le processeur."}}, {"@type": "Question", "name": "Y a-t-il une synchronisation entre plusieurs ordinateurs ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. C'est la contrepartie directe de l'absence de serveur. Pour transférer votre collection, copiez le fichier vocab.db ou passez par un export CSV."}}, {"@type": "Question", "name": "L'application est-elle open source ?", "acceptedAnswer": {"@type": "Answer", "text": "Pas à ce jour."}}]}</script>
+</head>
+<body>
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="conteneur barre">
+    <a class="marque" href="/">
+      <img src="/img/logo.png" width="30" height="30" alt="" loading="eager">
+      <span>Prépa<strong>Cards</strong></span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navigation" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/prepa/">Pour les prépas</a>
+        <a href="/importer-anki-quizlet/">Importer</a>
+        <a href="/fonctionnalites/" class="actif">Fonctionnalités</a>
+        <a href="/tarifs/">Tarifs</a>
+        <a href="/blog/">Blog</a>
+      <a class="bouton-nav" href="/telecharger/">Télécharger</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+<div class="feuille-texte">
+<h1 id="fonctionnalites">Fonctionnalités</h1>
+<p class="chapeau">Cette page décrit ce que l'application fait réellement
+aujourd'hui, y compris ses limites. Rien de ce qui suit n'est « à venir ».</p>
+
+<h2 id="repetition-espacee">Répétition espacée</h2>
+<p>PrépaCards utilise <strong>SM-2</strong>, l'algorithme de répétition espacée que rendu
+célèbre SuperMemo puis Anki. Après chaque carte, vous notez votre réponse sur
+quatre niveaux — <em>Again</em>, <em>Hard</em>, <em>Good</em>, <em>Easy</em> — et l'intervalle avant la
+prochaine révision s'ajuste. Chaque bouton affiche par avance l'intervalle qu'il
+produira.</p>
+<p>Les paquets acceptent des sous-paquets imbriqués, avec la même convention
+qu'Anki (<code>Matière::Chapitre::Sous-partie</code>). Un paquet parent affiche le cumul
+de ce qu'il reste à réviser dans tous ses enfants, et se replie d'un clic.
+Chaque paquet a ses propres limites quotidiennes de cartes nouvelles et de
+révisions.</p>
+<div class="encart">
+  <p>À savoir : Anki utilise depuis plusieurs années un algorithme plus récent
+  (FSRS), qui planifie mieux les révisions que SM-2. Si l'optimisation fine du
+  calendrier de révision est votre critère principal, Anki reste devant sur ce
+  point précis.</p>
+</div>
+
+<h2 id="verification-de-la-prononciation">Vérification de la prononciation</h2>
+<p>Appuyez sur <strong>R</strong>, dites la réponse. L'application :</p>
+<ol>
+<li>enregistre le micro et <strong>s'arrête dès que vous vous taisez</strong> — le seuil de
+   silence est calibré sur le bruit ambiant, donc cela fonctionne aussi près
+   d'un ventilateur ;</li>
+<li>transcrit ce que vous avez dit avec un modèle de reconnaissance vocale qui
+   tourne <strong>sur votre ordinateur</strong>, pas sur un serveur ;</li>
+<li>compare à la réponse attendue et note la carte automatiquement.</li>
+</ol>
+<p>C'est le dos de la carte qui est prononcé, dans sa propre langue : une carte
+dont le recto est allemand et le verso français se récite en français.
+Cinq langues sont gérées : français, anglais, espagnol, allemand, italien.</p>
+<h2 id="lecture-labiale-par-la-webcam">Lecture labiale par la webcam</h2>
+<p>Fonction optionnelle, à cocher pendant l'étude. La webcam suit le mouvement de
+vos lèvres, le convertit en suite de formes de bouche et le compare à celle
+attendue pour le mot.</p>
+<figure>
+  <img src="/img/retour-camera.png" width="320" height="240"
+       alt="Retour vidéo de PrépaCards : maillage discret du visage, contour des lèvres en bleu et jauges d'ouverture, arrondi et étirement"
+       loading="lazy">
+  <figcaption>Le retour vidéo montre ce que l'application mesure réellement :
+    contour des lèvres et trois grandeurs comparées au mot attendu.</figcaption>
+</figure>
+
+<p><strong>La règle de notation est stricte</strong> : la carte n'est validée que si le micro
+et la bouche sont d'accord. En cas de désaccord, rien n'est enregistré et c'est
+vous qui choisissez la note.</p>
+<p>Une limite qu'aucun logiciel ne franchira : plusieurs sons ont une image
+identique. <code>p</code>, <code>b</code> et <code>m</code> sont le même geste des lèvres. « pain », « bain » et
+« main » sont donc <strong>indiscernables</strong> à la caméra. Quand le cas se présente,
+PrépaCards le dit explicitement au lieu de trancher au hasard.</p>
+<h2 id="photo-de-formule-convertie-en-latex">Photo de formule convertie en LaTeX</h2>
+<p>Choisissez une image ou collez une capture d'écran. L'application découpe la
+page en zones, présentées en vignettes cliquables, et convertit celle que vous
+désignez. Vous pouvez aussi tracer un rectangle à la souris pour isoler une
+formule vous-même.</p>
+<p>Le code LaTeX obtenu est <strong>toujours modifiable</strong>, avec un aperçu de la formule
+rendue en dessous. Sur des formules imprimées et bien cadrées, la
+reconnaissance est correcte dans l'ensemble mais se trompe régulièrement sur
+une lettre isolée — un <code>a</code> italique lu <code>∂</code>, un <code>n</code> lu <code>η</code>. La relecture n'est
+pas une précaution facultative : c'est une étape du processus.</p>
+<h2 id="traduction-automatique-des-cartes">Traduction automatique des cartes</h2>
+<p>À la création d'une carte de vocabulaire, un bouton traduit le mot vers l'une
+des cinq langues gérées et détecte sa langue d'origine. La langue détectée est
+enregistrée sur la carte : c'est elle qui servira ensuite à la reconnaissance
+vocale.</p>
+<p>Cette fonction nécessite une connexion internet. Seul le mot est envoyé au
+service de traduction — jamais votre adresse e-mail ni le reste de votre
+collection.</p>
+<h2 id="vos-donnees-restent-chez-vous">Vos données restent chez vous</h2>
+<p>Il n'y a <strong>aucun serveur PrépaCards</strong>. Vos cartes, votre historique de
+révision et votre compte sont dans un fichier sur votre disque
+(<code>%APPDATA%\PrepaCards</code>). Le compte demandé au premier lancement verrouille
+l'ouverture de l'application ; il ne chiffre pas le fichier, et nous le disons
+plutôt que de laisser croire le contraire.</p>
+<p>Import et export au format CSV, dans les deux sens.</p>
+<h2 id="questions-frequentes">Questions fréquentes</h2>
+<h3 id="la-reconnaissance-vocale-fonctionne-t-elle-hors-ligne">La reconnaissance vocale fonctionne-t-elle hors ligne ?</h3>
+<p>Oui, après un premier téléchargement. Le modèle de reconnaissance vocale (environ 500 Mo) et celui de suivi du visage sont récupérés au premier usage, puis conservés sur votre ordinateur. Ensuite, tout fonctionne sans connexion. Seule la traduction automatique reste en ligne.</p>
+<h3 id="quelle-configuration-faut-il">Quelle configuration faut-il ?</h3>
+<p>Windows 10 ou 11, environ 1,5 Go d'espace disque au total avec les modèles, un micro pour l'oral et une webcam pour la lecture labiale. Aucune carte graphique dédiée n'est nécessaire : tout tourne sur le processeur.</p>
+<h3 id="y-a-t-il-une-synchronisation-entre-plusieurs-ordinateurs">Y a-t-il une synchronisation entre plusieurs ordinateurs ?</h3>
+<p>Non. C'est la contrepartie directe de l'absence de serveur. Pour transférer votre collection, copiez le fichier <code>vocab.db</code> ou passez par un export CSV.</p>
+<h3 id="lapplication-est-elle-open-source">L'application est-elle open source ?</h3>
+<p>Pas à ce jour.</p>
+</div>
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-haut">
+      <div class="pied-marque">
+        <img src="/img/logo.png" width="26" height="26" alt="">
+        <span>Prépa<strong>Cards</strong></span>
+        <p>Flashcards à répétition espacée pour les classes préparatoires.
+           Vos cartes restent sur votre ordinateur.</p>
+      </div>
+      <nav class="pied-liens" aria-label="Liens de pied de page">
+          <a href="/telecharger/">Télécharger</a>
+          <a href="/alternative-anki/">Comparatif Anki</a>
+          <a href="/alternative-quizlet/">Comparatif Quizlet</a>
+          <a href="/mentions-legales/">Mentions légales</a>
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/cgv/">CGV</a>
+      </nav>
+    </div>
+    <p class="pied-bas">© 2026 PrépaCards — Application indépendante,
+       sans lien avec Anki ni Quizlet.</p>
+  </div>
+</footer>
+
+<script>
+// Menu mobile. Volontairement en JavaScript brut : quelques lignes suffisent,
+// et charger un framework pour cela ralentirait chaque page - ce qui pese
+// reellement sur le referencement.
+(function () {
+  var burger = document.querySelector('.burger');
+  var nav = document.querySelector('.navigation');
+  if (!burger || !nav) return;
+  burger.addEventListener('click', function () {
+    var ouvert = nav.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+})();
+</script>
+
+</body>
+</html>

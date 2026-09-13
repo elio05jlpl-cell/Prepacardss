@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidentialité et données personnelles — PrépaCards</title>
+<meta name="description" content="Quelles données PrépaCards traite et où elles sont stockées. Ni vos cartes ni votre compte ne quittent votre ordinateur : il n&#x27;y a aucun serveur.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prepacards.fr/confidentialite/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PrépaCards">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Confidentialité et données personnelles — PrépaCards">
+<meta property="og:description" content="Quelles données PrépaCards traite et où elles sont stockées. Ni vos cartes ni votre compte ne quittent votre ordinateur : il n&#x27;y a aucun serveur.">
+<meta property="og:url" content="https://prepacards.fr/confidentialite/">
+<meta property="og:image" content="https://prepacards.fr/img/og-prepacards.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Confidentialité et données personnelles — PrépaCards">
+<meta name="twitter:description" content="Quelles données PrépaCards traite et où elles sont stockées. Ni vos cartes ni votre compte ne quittent votre ordinateur : il n&#x27;y a aucun serveur.">
+<meta name="twitter:image" content="https://prepacards.fr/img/og-prepacards.png">
+
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<link rel="stylesheet" href="/style.css?v=1ba3e8ccf6">
+<link rel="preload" href="/fonts/manrope-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Mes enregistrements vocaux sont-ils conservés ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'audio est transcrit en mémoire puis abandonné. Aucun fichier audio n'est écrit sur le disque, et rien n'est envoyé sur internet : la reconnaissance vocale fonctionne sur votre processeur."}}, {"@type": "Question", "name": "Les images de ma webcam sont-elles enregistrées ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les images servent uniquement à mesurer le mouvement de vos lèvres, image par image, en mémoire. L'application n'écrit aucune capture et la caméra se referme quand vous quittez la session."}}, {"@type": "Question", "name": "Faut-il un compte pour utiliser l'application ?", "acceptedAnswer": {"@type": "Answer", "text": "Un compte est créé au premier lancement, mais il est entièrement local : il n'est enregistré nulle part ailleurs que sur votre ordinateur, et aucune vérification d'adresse e-mail n'a lieu. Personne, y compris nous, ne peut le récupérer — ce qui signifie aussi qu'il n'existe pas de procédure de mot de passe oublié."}}, {"@type": "Question", "name": "Ce site utilise-t-il Google Analytics ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Aucun outil de mesure d'audience n'est installé."}}]}</script>
+</head>
+<body>
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="conteneur barre">
+    <a class="marque" href="/">
+      <img src="/img/logo.png" width="30" height="30" alt="" loading="eager">
+      <span>Prépa<strong>Cards</strong></span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navigation" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/prepa/">Pour les prépas</a>
+        <a href="/importer-anki-quizlet/">Importer</a>
+        <a href="/fonctionnalites/">Fonctionnalités</a>
+        <a href="/tarifs/">Tarifs</a>
+        <a href="/blog/">Blog</a>
+      <a class="bouton-nav" href="/telecharger/">Télécharger</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+<div class="feuille-texte">
+<h1 id="confidentialite">Confidentialité</h1>
+<p class="chapeau">Position tenue par PrépaCards : l'application n'a pas de
+serveur, donc elle n'a rien à collecter. Cette page détaille les trois seuls
+cas où des données quittent votre ordinateur.</p>
+
+<div class="encart encart-attention">
+  <p><strong>À relire avant la mise en ligne</strong>, et à faire vérifier si
+  vous vendez des abonnements : la description doit correspondre exactement à
+  ce que fait votre site au moment de sa publication, notamment si vous ajoutez
+  un outil de mesure d'audience ou un prestataire de paiement.</p>
+</div>
+
+<h2 id="dans-lapplication">Dans l'application</h2>
+<p><strong>Vos cartes, votre historique de révision et votre compte</strong> sont enregistrés
+dans un fichier local, sur votre ordinateur, à l'emplacement
+<code>%APPDATA%\PrepaCards</code>. Ils ne sont jamais transmis : il n'existe aucun serveur
+PrépaCards.</p>
+<p><strong>Le mot de passe</strong> de votre compte local n'est pas conservé en clair. Seule
+une empreinte cryptographique est stockée (PBKDF2-HMAC-SHA256, 200 000
+itérations, avec un sel aléatoire). Ce compte verrouille l'ouverture de
+l'application ; il ne chiffre pas le fichier de cartes, et une personne ayant
+accès à votre ordinateur pourrait lire ce fichier.</p>
+<p><strong>Votre voix et l'image de votre webcam</strong> sont analysées en mémoire, sur votre
+processeur, puis immédiatement abandonnées. Aucun enregistrement audio ni aucune
+image n'est conservé sur le disque ni transmis.</p>
+<p><strong>Aucune mesure d'audience, aucune télémétrie</strong> n'est intégrée à
+l'application : elle ne signale ni son installation, ni son usage.</p>
+<h2 id="les-trois-cas-ou-une-donnee-sort-de-votre-ordinateur">Les trois cas où une donnée sort de votre ordinateur</h2>
+<ol>
+<li><strong>Traduction automatique d'une carte.</strong> Le mot à traduire — et lui seul —
+   est envoyé au service MyMemory (Translated srl, Italie). Ni votre adresse
+   e-mail, ni votre identifiant, ni le reste de votre collection ne sont
+   transmis. Cette fonction est optionnelle.</li>
+<li><strong>Téléchargement des modèles au premier usage.</strong> L'application récupère les
+   modèles de reconnaissance vocale, de suivi du visage et de reconnaissance de
+   formules depuis Hugging Face, Google et GitHub. Ces téléchargements
+   transmettent ce que transmet toute requête web : votre adresse IP et le
+   fichier demandé.</li>
+<li><strong>Consultation de ce site.</strong> Voir ci-dessous.</li>
+</ol>
+<h2 id="sur-ce-site">Sur ce site</h2>
+<p>Ce site est statique : il ne dépose <strong>aucun cookie</strong> et n'utilise aucun outil
+de suivi publicitaire. Il n'y a donc pas de bandeau de consentement, faute de
+quoi consentir.</p>
+<p>L'hébergeur conserve des journaux de connexion techniques (adresse IP, page
+demandée, date), pour la sécurité et la mesure de charge, pendant une durée
+limitée. C'est le traitement minimal inhérent au fonctionnement d'un serveur
+web.</p>
+<p>Si vous nous écrivez, votre adresse e-mail et le contenu de votre message sont
+conservés le temps de traiter votre demande, puis supprimés.</p>
+<h2 id="base-legale-et-durees">Base légale et durées</h2>
+<table>
+<thead>
+<tr>
+<th>Traitement</th>
+<th>Base légale</th>
+<th>Durée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Journaux du serveur web</td>
+<td>Intérêt légitime (sécurité)</td>
+<td>[durée pratiquée par votre hébergeur]</td>
+</tr>
+<tr>
+<td>Réponse à un message</td>
+<td>Intérêt légitime</td>
+<td>Le temps de l'échange, puis suppression</td>
+</tr>
+<tr>
+<td>Liste d'attente Premium ou version Mac</td>
+<td>Consentement</td>
+<td>Jusqu'au retrait de votre consentement</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vos-droits">Vos droits</h2>
+<p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation
+et d'opposition sur les données vous concernant, ainsi que d'un droit à la
+portabilité. Pour l'exercer :
+<a href="mailto:contact@prepacards.fr">contact@prepacards.fr</a>.</p>
+<p>En cas de désaccord, vous pouvez saisir la CNIL (Commission nationale de
+l'informatique et des libertés), 3 place de Fontenoy, 75334 Paris Cedex 07,
+<a href="https://www.cnil.fr" rel="nofollow">www.cnil.fr</a>.</p>
+<p>S'agissant de vos cartes, la portabilité est immédiate et ne demande aucune
+démarche : <em>Fichier → Exporter en CSV</em> dans l'application.</p>
+<h2 id="questions-frequentes">Questions fréquentes</h2>
+<h3 id="mes-enregistrements-vocaux-sont-ils-conserves">Mes enregistrements vocaux sont-ils conservés ?</h3>
+<p>Non. L'audio est transcrit en mémoire puis abandonné. Aucun fichier audio n'est écrit sur le disque, et rien n'est envoyé sur internet : la reconnaissance vocale fonctionne sur votre processeur.</p>
+<h3 id="les-images-de-ma-webcam-sont-elles-enregistrees">Les images de ma webcam sont-elles enregistrées ?</h3>
+<p>Non. Les images servent uniquement à mesurer le mouvement de vos lèvres, image par image, en mémoire. L'application n'écrit aucune capture et la caméra se referme quand vous quittez la session.</p>
+<h3 id="faut-il-un-compte-pour-utiliser-lapplication">Faut-il un compte pour utiliser l'application ?</h3>
+<p>Un compte est créé au premier lancement, mais il est <strong>entièrement local</strong> : il n'est enregistré nulle part ailleurs que sur votre ordinateur, et aucune vérification d'adresse e-mail n'a lieu. Personne, y compris nous, ne peut le récupérer — ce qui signifie aussi qu'il n'existe pas de procédure de mot de passe oublié.</p>
+<h3 id="ce-site-utilise-t-il-google-analytics">Ce site utilise-t-il Google Analytics ?</h3>
+<p>Non. Aucun outil de mesure d'audience n'est installé.</p>
+<p style="color:var(--gris);font-size:.9rem">Dernière mise à jour :
+[date de mise en ligne]</p>
+</div>
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-haut">
+      <div class="pied-marque">
+        <img src="/img/logo.png" width="26" height="26" alt="">
+        <span>Prépa<strong>Cards</strong></span>
+        <p>Flashcards à répétition espacée pour les classes préparatoires.
+           Vos cartes restent sur votre ordinateur.</p>
+      </div>
+      <nav class="pied-liens" aria-label="Liens de pied de page">
+          <a href="/telecharger/">Télécharger</a>
+          <a href="/alternative-anki/">Comparatif Anki</a>
+          <a href="/alternative-quizlet/">Comparatif Quizlet</a>
+          <a href="/mentions-legales/">Mentions légales</a>
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/cgv/">CGV</a>
+      </nav>
+    </div>
+    <p class="pied-bas">© 2026 PrépaCards — Application indépendante,
+       sans lien avec Anki ni Quizlet.</p>
+  </div>
+</footer>
+
+<script>
+// Menu mobile. Volontairement en JavaScript brut : quelques lignes suffisent,
+// et charger un framework pour cela ralentirait chaque page - ce qui pese
+// reellement sur le referencement.
+(function () {
+  var burger = document.querySelector('.burger');
+  var nav = document.querySelector('.navigation');
+  if (!burger || !nav) return;
+  burger.addEventListener('click', function () {
+    var ouvert = nav.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+})();
+</script>
+
+</body>
+</html>
