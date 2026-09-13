@@ -1,11 +1,15 @@
-# Redirections pour Cloudflare Pages et Netlify.
-# Ignore par un hebergement Apache comme OVH (voir .htaccess).
+# Redirections servies par Cloudflare Workers.
 #
-# Une seule adresse doit repondre, sinon Google voit deux sites identiques et
-# repartit la valeur entre les deux. On choisit la version SANS www.
+# ATTENTION : seules les adresses RELATIVES sont acceptees ici. Une adresse
+# absolue fait echouer le deploiement entier avec
+# « Invalid _redirects configuration : Only relative URLs are allowed ».
+# C'est une difference avec Cloudflare Pages et Netlify, qui les acceptent.
+#
+# La redirection de www vers le domaine nu ne peut donc PAS se faire dans ce
+# fichier. Elle se regle dans le tableau de bord Cloudflare, en Regles de
+# redirection. En attendant, la balise <link rel="canonical"> presente sur
+# chaque page indique deja a Google quelle version indexer.
 
-https://www.prepacards.fr/*  https://prepacards.fr/:splat  301
-
-# La page « Pour le droit » a ete retiree : le site s'adresse
-# desormais aux seules classes preparatoires.
+# La page « Pour le droit » a ete retiree : le site s'adresse desormais aux
+# seules classes preparatoires.
 /droit/*  /prepa/  301
