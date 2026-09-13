@@ -181,13 +181,9 @@ strong { color: var(--encre); font-weight: 700; }
 .marque:hover { text-decoration: none; }
 
 .navigation { display: flex; align-items: center; gap: 2px; margin-left: auto; }
-.navigation a {
-  padding: 9px 13px; border-radius: 10px; color: var(--texte);
-  font-size: .95rem; font-weight: 500; text-decoration: none;
-  transition: background .15s, color .15s;
-}
-.navigation a:hover { background: var(--bleu-pale); color: var(--bleu-fonce); text-decoration: none; }
-.navigation a.actif { color: var(--bleu-fonce); font-weight: 700; }
+/* Les liens de navigation sont styles par .nav-lien, qui gere aussi les
+   parents de sous-menu. Cette regle ne couvre plus que le bouton
+   « Telecharger », qui a sa propre classe. */
 
 .bouton-nav {
   background: var(--degrade); color: #fff !important;
@@ -542,6 +538,132 @@ figcaption { font-size: .88rem; color: var(--gris); text-align: center; margin-t
   .section { padding: 44px 0; }
   .bouton, .bouton-secondaire { display: block; text-align: center; }
   .accroche .bouton, .accroche .bouton-secondaire { margin-right: 0; }
+}
+
+/* --- Menu deroulant de navigation ---------------------------------- */
+
+.nav-groupe { position: relative; display: inline-flex; }
+
+.nav-lien {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 9px 13px; border-radius: 10px; color: var(--texte);
+  font-size: .95rem; font-weight: 500; text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+.nav-lien:hover { background: var(--hover); color: var(--bleu-fonce); text-decoration: none; }
+.nav-lien.actif { color: var(--bleu-fonce); font-weight: 700; }
+
+.nav-fleche { font-size: .7em; transition: transform .2s ease; }
+.nav-groupe:hover .nav-fleche,
+.nav-groupe:focus-within .nav-fleche { transform: rotate(180deg); }
+
+.nav-menu {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: 60;
+  min-width: 290px; padding: 8px;
+  background: #fff; border: 1px solid var(--bord);
+  border-radius: var(--rayon-l); box-shadow: var(--ombre-panneau);
+  /* Cache par la transparence et non par display:none : une transition ne
+     peut pas partir d'un element absent du rendu. */
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.nav-groupe:hover .nav-menu,
+.nav-groupe:focus-within .nav-menu {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+
+/* Pont invisible entre le lien et le menu : sans lui, le menu se referme
+   dans l'espace vide que la souris traverse pour l'atteindre. */
+.nav-groupe::after {
+  content: ""; position: absolute; top: 100%; left: 0;
+  width: 100%; height: 10px;
+}
+
+.nav-menu a {
+  display: block; padding: 10px 12px; border-radius: 10px;
+  text-decoration: none; transition: background .2s ease;
+}
+.nav-menu a:hover { background: var(--hover); text-decoration: none; }
+.nav-menu strong {
+  display: block; color: var(--encre); font-size: .95rem; font-weight: 700;
+}
+.nav-menu span {
+  display: block; color: var(--gris); font-size: .8rem; margin-top: 1px;
+}
+
+/* --- Cartes de filiere --------------------------------------------- */
+
+.carte-filiere {
+  background: #fff; border: 1px solid var(--bord);
+  border-radius: var(--rayon-l); padding: 26px 24px;
+  box-shadow: var(--ombre-carte);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.carte-filiere:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 52px rgba(15, 23, 42, .13);
+  border-color: rgba(37, 99, 235, .35);
+}
+.carte-filiere h3 { margin-top: 0; font-size: 1.15rem; }
+.carte-filiere h3 a { color: var(--encre); text-decoration: none; }
+.carte-filiere h3 a::after {
+  content: " →"; color: var(--bleu); display: inline-block;
+  transition: transform .3s ease;
+}
+.carte-filiere:hover h3 a::after { transform: translateX(4px); }
+.carte-filiere p:first-of-type {
+  color: var(--gris); font-size: .85rem; margin-bottom: .8em;
+}
+.carte-filiere p:last-child { margin-bottom: 0; }
+
+/* --- Apparition au defilement -------------------------------------- */
+/*
+   L'element est legerement decale et transparent, puis remis en place quand
+   il entre dans la fenetre. La classe est posee par JavaScript ; si celui-ci
+   ne s'execute pas, la regle « pas de JS » ci-dessous laisse tout visible -
+   un contenu invisible faute de script serait un contenu perdu.
+*/
+html.js .revelation > *,
+html.js .a-reveler {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+html.js .revelation > *:nth-child(2) { transition-delay: .08s; }
+html.js .revelation > *:nth-child(3) { transition-delay: .16s; }
+
+html.js .revelation.vue > *,
+html.js .a-reveler.vue { opacity: 1; transform: none; }
+
+/* --- En-tete qui se densifie au defilement -------------------------- */
+
+.entete { transition: box-shadow .3s ease, background .3s ease; }
+.entete.defile {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, .07);
+  background: rgba(255, 255, 255, .94);
+}
+
+/* --- Liens et images : les memes durees que le reste ---------------- */
+
+main a { transition: color .2s ease; }
+.liste-articles a img, .capture-accroche { transition: transform .4s ease; }
+
+@media (max-width: 900px) {
+  /* Sur petit ecran il n'y a pas de survol : le sous-menu est deroule en
+     permanence sous son parent, en retrait. */
+  .nav-groupe { display: block; width: 100%; }
+  .nav-menu {
+    position: static; opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; border: none; padding: 0 0 0 14px; min-width: 0;
+  }
+  .nav-fleche { display: none; }
+  .nav-menu span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .revelation > *,
+  html.js .a-reveler { opacity: 1; transform: none; transition: none; }
+  .carte-filiere:hover { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
