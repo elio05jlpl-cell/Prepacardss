@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/style.css?v=1ba3e8ccf6">
 <link rel="preload" href="/fonts/manrope-400-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/manrope-800-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il abandonner les fiches papier ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, et c'est même déconseillé. Faire une fiche, c'est structurer et comprendre ; réviser une flashcard, c'est mémoriser et restituer. Les deux ne remplacent pas l'un l'autre. L'usage le plus efficace consiste à fabriquer les cartes à partir de vos fiches, une fois le chapitre compris."}}, {"@type": "Question", "name": "Combien de cartes par jour en prépa ?", "acceptedAnswer": {"@type": "Answer", "text": "Rien n'impose de chiffre, mais l'expérience des utilisateurs d'Anki en prépa situe le point d'équilibre autour de vingt à trente nouvelles cartes par jour et par matière principale. Au-delà, le nombre de révisions quotidiennes devient ingérable trois semaines plus tard. PrépaCards permet de fixer une limite par paquet."}}, {"@type": "Question", "name": "Ça fonctionne aussi pour les concours de la fonction publique ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, pour tout ce qui relève de la restitution de connaissances : dates, définitions, articles, chiffres. La vérification à l'oral est particulièrement adaptée aux épreuves orales de ces concours."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il abandonner les fiches papier ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les fiches restent le bon format pour synthétiser un chapitre dense ou un plan de dissertation. Les cartes remplacent avantageusement tout ce qui est court et sans ambiguïté : vocabulaire, dates, constantes, définitions. Voir fiches ou flashcards."}}, {"@type": "Question", "name": "Combien de cartes par jour en prépa ?", "acceptedAnswer": {"@type": "Answer", "text": "Quinze à trente nouvelles cartes par jour est tenable sur deux ans. Au-delà, la file de révisions gonfle mécaniquement : chaque carte apprise revient six à huit fois dans l'année."}}, {"@type": "Question", "name": "PrépaCards fonctionne-t-il pour toutes les filières ?", "acceptedAnswer": {"@type": "Answer", "text": "L'application propose dix filières à la première ouverture — ECG, ECT, MPSI, PCSI, PTSI, MPI, BCPST, khâgnes A/L et B/L — et crée vos paquets par matière. « Autre » reste disponible si la vôtre n'y figure pas."}}, {"@type": "Question", "name": "Ça marche aussi pour les concours de la fonction publique ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, le principe est le même : beaucoup de contenu ponctuel à retenir et des oraux. Les paquets fournis, eux, sont spécifiques à l'anglais de prépa ECG."}}]}</script>
 </head>
 <body>
 
@@ -55,337 +55,159 @@
 <main id="contenu">
 <div class="feuille-texte">
 <h1 id="reviser-en-prepa-avec-des-flashcards">Réviser en prépa avec des flashcards</h1>
-<p class="chapeau">En classe préparatoire, le problème n'est presque jamais de
-comprendre. C'est de <strong>retenir trois ans de contenu pendant deux ans</strong>,
-et de pouvoir le restituer à l'oral en trente secondes devant un colleur.</p>
+<p class="chapeau">En prépa, le problème n'est presque jamais de comprendre.
+C'est de <strong>retenir deux ans de contenu</strong> et de pouvoir le
+restituer à l'oral, en trente secondes, devant un colleur.</p>
 
-<p>La répétition espacée répond exactement à ce problème : au lieu de relire un
-chapitre sept fois en une semaine puis de l'oublier, vous revoyez chaque notion
-juste avant de l'oublier. C'est le principe d'Anki, et c'est celui de
-PrépaCards.</p>
-<h2 id="trois-familles-de-prepa-trois-usages">Trois familles de prépa, trois usages</h2>
-<p>Les besoins ne sont pas les mêmes selon la voie. À la première ouverture,
-PrépaCards vous demande votre filière et crée vos paquets par matière — mais
-ce qui change vraiment, c'est l'outil sur lequel vous allez vous appuyer.</p>
-<h3 id="prepas-scientifiques-mpsi-pcsi-ptsi-mpi-bcpst">Prépas scientifiques — MPSI, PCSI, PTSI, MPI, BCPST</h3>
-<p><strong>Ce qui vous fait gagner du temps : la photo de formule.</strong></p>
+<p>La répétition espacée répond exactement à ça : chaque notion revient <strong>juste
+avant</strong> que vous ne l'oubliiez. PrépaCards y ajoute les deux choses qui
+manquaient — il écoute si vous prononcez le mot, et il transforme une photo de
+formule en carte.</p>
+<div class="encart">
+  <p><strong>Allez directement à votre filière :</strong>
+  <a href="#scientifiques">Scientifiques</a> ·
+  <a href="#commerciales">Commerciales</a> ·
+  <a href="#litteraires">Littéraires</a></p>
+</div>
+
+<h2 id="scientifiques">Prépas scientifiques</h2>
+<p><em>MPSI, PCSI, PTSI, MPI, BCPST</em></p>
+<p><strong>Ce qui change tout : la photo de formule.</strong></p>
 <p>Personne ne saisit <code>\int_{0}^{+\infty} e^{-t^2}\,\mathrm{d}t</code> à la main pour
-les deux cents formules d'un programme. C'est la raison numéro un pour
-laquelle les prépas scientifiques abandonnent les flashcards en une semaine —
-avant même la question du temps de révision.</p>
+les deux cents formules d'un programme. C'est la première raison pour laquelle
+les prépas scientifiques abandonnent les flashcards en une semaine.</p>
 <p>Photographiez la page de votre cours : PrépaCards la découpe formule par
-formule, lit celle que vous désignez et la convertit en LaTeX. Le code reste
-modifiable, avec l'aperçu rendu juste en dessous, donc vous n'apprenez jamais
-une formule fausse.</p>
-<p>Au-delà des formules, trois contenus rendent service en scientifique : les
-<strong>constantes et ordres de grandeur</strong> de physique et de chimie, du pur par
-cœur ; les <strong>déclencheurs de méthode</strong> — « quelle technique devant tel type
-d'énoncé », qui est la compétence réellement évaluée en DS ; et le
-<strong>vocabulaire d'anglais</strong>, parce que vous avez aussi des colles de langue.</p>
-<p>Ce qui ne marche pas, et autant le dire : les <strong>démonstrations</strong>. Elles se
-refont sur papier, elles ne se récitent pas.</p>
-<p><a href="/anki-prepa-mpsi-pcsi/">Ce qu'il faut mettre sur ses cartes en
-prépa scientifique →</a></p>
-
-<h3 id="prepas-commerciales-ecg-et-ect">Prépas commerciales — ECG et ECT</h3>
-<p><strong>Ce qui vous fait gagner du temps : les 2 000 cartes de vocabulaire fournies.</strong></p>
-<p>L'anglais et la LV2 représentent un volume de mémorisation que rien d'autre
-n'égale en prépa : environ 2 000 mots de civilisation à produire, pas
-seulement à reconnaître. Ce lexique est livré avec l'application, en 20 thèmes
-de 100 mots — économie, environnement, migrations, santé, médias — vérifiés
-un par un. Vous cochez les thèmes utiles, rien à télécharger.</p>
-<p><strong>La vérification à l'oral compte double ici</strong>, parce que vous avez deux
-langues et des colles dans chacune. Vous appuyez sur R, vous dites le mot ;
-l'application transcrit sur votre ordinateur et note la carte. Vous cessez
-d'être le juge indulgent de votre propre révision.</p>
-<p>Pour l'<strong>ESH</strong> et la <strong>géopolitique</strong>, les cartes portent sur ce qui est
-ponctuel et vérifiable : dates, auteurs, chiffres, définitions, cas d'école.
-La dissertation, elle, s'entraîne en rédigeant — une carte ne vous fera pas
-un plan.</p>
-<p><a href="/vocabulaire-anglais-prepa-ecg/">Les 20 thèmes d'anglais ECG →</a>
-· <a href="/anki-prepa-ecg/">Anki en prépa ECG : faut-il s'y mettre ?</a></p>
-
-<h3 id="prepas-litteraires-khagnes-al-et-bl">Prépas littéraires — khâgnes A/L et B/L</h3>
-<p><strong>Ce qui vous fait gagner du temps : la récitation à voix haute.</strong></p>
-<p>En khâgne, presque tout se restitue oralement — la LV1, la LV2, les citations,
-les explications de texte. Or c'est exactement ce qu'aucun outil de flashcards
-ne vérifie : Anki et Quizlet vous montrent la réponse et vous demandent si
-vous la saviez.</p>
-<p>PrépaCards écoute au micro et compare à la réponse attendue, en <strong>français,
-anglais, espagnol, allemand et italien</strong>. Une réponse marmonnée ou incomplète
-ne passe pas, et la carte revient.</p>
-<p>Les trois contenus qui s'y prêtent le mieux : les <strong>citations</strong> avec leur
-auteur et leur œuvre, les <strong>dates et repères</strong> d'histoire, et les <strong>notions de
-philosophie</strong> — une définition précise, restituée mot pour mot, vaut mieux
-qu'une paraphrase approximative le jour de l'oral.</p>
-<div class="encart encart-attention">
-<p><strong>Une limite à connaître pour les langues anciennes.</strong> La vérification vocale
-ne couvre pas le latin ni le grec : ces cartes fonctionnent comme des cartes
-texte normales — recto, verso, répétition espacée — mais sans écoute au micro.
-Pour du vocabulaire latin, l'application reste utile ; elle ne vous corrigera
-simplement pas la prononciation.</p>
-</div>
-<p><a href="/memoriser-vocabulaire-anglais/">Comment mémoriser du vocabulaire
-durablement →</a></p>
-
-<h2 id="repondre-a-une-question-precise">Répondre à une question précise</h2>
-<div class="tableau-enveloppe">
-<table>
-<thead>
-<tr>
-<th>Vous cherchez</th>
-<th>Page</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Le vocabulaire d'anglais à connaître en ECG</td>
-<td><a href="/vocabulaire-anglais-prepa-ecg/">Les 20 thèmes d'anglais ECG</a></td>
-</tr>
-<tr>
-<td>Si Anki vaut le coup en ECG</td>
-<td><a href="/anki-prepa-ecg/">Anki en prépa ECG</a></td>
-</tr>
-<tr>
-<td>Quoi mettre sur ses cartes en MPSI ou PCSI</td>
-<td><a href="/anki-prepa-mpsi-pcsi/">Anki en prépa scientifique</a></td>
-</tr>
-<tr>
-<td>Comment préparer une colle d'anglais</td>
-<td><a href="/colle-anglais-prepa/">Colle d'anglais en prépa</a></td>
-</tr>
-<tr>
-<td>Comment s'organiser en prépa scientifique</td>
-<td><a href="/reviser-prepa-mpsi-pcsi/">Réviser en MPSI et PCSI</a></td>
-</tr>
-<tr>
-<td>Si les fiches valent le temps qu'elles coûtent</td>
-<td><a href="/fiches-de-revision-prepa/">Fiches de révision en prépa</a></td>
-</tr>
-<tr>
-<td>Comment retenir du vocabulaire durablement</td>
-<td><a href="/memoriser-vocabulaire-anglais/">Mémoriser le vocabulaire anglais</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="le-vocabulaire-danglais-ecg-est-fourni">Le vocabulaire d'anglais ECG est fourni</h2>
-<p>Vingt thèmes de cent mots, du français vers l'anglais, livrés <strong>dans
-l'application</strong> — rien à télécharger. Vous cochez ceux qui vous servent, les
-autres restent de côté.</p>
-<p>Comme c'est le verso qui se prononce, la vérification au micro vous fait
-réciter l'anglais, pas le français : c'est le sens utile pour une colle.</p>
-<div class="tableau-enveloppe">
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Thème</th>
-<th>Cartes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>01</td>
-<td>Économie et finance</td>
-<td>100</td>
-</tr>
-<tr>
-<td>02</td>
-<td>Entreprise et travail</td>
-<td>100</td>
-</tr>
-<tr>
-<td>03</td>
-<td>Politique et institutions</td>
-<td>100</td>
-</tr>
-<tr>
-<td>04</td>
-<td>Commerce international et mondialisation</td>
-<td>100</td>
-</tr>
-<tr>
-<td>05</td>
-<td>Médias et information</td>
-<td>100</td>
-</tr>
-<tr>
-<td>06</td>
-<td>Éducation et enseignement supérieur</td>
-<td>100</td>
-</tr>
-<tr>
-<td>07</td>
-<td>Environnement et climat</td>
-<td>100</td>
-</tr>
-<tr>
-<td>08</td>
-<td>Migrations et immigration</td>
-<td>100</td>
-</tr>
-<tr>
-<td>09</td>
-<td>Inégalités et pauvreté</td>
-<td>100</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Santé et système de soins</td>
-<td>100</td>
-</tr>
-<tr>
-<td>11</td>
-<td>Technologies et intelligence artificielle</td>
-<td>100</td>
-</tr>
-<tr>
-<td>12</td>
-<td>Justice, criminalité et police</td>
-<td>100</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Relations internationales et géopolitique</td>
-<td>100</td>
-</tr>
-<tr>
-<td>14</td>
-<td>Démographie et famille</td>
-<td>100</td>
-</tr>
-<tr>
-<td>15</td>
-<td>Ville, logement et transports</td>
-<td>100</td>
-</tr>
-<tr>
-<td>16</td>
-<td>Culture et divertissement</td>
-<td>100</td>
-</tr>
-<tr>
-<td>17</td>
-<td>Agriculture et alimentation</td>
-<td>100</td>
-</tr>
-<tr>
-<td>18</td>
-<td>Sciences et recherche</td>
-<td>100</td>
-</tr>
-<tr>
-<td>19</td>
-<td>Société, religions et débats</td>
-<td>100</td>
-</tr>
-<tr>
-<td>20</td>
-<td>Sport et loisirs</td>
-<td>100</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Ces mots reviennent dans les sujets de concours, les articles de presse et les
-colles. Ils ne remplacent pas le vocabulaire de votre propre cours : ils vous
-évitent de passer vos soirées à le saisir.</p>
-<h2 id="ce-que-la-prepa-demande-et-que-les-autres-outils-ignorent">Ce que la prépa demande et que les autres outils ignorent</h2>
-<h3 id="le-vocabulaire-de-langue-se-recite-a-voix-haute">Le vocabulaire de langue se récite à voix haute</h3>
-<p>Une colle d'allemand ou d'anglais, ce n'est pas reconnaître un mot sur une
-carte : c'est le sortir, correctement prononcé, sans hésiter. Avec Anki ou
-Quizlet, vous retournez la carte et vous vous dites « oui, je l'avais ». C'est
-le biais le plus coûteux de la révision passive.</p>
-<p>PrépaCards écoute au micro, transcrit ce que vous avez dit et compare au mot
-attendu. Si vous avez marmonné, la carte revient. La transcription tourne sur
-votre machine, hors ligne.</p>
-<h3 id="les-formules-ne-se-saisissent-pas-au-clavier">Les formules ne se saisissent pas au clavier</h3>
-<p>Personne ne va taper <code>\int_{0}^{+\infty} e^{-t^2}\,\mathrm{d}t</code> à la main pour
-chacune des deux cents formules d'un programme de MPSI. C'est la raison pour
-laquelle la plupart des étudiants en prépa scientifique abandonnent les
-flashcards de maths au bout d'une semaine.</p>
-<p>Photographiez la page de votre cours, ou collez une capture d'écran du
-polycopié. PrépaCards découpe l'image formule par formule, lit celle que vous
-désignez et la convertit. Vous relisez, vous corrigez si besoin, vous
-enregistrez.</p>
+formule, lit celle que vous désignez et la convertit. Le code reste
+modifiable, avec l'aperçu rendu en dessous — vous n'apprenez jamais une
+formule fausse.</p>
 <figure>
   <img src="/img/import-formule.png?v=e5130a4f" width="1175" height="1055"
        alt="Fenêtre d'import de PrépaCards : une page de cours découpée en vignettes, avec le code LaTeX reconnu et son aperçu"
        loading="lazy">
-  <figcaption>Une page de cours découpée en zones cliquables : on choisit la
-    formule, on relit le LaTeX, on enregistre.</figcaption>
+  <figcaption>On choisit la formule, on relit le LaTeX, on enregistre.</figcaption>
 </figure>
 
-<h3 id="les-paquets-doivent-suivre-lorganisation-dune-prepa">Les paquets doivent suivre l'organisation d'une prépa</h3>
-<p>Un programme de prépa se range en matières, puis en chapitres, puis en
-sous-parties. PrépaCards gère des sous-paquets imbriqués : un paquet
-<code>Maths</code> contient <code>Maths::Analyse</code>, qui contient <code>Maths::Analyse::Séries</code>. Le
-paquet parent affiche le cumul de tout ce qu'il reste à réviser en dessous, et
-se replie d'un clic.</p>
-<h2 id="une-organisation-qui-tient-sur-deux-ans">Une organisation qui tient sur deux ans</h2>
+<p>Trois autres contenus rendent service : les <strong>constantes et ordres de
+grandeur</strong>, les <strong>déclencheurs de méthode</strong> — « quelle technique devant tel
+énoncé », la compétence réellement évaluée en DS — et le <strong>vocabulaire
+d'anglais</strong>, puisque vous avez aussi des colles de langue.</p>
+<p>Ce qui ne marche pas, autant le dire : les <strong>démonstrations</strong>. Elles se
+refont sur papier, elles ne se récitent pas.</p>
+<p><a href="/anki-prepa-mpsi-pcsi/">Ce qu'il faut mettre sur ses cartes en
+prépa scientifique →</a></p>
+
+<h2 id="commerciales">Prépas commerciales</h2>
+<p><em>ECG et ECT</em></p>
+<p><strong>Ce qui change tout : 2 000 cartes d'anglais déjà prêtes.</strong></p>
+<p>L'anglais et la LV2 sont le plus gros volume de mémorisation de la filière :
+environ 2 000 mots de civilisation à <strong>produire</strong>, pas seulement à reconnaître.
+Ce lexique est livré avec l'application, en 20 thèmes de 100 mots — économie,
+environnement, migrations, santé, médias — vérifiés un par un. Vous cochez les
+thèmes utiles, rien à télécharger.</p>
+<p>La <strong>vérification à l'oral</strong> compte double ici : deux langues, et des colles
+dans chacune. Vous appuyez sur R, vous dites le mot, l'application transcrit
+sur votre ordinateur et note la carte. Vous cessez d'être le juge indulgent de
+votre propre révision.</p>
+<p>Pour l'<strong>ESH</strong> et la <strong>géopolitique</strong>, les cartes portent sur ce qui est
+ponctuel : dates, auteurs, chiffres, définitions. La dissertation, elle,
+s'entraîne en rédigeant — aucune carte ne vous fera un plan.</p>
+<p><a href="/vocabulaire-anglais-prepa-ecg/">Les 20 thèmes d'anglais ECG →</a><br>
+<a href="/anki-prepa-ecg/">Anki en prépa ECG : faut-il s'y mettre ? →</a></p>
+
+<h2 id="litteraires">Prépas littéraires</h2>
+<p><em>Khâgnes A/L et B/L</em></p>
+<p><strong>Ce qui change tout : la récitation à voix haute.</strong></p>
+<p>En khâgne, presque tout se restitue oralement — LV1, LV2, citations,
+explications de texte. Or c'est précisément ce qu'aucun outil ne vérifie :
+Anki et Quizlet vous montrent la réponse et vous demandent si vous la saviez.</p>
+<p>PrépaCards écoute au micro et compare à la réponse attendue, en <strong>français,
+anglais, espagnol, allemand et italien</strong>. Une réponse marmonnée ne passe pas,
+et la carte revient.</p>
+<p>Trois contenus s'y prêtent particulièrement : les <strong>citations</strong> avec leur
+auteur et leur œuvre, les <strong>dates et repères</strong> d'histoire, et les <strong>notions de
+philosophie</strong> — une définition restituée mot pour mot vaut mieux qu'une
+paraphrase approximative le jour de l'oral.</p>
+<div class="encart encart-attention">
+<p><strong>Langues anciennes : une limite à connaître.</strong> La vérification vocale ne
+couvre ni le latin ni le grec. Ces cartes fonctionnent comme des cartes texte
+normales, avec répétition espacée, mais sans écoute au micro.</p>
+</div>
+<p><a href="/memoriser-vocabulaire-anglais/">Comment mémoriser du vocabulaire
+durablement →</a></p>
+
+<h2 id="quel-type-de-carte-pour-quelle-matiere">Quel type de carte pour quelle matière</h2>
+<div class="tableau-enveloppe">
 <table>
 <thead>
 <tr>
 <th>Matière</th>
-<th>Type de cartes</th>
+<th>Sur la carte</th>
 <th>Ce qui aide le plus</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Allemand, anglais</td>
-<td>Vocabulaire, expressions idiomatiques</td>
-<td>Vérification à l'oral, traduction automatique à la création</td>
+<td>Anglais, LV2</td>
+<td>Vocabulaire, expressions</td>
+<td>Vérification à l'oral</td>
 </tr>
 <tr>
 <td>Maths</td>
-<td>Formules, théorèmes, conditions d'application</td>
-<td>Reconnaissance de formules en photo</td>
+<td>Formules, conditions d'application</td>
+<td>Photo de formule</td>
 </tr>
 <tr>
 <td>Physique, chimie</td>
 <td>Constantes, relations, unités</td>
-<td>Reconnaissance de formules, sous-paquets par chapitre</td>
+<td>Photo de formule</td>
 </tr>
 <tr>
-<td>Culture générale, histoire</td>
+<td>ESH, géopolitique</td>
+<td>Chiffres, théories, auteurs</td>
+<td>Une idée par carte</td>
+</tr>
+<tr>
+<td>Histoire, culture générale</td>
 <td>Dates, auteurs, citations</td>
 <td>Récitation à l'oral</td>
 </tr>
 <tr>
-<td>ESH, géopolitique</td>
-<td>Chiffres clés, théories, auteurs</td>
-<td>Cartes courtes, une idée par carte</td>
+<td>Philosophie</td>
+<td>Définitions précises</td>
+<td>Récitation à l'oral</td>
 </tr>
 </tbody>
 </table>
+</div>
+<p>Vos paquets suivent l'organisation d'une prépa : <code>Maths</code> contient
+<code>Maths::Analyse</code>, qui contient <code>Maths::Analyse::Séries</code>. Le paquet parent
+affiche le cumul de ce qu'il reste à réviser en dessous, et se replie d'un
+clic.</p>
 <h2 id="trois-erreurs-qui-gachent-les-flashcards-en-prepa">Trois erreurs qui gâchent les flashcards en prépa</h2>
 <ol>
-<li><strong>Des cartes trop longues.</strong> Recopier un paragraphe de cours sur une carte
-   ne sert à rien : vous ne pourrez jamais dire si vous « saviez » ou non. Une
-   carte, une question, une réponse courte.</li>
-<li><strong>Créer des cartes au lieu de réviser.</strong> Fabriquer des cartes donne un
-   sentiment de travail sans en être. Fixez-vous une limite quotidienne de
-   création, et révisez d'abord.</li>
-<li><strong>Sauter des jours.</strong> La répétition espacée s'effondre si l'on cumule les
-   retards : trois jours manqués en pleine période de colles produisent un
-   arriéré décourageant. Mieux vaut quinze minutes tous les jours que deux
-   heures le dimanche.</li>
+<li><strong>Des cartes trop longues.</strong> Recopier un paragraphe de cours ne sert à
+   rien : vous ne pourrez jamais dire si vous saviez ou non. Une carte, une
+   question, une réponse courte.</li>
+<li><strong>Créer des cartes au lieu de réviser.</strong> Fabriquer donne un sentiment de
+   travail sans en être. Fixez une limite quotidienne de création, et révisez
+   d'abord.</li>
+<li><strong>Sauter des jours.</strong> Trois jours manqués en pleine période de colles
+   produisent un arriéré décourageant. Quinze minutes tous les jours valent
+   mieux que deux heures le dimanche.</li>
 </ol>
 <h2 id="questions-frequentes">Questions fréquentes</h2>
 <h3 id="faut-il-abandonner-les-fiches-papier">Faut-il abandonner les fiches papier ?</h3>
-<p>Non, et c'est même déconseillé. Faire une fiche, c'est structurer et comprendre ; réviser une flashcard, c'est mémoriser et restituer. Les deux ne remplacent pas l'un l'autre. L'usage le plus efficace consiste à fabriquer les cartes à partir de vos fiches, une fois le chapitre compris.</p>
+<p>Non. Les fiches restent le bon format pour synthétiser un chapitre dense ou un plan de dissertation. Les cartes remplacent avantageusement tout ce qui est court et sans ambiguïté : vocabulaire, dates, constantes, définitions. Voir <a href="/fiches-de-revision-prepa/">fiches ou flashcards</a>.</p>
 <h3 id="combien-de-cartes-par-jour-en-prepa">Combien de cartes par jour en prépa ?</h3>
-<p>Rien n'impose de chiffre, mais l'expérience des utilisateurs d'Anki en prépa situe le point d'équilibre autour de vingt à trente nouvelles cartes par jour et par matière principale. Au-delà, le nombre de révisions quotidiennes devient ingérable trois semaines plus tard. PrépaCards permet de fixer une limite par paquet.</p>
-<h3 id="ca-fonctionne-aussi-pour-les-concours-de-la-fonction-publique">Ça fonctionne aussi pour les concours de la fonction publique ?</h3>
-<p>Oui, pour tout ce qui relève de la restitution de connaissances : dates, définitions, articles, chiffres. La vérification à l'oral est particulièrement adaptée aux épreuves orales de ces concours.</p>
+<p>Quinze à trente nouvelles cartes par jour est tenable sur deux ans. Au-delà, la file de révisions gonfle mécaniquement : chaque carte apprise revient six à huit fois dans l'année.</p>
+<h3 id="prepacards-fonctionne-t-il-pour-toutes-les-filieres">PrépaCards fonctionne-t-il pour toutes les filières ?</h3>
+<p>L'application propose dix filières à la première ouverture — ECG, ECT, MPSI, PCSI, PTSI, MPI, BCPST, khâgnes A/L et B/L — et crée vos paquets par matière. « Autre » reste disponible si la vôtre n'y figure pas.</p>
+<h3 id="ca-marche-aussi-pour-les-concours-de-la-fonction-publique">Ça marche aussi pour les concours de la fonction publique ?</h3>
+<p>Oui, le principe est le même : beaucoup de contenu ponctuel à retenir et des oraux. Les paquets fournis, eux, sont spécifiques à l'anglais de prépa ECG.</p>
 <div class="encart">
-  <p><strong>PrépaCards est gratuit</strong> pour les paquets illimités, la
-  répétition espacée et la vérification à l'oral. La reconnaissance de formules
-  en photo fait partie de l'offre Premium.
-  <a href="/tarifs/">Voir les tarifs</a> ou
-  <a href="/telecharger/">télécharger</a>.</p>
+  <p>PrépaCards est gratuit pour Windows 10 et 11, sans compte en ligne.
+  <a href="/telecharger/">Télécharger</a> ·
+  <a href="/fonctionnalites/">Voir les fonctionnalités</a></p>
 </div>
 </div>
 </main>
