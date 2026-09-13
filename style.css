@@ -247,6 +247,71 @@ strong { color: var(--encre); font-weight: 700; }
   box-shadow: var(--ombre-panneau); background: #fff;
 }
 
+/* --- Bandeau defilant des concours -------------------------------- */
+
+/* Deux pistes identiques cote a cote : quand la premiere a defile de sa
+   propre largeur, la seconde occupe exactement sa place, et la boucle est
+   invisible. Aucun JavaScript, donc rien a charger ni a executer.
+
+   Les noms sont en typographie, pas en logos : ce sont des marques deposees,
+   et les afficher laisserait croire a un partenariat qui n'existe pas. */
+
+.bandeau-ecoles { padding: 8px 0 40px; }
+
+.bandeau-titre {
+  text-align: center; color: var(--gris);
+  font-size: .82rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  margin: 0 0 22px;
+}
+
+.defile {
+  display: flex; gap: 56px; overflow: hidden;
+  /* Les bords s'estompent : le defilement semble venir de l'exterieur de la
+     page plutot que de s'interrompre net sur une arete. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.defile-piste {
+  display: flex; gap: 56px; flex-shrink: 0;
+  list-style: none; margin: 0; padding: 0;
+  animation: defiler 42s linear infinite;
+}
+.defile:hover .defile-piste { animation-play-state: paused; }
+
+.defile-piste li {
+  white-space: nowrap;
+  display: flex; align-items: center;
+  font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--gris);
+}
+
+/* Les logos, quand ils sont fournis, sont normalises a la meme hauteur et
+   dessatures : une bande de logos aux couleurs d'origine tire l'oeil plus
+   que le bouton de telechargement, qui est ce que la page doit obtenir. */
+.logo-ecole img {
+  /* Les dimensions viennent des attributs width/height du HTML : chaque logo
+     a sa hauteur propre, calculee selon sa forme par preparer_logos.py. */
+  height: auto; max-width: 170px;
+  filter: grayscale(1);
+  opacity: .66;
+  transition: opacity .2s, filter .2s;
+}
+.defile:hover .logo-ecole img { opacity: .9; }
+
+@keyframes defiler {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - 56px)); }
+}
+
+.bandeau-mention {
+  text-align: center; color: var(--gris-clair);
+  font-size: .78rem; margin: 24px 0 0;
+  max-width: 560px; margin-left: auto; margin-right: auto;
+  padding: 0 22px;
+}
+
 /* --- Blocs generiques --------------------------------------------- */
 
 .section { padding: 62px 0; }
@@ -374,7 +439,13 @@ td strong { color: var(--encre); }
 .fil { font-size: .88rem; color: var(--gris); margin-bottom: 18px; }
 .art-meta { font-size: .9rem; color: var(--gris); margin-bottom: 1.5em; }
 
-.liste-articles { list-style: none; padding: 0; margin: 2em 0 0; }
+/* Centrage porte par la classe elle-meme, et non par la regle « main > ul » :
+   un selecteur de classe l'emporte sur elle, et les marges laterales etaient
+   remises a zero - la liste se collait au bord gauche. */
+.liste-articles {
+  list-style: none; padding: 0; margin: 2em auto 0;
+  max-width: var(--largeur-texte);
+}
 .liste-articles li { margin-bottom: 16px; }
 .liste-articles a {
   display: block; padding: 26px; border: 1px solid var(--bord);
@@ -477,4 +548,9 @@ figcaption { font-size: .88rem; color: var(--gris); text-align: center; margin-t
   html { scroll-behavior: auto; }
   * { transition: none !important; }
   .carte:hover, .bouton:hover, .liste-articles a:hover { transform: none; }
+  /* Un defilement continu est penible, voire nauseeux, pour une partie des
+     visiteurs. On le remplace par une liste fixe plutot que de le ralentir. */
+  .defile { display: block; -webkit-mask-image: none; mask-image: none; }
+  .defile-piste { animation: none; flex-wrap: wrap; justify-content: center; gap: 14px 34px; }
+  .defile-piste[aria-hidden="true"] { display: none; }
 }
