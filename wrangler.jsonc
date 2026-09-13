@@ -1,0 +1,30 @@
+// Configuration Cloudflare Workers
+// =================================
+//
+// Sans ce fichier, la commande « npx wrangler deploy » ne sait pas quoi
+// publier : le depot ne contient que des fichiers statiques, aucun code de
+// Worker. Le build se termine alors sans rien mettre en ligne.
+//
+// Il vit dans static/ et non dans public/ : public/ est entierement vide a
+// chaque construction, le fichier y serait efface. static/ est recopie tel
+// quel dans public/, donc la configuration accompagne toujours le site.
+{
+  "name": "prepacardsss",
+  "compatibility_date": "2026-09-13",
+
+  "assets": {
+    // Le depot pousse vers GitHub EST le dossier public/ : la racine du
+    // depot contient donc directement index.html, img/, fonts/, etc.
+    "directory": ".",
+
+    // « auto-trailing-slash » sert /prepa/index.html quand le visiteur
+    // demande /prepa/ ou /prepa. Sans cela, toutes les pages du site
+    // repondent 404 : seuls les fichiers demandes par leur nom exact
+    // fonctionnent.
+    "html_handling": "auto-trailing-slash",
+
+    // Une adresse inconnue renvoie notre page 404.html plutot qu'une page
+    // blanche de Cloudflare.
+    "not_found_handling": "404-page"
+  }
+}
