@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="robots" content="{{robots}}">
+<link rel="canonical" href="{{canonical}}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PrépaCards">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:image" content="{{og_image}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{title}}">
+<meta name="twitter:description" content="{{description}}">
+<meta name="twitter:image" content="{{og_image}}">
+
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<link rel="stylesheet" href="/style.css?v={{version_css}}">
+<link rel="preload" href="/fonts/manrope-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+{{jsonld}}
+</head>
+<body>
+
+<a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="conteneur barre">
+    <a class="marque" href="/">
+      <img src="/img/logo.png" width="30" height="30" alt="" loading="eager">
+      <span>Prépa<strong>Cards</strong></span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navigation" aria-label="Navigation principale">
+        {{nav}}
+      <a class="bouton-nav" href="/telecharger/">Télécharger</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+{{content}}
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-haut">
+      <div class="pied-marque">
+        <img src="/img/logo.png" width="26" height="26" alt="">
+        <span>Prépa<strong>Cards</strong></span>
+        <p>Flashcards à répétition espacée pour les classes préparatoires.
+           Vos cartes restent sur votre ordinateur.</p>
+      </div>
+      <nav class="pied-liens" aria-label="Liens de pied de page">
+          {{footer_links}}
+      </nav>
+    </div>
+    <p class="pied-bas">© {{year}} PrépaCards — Application indépendante,
+       sans lien avec Anki ni Quizlet.</p>
+  </div>
+</footer>
+
+<script>
+// Marque tout de suite que JavaScript fonctionne : les regles d'apparition
+// ne s'appliquent qu'a ce moment-la. Sans ce drapeau, un visiteur dont le
+// script echoue verrait une page vide de contenu masque.
+document.documentElement.classList.add('js');
+
+(function () {
+  var doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cibles = document.querySelectorAll('.revelation, .a-reveler');
+
+  if (doux || !('IntersectionObserver' in window)) {
+    // Navigateur ancien ou mouvement reduit : on affiche tout, sans animer.
+    cibles.forEach(function (e) { e.classList.add('vue'); });
+  } else {
+    var observateur = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (entree) {
+        if (!entree.isIntersecting) return;
+        entree.target.classList.add('vue');
+        // Une fois apparu, l'element n'a plus a etre surveille : sinon il
+        // rejouerait l'animation a chaque remontee dans la page.
+        observateur.unobserve(entree.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    cibles.forEach(function (e) { observateur.observe(e); });
+  }
+
+  // En-tete : une ombre apparait des que la page defile, pour la detacher
+  // du contenu qui passe dessous.
+  var entete = document.querySelector('.entete');
+  if (entete) {
+    var majDefile = function () {
+      entete.classList.toggle('defile', window.scrollY > 8);
+    };
+    majDefile();
+    window.addEventListener('scroll', majDefile, { passive: true });
+  }
+})();
+
+// Menu mobile. Volontairement en JavaScript brut : quelques lignes suffisent,
+// et charger un framework pour cela ralentirait chaque page - ce qui pese
+// reellement sur le referencement.
+(function () {
+  var burger = document.querySelector('.burger');
+  var nav = document.querySelector('.navigation');
+  if (!burger || !nav) return;
+  burger.addEventListener('click', function () {
+    var ouvert = nav.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+})();
+
+</script>
+{{script_etapes}}
+</body>
+</html>

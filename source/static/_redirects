@@ -1,0 +1,15 @@
+# Redirections servies par Cloudflare Workers.
+#
+# ATTENTION : seules les adresses RELATIVES sont acceptees ici. Une adresse
+# absolue fait echouer le deploiement entier avec
+# « Invalid _redirects configuration : Only relative URLs are allowed ».
+# C'est une difference avec Cloudflare Pages et Netlify, qui les acceptent.
+#
+# La redirection de www vers le domaine nu ne peut donc PAS se faire dans ce
+# fichier. Elle se regle dans le tableau de bord Cloudflare, en Regles de
+# redirection. En attendant, la balise <link rel="canonical"> presente sur
+# chaque page indique deja a Google quelle version indexer.
+
+# La page « Pour le droit » a ete retiree : le site s'adresse desormais aux
+# seules classes preparatoires.
+/droit/*  /prepa/  301

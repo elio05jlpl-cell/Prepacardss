@@ -1,0 +1,75 @@
+# Publication automatique des articles en attente
+# ================================================
+#
+# Chaque article de content/blog/ porte une date. Tant qu'elle est dans le
+# futur, build_site.py le laisse dans le depot sans le construire : il
+# n'existe ni en page, ni dans le plan du site, ni dans le sommaire.
+#
+# Cette action reconstruit le site tous les jours. Le jour ou la date d'un
+# article arrive, il apparait, et le commit qui en resulte declenche le
+# deploiement Cloudflare comme n'importe quelle autre modification.
+#
+# Elle ne REDIGE rien : elle publie ce qui a ete ecrit d'avance. C'est
+# volontaire. Un site qui produirait chaque jour un article genere sans
+# relecture tomberait sous la politique de Google sur le contenu produit a
+# grande echelle, dont la sanction est le declassement.
+
+name: Publier les articles en attente
+
+on:
+  schedule:
+    # 6 h 05 UTC, soit 7 h 05 en hiver et 8 h 05 en ete. L'heure exacte
+    # importe peu ; GitHub decale de toute facon les taches planifiees de
+    # plusieurs minutes selon sa charge.
+    - cron: "5 6 * * *"
+  # Pour declencher a la main depuis l'onglet Actions, sans attendre.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  # Deux constructions simultanees se pousseraient l'une sur l'autre.
+  group: publication
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install -r source/requirements.txt
+
+      - name: Reconstruire le site
+        env:
+          # La sortie est la racine du dépôt, pas source/public.
+          PREPACARDS_SORTIE: ${{ github.workspace }}
+        run: python source/build_site.py
+
+      - name: Vérifier avant de publier
+        # Si l'audit trouve quoi que ce soit — lien mort, titre manquant,
+        # description hors bornes — l'action s'arrête ici et rien n'est
+        # poussé. Mieux vaut un article qui paraît un jour plus tard qu'un
+        # site cassé pendant vingt-quatre heures.
+        run: python source/audit_site.py
+
+      - name: Publier s'il y a du nouveau
+        run: |
+          git config user.name "Publication automatique"
+          git config user.email "actions@github.com"
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "Rien de nouveau aujourd'hui."
+            exit 0
+          fi
+          git add -A
+          git commit -m "Publication automatique du $(date -u +%d/%m/%Y)"
+          git push
+          echo "Site republié."
