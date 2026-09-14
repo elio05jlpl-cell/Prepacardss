@@ -22,7 +22,7 @@
 
 <link rel="icon" href="/img/favicon.png?v=2208486d" type="image/png">
 <link rel="apple-touch-icon" href="/img/icone-180.png?v=fcb36135">
-<link rel="stylesheet" href="/style.css?v=c9a5eaa0a7">
+<link rel="stylesheet" href="/style.css?v=54f5776481">
 <link rel="preload" href="/fonts/manrope-400-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/manrope-800-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PrépaCards", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows 10, Windows 11", "url": "https://prepacards.fr", "description": "Application de flashcards à répétition espacée pour les prépas et les classes préparatoires, avec vérification de la prononciation à l'oral et reconnaissance de formules mathématiques en photo.", "offers": [{"@type": "Offer", "name": "PrépaCards Gratuit", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "PrépaCards Premium", "price": "29.00", "priceCurrency": "EUR"}]}</script>
@@ -117,6 +117,102 @@
   </div>
   <p class="bandeau-mention">Noms cités à titre informatif. PrépaCards est une
     application indépendante, sans affiliation avec ces établissements.</p>
+</section>
+
+<section class="section etapes">
+  <div class="conteneur centre">
+    <h2>Comment ça marche</h2>
+    <p class="chapeau">Trois gestes, et vos cartes existent. Le reste, c'est de
+      la révision.</p>
+
+    <div class="etapes-grille revelation">
+
+      <div class="etape" data-anim="voix">
+        <span class="etape-numero" aria-hidden="true">1</span>
+        <h3>Récitez à voix haute</h3>
+        <p>Dites votre réponse au micro : l'application écoute, transcrit ce
+          que vous avez prononcé et note la carte toute seule.</p>
+
+        <div class="scene scene-voix" role="img"
+             aria-label="Animation : une carte affiche le mot « une percée », un micro pulse et la réponse « a breakthrough » s'écrit, puis est validée.">
+          <div class="mini-carte">
+            <span class="mot">une percée</span>
+            <div class="micro" aria-hidden="true">
+              <span class="micro-pastille"></span>
+              <span class="onde"></span>
+              <span class="onde"></span>
+              <span class="onde"></span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/>
+                <path d="M18 11a6 6 0 0 1-12 0H4a8 8 0 0 0 7 7.9V22h2v-3.1A8 8 0 0 0 20 11z"/>
+              </svg>
+            </div>
+            <div class="transcription" data-texte="a breakthrough"></div>
+          </div>
+          <span class="coche" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12.5 9.5 18 20 6.5"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="etape" data-anim="scan">
+        <span class="etape-numero" aria-hidden="true">2</span>
+        <h3>Photographiez votre liste</h3>
+        <p>Une feuille de vocabulaire imprimée, une photo, et l'application
+          repère les deux colonnes et fabrique les cartes. Vous relisez, vous
+          validez.</p>
+
+        <div class="scene scene-scan" role="img"
+             aria-label="Animation : une ligne lumineuse balaie une feuille de vocabulaire, et une flashcard se construit à droite.">
+          <div class="feuille">
+            <svg viewBox="0 0 120 86" aria-hidden="true">
+              <g fill="#cbd5e1">
+                <rect x="6"  y="6"  width="40" height="5" rx="2.5"/>
+                <rect x="70" y="6"  width="44" height="5" rx="2.5"/>
+                <rect x="6"  y="22" width="30" height="5" rx="2.5"/>
+                <rect x="70" y="22" width="38" height="5" rx="2.5"/>
+                <rect x="6"  y="38" width="44" height="5" rx="2.5"/>
+                <rect x="70" y="38" width="32" height="5" rx="2.5"/>
+                <rect x="6"  y="54" width="34" height="5" rx="2.5"/>
+                <rect x="70" y="54" width="42" height="5" rx="2.5"/>
+                <rect x="6"  y="70" width="38" height="5" rx="2.5"/>
+                <rect x="70" y="70" width="30" height="5" rx="2.5"/>
+              </g>
+            </svg>
+            <span class="rayon" aria-hidden="true"></span>
+          </div>
+
+          <span class="fleche-scan" aria-hidden="true">→</span>
+
+          <div class="carte-issue">
+            <span class="etiquette-carte">Recto</span>
+            <span class="champ c1"></span>
+            <span class="etiquette-carte">Verso</span>
+            <span class="champ c2"></span>
+            <span class="champ c3"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="etape" data-anim="formule">
+        <span class="etape-numero" aria-hidden="true">3</span>
+        <h3>Écrivez vos formules simplement</h3>
+        <p>Tapez la formule comme elle vient, ou photographiez-la dans votre
+          cours : elle s'affiche en notation mathématique propre sur la carte.</p>
+
+        <div class="scene scene-formule" role="img"
+             aria-label="Animation : la formule tapée « x^2 + sqrt(y) = int f(t)dt » se transforme en notation mathématique rendue.">
+          <div class="brut" data-texte="x^2 + sqrt(y) = int f(t)dt"></div>
+          <span class="fleche-bas" aria-hidden="true">↓</span>
+          <div class="rendu" aria-hidden="true"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <section class="section">
@@ -327,7 +423,190 @@ document.documentElement.classList.add('js');
     burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
   });
 })();
-</script>
 
+</script>
+<script>
+// Animations de la section « Comment ca marche ».
+//
+// Trois boucles, chacune pilotee par une suite d'etapes datees. Le CSS
+// fait ce qu'il sait faire seul - ondes du micro, rayon du scan - et le
+// JavaScript ne s'occupe que de ce qu'il ne sait pas faire : ecrire lettre
+// par lettre, et enchainer les phases.
+//
+// Une boucle ne tourne que pendant que son bloc est visible. Trois
+// animations qui tournent en permanence sur une page d'accueil font
+// chauffer un portable pour rien, et ce n'est pas un detail sur une
+// machine d'etudiant.
+(function () {
+  var blocs = document.querySelectorAll('.etape[data-anim]');
+  if (!blocs.length) return;
+
+  var doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Un minuteur par bloc, pour pouvoir tout annuler d'un coup a la sortie
+  // du champ de vision : sans cela, les minuteurs en attente reprendraient
+  // la main au milieu d'une phase et l'animation redemarrerait de travers.
+  function Sequenceur(element, phases) {
+    this.element = element;
+    this.phases = phases;
+    this.minuteurs = [];
+    this.actif = false;
+  }
+
+  Sequenceur.prototype.plus_tard = function (delai, action) {
+    this.minuteurs.push(window.setTimeout(action, delai));
+  };
+
+  Sequenceur.prototype.arreter = function () {
+    this.actif = false;
+    this.minuteurs.forEach(window.clearTimeout);
+    this.minuteurs = [];
+  };
+
+  Sequenceur.prototype.demarrer = function () {
+    if (this.actif) return;
+    this.actif = true;
+    this.tour();
+  };
+
+  Sequenceur.prototype.tour = function () {
+    if (!this.actif) return;
+    var moi = this;
+    var duree = this.phases(this);
+    this.plus_tard(duree, function () { moi.tour(); });
+  };
+
+  // Ecrit un texte lettre par lettre. Renvoie la duree totale, pour que la
+  // phase suivante sache quand commencer.
+  function frapper(sequenceur, cible, texte, pas, apres) {
+    cible.textContent = '';
+    cible.classList.remove('fini');
+    for (var i = 1; i <= texte.length; i++) {
+      (function (n) {
+        sequenceur.plus_tard(n * pas, function () {
+          cible.textContent = texte.slice(0, n);
+        });
+      })(i);
+    }
+    sequenceur.plus_tard(texte.length * pas, function () {
+      cible.classList.add('fini');
+      if (apres) apres();
+    });
+    return texte.length * pas;
+  }
+
+  function construire(bloc) {
+    var genre = bloc.getAttribute('data-anim');
+
+    if (genre === 'voix') {
+      var ligne = bloc.querySelector('.transcription');
+      var coche = bloc.querySelector('.coche');
+      var phrase = ligne.getAttribute('data-texte') || '';
+      return new Sequenceur(bloc, function (s) {
+        coche.classList.remove('vue');
+        var frappe = frapper(s, ligne, phrase, 85);
+        s.plus_tard(frappe + 250, function () { coche.classList.add('vue'); });
+        s.plus_tard(frappe + 1500, function () {
+          coche.classList.remove('vue');
+          ligne.textContent = '';
+          ligne.classList.remove('fini');
+        });
+        // Le cycle complet dure autant que le rayon du scan voisin : les
+        // trois blocs restent ainsi a peu pres en phase.
+        return frappe + 2100;
+      });
+    }
+
+    if (genre === 'scan') {
+      var carte = bloc.querySelector('.carte-issue');
+      var champs = bloc.querySelectorAll('.carte-issue .champ');
+      // Cale sur les 4 s de l'animation CSS « balayer » : les champs se
+      // remplissent au passage du rayon, pas avant.
+      return new Sequenceur(bloc, function (s) {
+        champs.forEach(function (c) { c.classList.remove('rempli'); });
+        carte.classList.remove('complete');
+        s.plus_tard(700,  function () { champs[0].classList.add('rempli'); });
+        s.plus_tard(1300, function () { champs[1].classList.add('rempli'); });
+        s.plus_tard(1800, function () { champs[2].classList.add('rempli'); });
+        s.plus_tard(2100, function () { carte.classList.add('complete'); });
+        return 4000;
+      });
+    }
+
+    if (genre === 'formule') {
+      var brut = bloc.querySelector('.brut');
+      var rendu = bloc.querySelector('.rendu');
+      var source = brut.getAttribute('data-texte') || '';
+      return new Sequenceur(bloc, function (s) {
+        brut.classList.remove('parti');
+        rendu.classList.remove('vu');
+        var frappe = frapper(s, brut, source, 62);
+        s.plus_tard(frappe + 350, function () {
+          brut.classList.add('parti');
+          rendu.classList.add('vu');
+        });
+        s.plus_tard(frappe + 2200, function () {
+          brut.classList.remove('parti');
+          rendu.classList.remove('vu');
+          brut.textContent = '';
+          brut.classList.remove('fini');
+        });
+        return frappe + 2800;
+      });
+    }
+    return null;
+  }
+
+  if (doux) {
+    // Mouvement reduit : on pose l'etat final une fois pour toutes, et on
+    // ne lance aucune boucle. Le CSS s'occupe du reste.
+    blocs.forEach(function (bloc) {
+      var ligne = bloc.querySelector('.transcription');
+      var brut = bloc.querySelector('.brut');
+      if (ligne) ligne.textContent = ligne.getAttribute('data-texte') || '';
+      if (brut) brut.textContent = brut.getAttribute('data-texte') || '';
+      bloc.querySelector('.carte-issue') &&
+        bloc.querySelector('.carte-issue').classList.add('complete');
+    });
+    return;
+  }
+
+  var sequenceurs = [];
+  blocs.forEach(function (bloc) {
+    var s = construire(bloc);
+    if (s) sequenceurs.push(s);
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    sequenceurs.forEach(function (s) {
+      s.element.classList.add('anime');
+      s.demarrer();
+    });
+    return;
+  }
+
+  var observateur = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (entree) {
+      var s = sequenceurs.filter(function (x) {
+        return x.element === entree.target;
+      })[0];
+      if (!s) return;
+      if (entree.isIntersecting) {
+        entree.target.classList.add('anime');
+        s.demarrer();
+      } else {
+        entree.target.classList.remove('anime');
+        s.arreter();
+      }
+    });
+  // Seuil volontairement au ras : un bloc fait environ 440 px de haut,
+  // et un seuil de 0,25 exigeait 110 px visibles. Dans une fenetre
+  // courte - petit ecran, navigateur pas en plein ecran - l'animation
+  // ne demarrait jamais alors que le bloc etait bien a l'ecran.
+  }, { threshold: 0.01 });
+
+  sequenceurs.forEach(function (s) { observateur.observe(s.element); });
+})();
+</script>
 </body>
 </html>

@@ -676,3 +676,335 @@ main a { transition: color .2s ease; }
   .defile-piste { animation: none; flex-wrap: wrap; justify-content: center; gap: 14px 34px; }
   .defile-piste[aria-hidden="true"] { display: none; }
 }
+
+/* ==================================================================
+   Comment ca marche : trois etapes, chacune animee
+   ==================================================================
+
+   Les boucles ne demarrent qu'a l'entree dans le champ de vision (classe
+   « anime », posee par l'observateur) et s'arretent en sortant. Une page
+   d'accueil qui fait tourner trois animations en permanence chauffe le
+   processeur d'un portable pour rien.
+
+   Tout ce qui peut boucler seul est en CSS ; le JavaScript ne sert qu'a la
+   frappe lettre par lettre et a l'enchainement des phases. */
+
+.etapes { background: #f8fafc; }
+
+.etapes-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 2.4em;
+  text-align: left;
+}
+
+.etape {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px 22px 26px;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
+  display: flex;
+  flex-direction: column;
+}
+
+.etape-numero {
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #1e3a8a; color: #fff;
+  font-family: Poppins, sans-serif;
+  font-weight: 700; font-size: .95rem;
+  margin-bottom: 14px;
+}
+
+.etape h3 {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: #0f172a;
+  margin: 0 0 .4em;
+}
+
+.etape > p {
+  font-family: Nunito, sans-serif;
+  font-weight: 400;
+  color: #64748b;
+  font-size: .96rem;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+/* Hauteur fixe, pour que les trois blocs restent alignes quelle que soit
+   la phase en cours de chaque animation. */
+.scene {
+  margin-top: auto;
+  height: 190px;
+  border-radius: 16px;
+  background: #f8fafc;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Etape 1 : la voix -------------------------------------------- */
+
+.scene-voix { flex-direction: column; }
+
+.mini-carte {
+  width: 80%;
+  background: linear-gradient(155deg, #1e3a8a 0%, #2563eb 100%);
+  border-radius: 14px;
+  padding: 12px 14px 14px;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .35);
+  color: #fff;
+  font-family: Nunito, sans-serif;
+  text-align: center;
+}
+
+.mini-carte .mot {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: .98rem;
+}
+
+.micro {
+  position: relative;
+  width: 32px; height: 32px;
+  margin: 9px auto 7px;
+  display: grid; place-items: center;
+}
+
+.micro svg { width: 16px; height: 16px; fill: #1e3a8a; position: relative; z-index: 2; }
+
+.micro-pastille {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 1;
+}
+
+/* Trois ondes decalees d'un tiers de cycle : l'oeil lit une emission
+   continue plutot que trois pulsations separees. */
+.onde {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .6);
+  opacity: 0;
+}
+
+.etape.anime .onde { animation: onde 1.8s ease-out infinite; }
+.etape.anime .onde:nth-of-type(2) { animation-delay: .6s; }
+.etape.anime .onde:nth-of-type(3) { animation-delay: 1.2s; }
+
+@keyframes onde {
+  0%   { transform: scale(1);   opacity: .6; }
+  100% { transform: scale(2.7); opacity: 0; }
+}
+
+.transcription {
+  min-height: 1.35em;
+  font-size: .9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .96);
+}
+
+.transcription::after {
+  content: '';
+  display: inline-block;
+  width: 2px; height: .95em;
+  background: rgba(255, 255, 255, .85);
+  margin-left: 2px;
+  vertical-align: -.12em;
+  animation: clignote .9s steps(1) infinite;
+}
+.transcription.fini::after { display: none; }
+
+@keyframes clignote { 50% { opacity: 0; } }
+
+.coche {
+  position: absolute;
+  bottom: 12px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #3b82f6;
+  display: grid; place-items: center;
+  opacity: 0; transform: scale(.6);
+  transition: opacity .25s ease, transform .25s cubic-bezier(.2, 1.4, .4, 1);
+}
+.coche svg { width: 15px; height: 15px; }
+.coche.vue { opacity: 1; transform: scale(1); }
+
+/* --- Etape 2 : le scan -------------------------------------------- */
+
+.scene-scan { gap: 10px; padding: 0 14px; }
+
+.feuille {
+  position: relative;
+  flex: 1 1 0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 9px;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .12);
+  overflow: hidden;
+}
+
+.feuille svg { display: block; width: 100%; height: auto; }
+
+.rayon {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  box-shadow: 0 0 10px 2px rgba(59, 130, 246, .6);
+  opacity: 0;
+}
+
+.etape.anime .rayon { animation: balayer 4s ease-in-out infinite; }
+
+@keyframes balayer {
+  0%        { top: 0;    opacity: 0; }
+  6%        { opacity: 1; }
+  50%       { top: 100%; opacity: 1; }
+  58%, 100% { top: 100%; opacity: 0; }
+}
+
+.fleche-scan { color: #94a3b8; font-size: 1.05rem; flex: 0 0 auto; }
+
+.carte-issue {
+  flex: 1 1 0;
+  background: #fff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 9px;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  transition: border-color .4s ease, box-shadow .4s ease;
+}
+
+.carte-issue.complete {
+  border-style: solid;
+  border-color: #1e3a8a;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .28);
+}
+
+.carte-issue .champ {
+  height: 8px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  width: 0;
+  transition: width .5s ease, background-color .5s ease;
+}
+.carte-issue .champ.rempli { background: #93c5fd; }
+.carte-issue .champ.rempli.c1 { width: 78%; background: #1e3a8a; }
+.carte-issue .champ.rempli.c2 { width: 54%; background: #3b82f6; }
+.carte-issue .champ.rempli.c3 { width: 66%; }
+
+.etiquette-carte {
+  font-family: Poppins, sans-serif;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: #64748b;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.carte-issue.complete .etiquette-carte { opacity: 1; }
+
+/* --- Etape 3 : la formule ----------------------------------------- */
+
+.scene-formule { flex-direction: column; gap: 10px; padding: 0 16px; }
+
+.brut {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .84rem;
+  color: #1e3a8a;
+  background: #fff;
+  border-radius: 10px;
+  padding: 9px 12px;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
+  min-height: 1.4em;
+  text-align: center;
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.brut::after {
+  content: '';
+  display: inline-block;
+  width: 1px; height: .95em;
+  background: #1e3a8a;
+  margin-left: 2px;
+  vertical-align: -.12em;
+  animation: clignote .9s steps(1) infinite;
+}
+.brut.fini::after { display: none; }
+.brut.parti { opacity: .25; transform: translateY(-4px); }
+
+.fleche-bas { color: #94a3b8; font-size: 1rem; line-height: 1; }
+
+.rendu {
+  font-family: Cambria, Georgia, "Times New Roman", serif;
+  font-size: 1.22rem;
+  color: #0f172a;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
+  opacity: 0;
+  transform: translateY(6px) scale(.97);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2, 1.2, .4, 1);
+  white-space: nowrap;
+}
+.rendu.vu { opacity: 1; transform: none; }
+
+/* La racine carree : le radical, puis une barre posee sur le radicande.
+   Reconstituee a la main - la page ne charge pas un moteur de rendu
+   mathematique pour trois symboles decoratifs. */
+.rendu .racine { display: inline-flex; align-items: stretch; }
+.rendu .radical { font-size: 1.12em; line-height: .95; }
+.rendu .radicande {
+  border-top: 1.2px solid #0f172a;
+  padding: .08em .14em 0 .05em;
+  margin-top: .05em;
+}
+.rendu .integrale { font-size: 1.5em; line-height: .75; vertical-align: -.18em; }
+.rendu sup { font-size: .6em; vertical-align: .62em; }
+.rendu .var { font-style: italic; }
+
+/* --- Responsive ---------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .etapes-grille {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .scene { height: 176px; }
+  .rendu { font-size: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Etat final, sans jamais rien animer : ces boucles sont decoratives et
+     ne portent aucune information que le texte a cote ne donne deja. */
+  .etape.anime .onde,
+  .etape.anime .rayon { animation: none; }
+  .onde { opacity: .3; }
+  .rayon { opacity: 0; }
+  .transcription::after, .brut::after { display: none; }
+  .coche { opacity: 1; transform: none; }
+  .carte-issue { border-style: solid; border-color: #1e3a8a; }
+  .carte-issue .champ:nth-of-type(1) { width: 78%; background: #1e3a8a; }
+  .carte-issue .champ:nth-of-type(2) { width: 54%; background: #3b82f6; }
+  .carte-issue .champ:nth-of-type(3) { width: 66%; background: #93c5fd; }
+  .etiquette-carte { opacity: 1; }
+  .rendu { opacity: 1; transform: none; }
+  .brut { opacity: 1; }
+}
