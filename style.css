@@ -917,66 +917,6 @@ main a { transition: color .2s ease; }
 }
 .carte-issue.complete .etiquette-carte { opacity: 1; }
 
-/* --- Etape 3 : la formule ----------------------------------------- */
-
-.scene-formule { flex-direction: column; gap: 10px; padding: 0 16px; }
-
-.brut {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .84rem;
-  color: #1e3a8a;
-  background: #fff;
-  border-radius: 10px;
-  padding: 9px 12px;
-  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
-  min-height: 1.4em;
-  text-align: center;
-  transition: opacity .45s ease, transform .45s ease;
-}
-
-.brut::after {
-  content: '';
-  display: inline-block;
-  width: 1px; height: .95em;
-  background: #1e3a8a;
-  margin-left: 2px;
-  vertical-align: -.12em;
-  animation: clignote .9s steps(1) infinite;
-}
-.brut.fini::after { display: none; }
-.brut.parti { opacity: .25; transform: translateY(-4px); }
-
-.fleche-bas { color: #94a3b8; font-size: 1rem; line-height: 1; }
-
-.rendu {
-  font-family: Cambria, Georgia, "Times New Roman", serif;
-  font-size: 1.22rem;
-  color: #0f172a;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px 16px;
-  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
-  opacity: 0;
-  transform: translateY(6px) scale(.97);
-  transition: opacity .5s ease, transform .5s cubic-bezier(.2, 1.2, .4, 1);
-  white-space: nowrap;
-}
-.rendu.vu { opacity: 1; transform: none; }
-
-/* La racine carree : le radical, puis une barre posee sur le radicande.
-   Reconstituee a la main - la page ne charge pas un moteur de rendu
-   mathematique pour trois symboles decoratifs. */
-.rendu .racine { display: inline-flex; align-items: stretch; }
-.rendu .radical { font-size: 1.12em; line-height: .95; }
-.rendu .radicande {
-  border-top: 1.2px solid #0f172a;
-  padding: .08em .14em 0 .05em;
-  margin-top: .05em;
-}
-.rendu .integrale { font-size: 1.5em; line-height: .75; vertical-align: -.18em; }
-.rendu sup { font-size: .6em; vertical-align: .62em; }
-.rendu .var { font-style: italic; }
-
 /* --- Responsive ---------------------------------------------------- */
 
 @media (max-width: 900px) {
@@ -998,7 +938,7 @@ main a { transition: color .2s ease; }
   .etape.anime .rayon { animation: none; }
   .onde { opacity: .3; }
   .rayon { opacity: 0; }
-  .transcription::after, .brut::after { display: none; }
+  .transcription::after { display: none; }
   .coche { opacity: 1; transform: none; }
   .carte-issue { border-style: solid; border-color: #1e3a8a; }
   .carte-issue .champ:nth-of-type(1) { width: 78%; background: #1e3a8a; }
@@ -1006,5 +946,290 @@ main a { transition: color .2s ease; }
   .carte-issue .champ:nth-of-type(3) { width: 66%; background: #93c5fd; }
   .etiquette-carte { opacity: 1; }
   .rendu { opacity: 1; transform: none; }
-  .brut { opacity: 1; }
+}
+
+/* --- Etape 3 : la photo de formule ---------------------------------- */
+
+.scene-formule { flex-direction: column; gap: 10px; padding: 12px 16px; }
+
+/* Le viseur : la feuille cadree par quatre coins, comme dans
+   l'application au moment ou l'on designe la zone a lire. */
+.viseur {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 12px;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .12);
+  transition: transform .5s ease, opacity .5s ease;
+}
+
+/* La feuille photographiee : la meme formule, mais telle qu'elle est
+   dans un cours - a l'encre, sur du papier regle, et de travers comme
+   toute photo prise a la main. C'est le contraste avec la carte obtenue
+   qui doit se lire, pas un gribouillis decoratif. */
+.formule-papier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(to bottom,
+      transparent 0, transparent 17px,
+      rgba(148, 163, 184, .32) 17px, rgba(148, 163, 184, .32) 18px);
+}
+
+.formule-encre {
+  font-family: Cambria, Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+  color: #334155;
+  transform: rotate(-1.6deg);
+  white-space: nowrap;
+}
+.formule-encre .racine { display: inline-flex; align-items: stretch; }
+.formule-encre .radical { font-size: 1.12em; line-height: .95; }
+.formule-encre .radicande {
+  border-top: 1.1px solid #334155;
+  padding: .08em .14em 0 .05em;
+  margin-top: .05em;
+}
+.formule-encre .integrale { font-size: 1.45em; line-height: .75; vertical-align: -.18em; }
+.formule-encre sup { font-size: .6em; vertical-align: .62em; }
+.formule-encre .var { font-style: italic; }
+
+.coin {
+  position: absolute;
+  width: 13px; height: 13px;
+  border: 2px solid #3b82f6;
+  opacity: .9;
+}
+.coin.hg { top: 6px;  left: 6px;  border-right: 0; border-bottom: 0; border-radius: 4px 0 0 0; }
+.coin.hd { top: 6px;  right: 6px; border-left: 0;  border-bottom: 0; border-radius: 0 4px 0 0; }
+.coin.bg { bottom: 6px; left: 6px;  border-right: 0; border-top: 0; border-radius: 0 0 0 4px; }
+.coin.bd { bottom: 6px; right: 6px; border-left: 0;  border-top: 0; border-radius: 0 0 4px 0; }
+
+/* Le cadrage se resserre avant le declenchement : c'est ce petit
+   mouvement qui fait lire « on vise », et non « une image est posee la ». */
+.etape.anime .coin { animation: viser 4.6s ease-in-out infinite; }
+
+@keyframes viser {
+  0%, 100% { transform: scale(1);    opacity: .55; }
+  22%      { transform: scale(.94);  opacity: 1; }
+  38%, 96% { transform: scale(.94);  opacity: 1; }
+}
+
+.flash {
+  position: absolute; inset: 0;
+  border-radius: 10px;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+.viseur.declenche .flash { animation: eclair .45s ease-out; }
+
+@keyframes eclair {
+  0%   { opacity: 0; }
+  12%  { opacity: .92; }
+  100% { opacity: 0; }
+}
+
+.viseur.parti { opacity: .3; transform: scale(.96); }
+
+/* Le declencheur, entre le viseur et la carte obtenue. */
+.declencheur {
+  position: relative;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  flex: 0 0 auto;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .3);
+}
+.declencheur::after {
+  content: '';
+  position: absolute; inset: 5px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.declencheur-anneau {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid #3b82f6;
+  opacity: 0;
+}
+.etape.anime .declencheur-anneau { animation: declic 4.6s ease-out infinite; }
+
+@keyframes declic {
+  0%, 26%   { opacity: 0; transform: scale(1); }
+  30%       { opacity: .9; transform: scale(1); }
+  48%, 100% { opacity: 0; transform: scale(2.1); }
+}
+
+.rendu {
+  font-family: Cambria, Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  color: #0f172a;
+  background: #fff;
+  border-radius: 10px;
+  padding: 9px 16px;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
+  opacity: 0;
+  transform: translateY(8px) scale(.96);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2, 1.2, .4, 1);
+  white-space: nowrap;
+}
+.rendu.vu { opacity: 1; transform: none; }
+
+/* La racine carree : le radical, puis une barre posee sur le radicande.
+   Reconstituee a la main - la page ne charge pas un moteur de rendu
+   mathematique pour trois symboles. */
+.rendu .racine { display: inline-flex; align-items: stretch; }
+.rendu .radical { font-size: 1.12em; line-height: .95; }
+.rendu .radicande {
+  border-top: 1.2px solid #0f172a;
+  padding: .08em .14em 0 .05em;
+  margin-top: .05em;
+}
+.rendu .integrale { font-size: 1.5em; line-height: .75; vertical-align: -.18em; }
+.rendu sup { font-size: .6em; vertical-align: .62em; }
+.rendu .var { font-style: italic; }
+
+@media (max-width: 900px) {
+  .rendu { font-size: 1.08rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .etape.anime .coin,
+  .etape.anime .declencheur-anneau { animation: none; }
+  .viseur.declenche .flash { animation: none; opacity: 0; }
+  .viseur { opacity: 1; transform: none; }
+  .rendu { opacity: 1; transform: none; }
+}
+
+/* ==================================================================
+   Demonstration animee de l'en-tete
+   ==================================================================
+
+   Un enchainement de captures de l'APPLICATION REELLE, avec un curseur
+   qui va cliquer ou il faut. Rien n'est redessine : ce que le visiteur
+   voit est ce qu'il aura apres telechargement.
+
+   Les vignettes sont empilees et fondues l'une dans l'autre. Le rapport
+   largeur/hauteur est impose par aspect-ratio plutot que laisse aux
+   images : sans cela le bloc se replierait pendant le chargement et
+   toute la page sauterait. */
+
+.demo-app {
+  position: relative;
+  border: 1px solid var(--bord);
+  border-radius: var(--rayon-xl);
+  box-shadow: var(--ombre-panneau);
+  background: #fff;
+  overflow: hidden;
+  aspect-ratio: 1475 / 1008;
+}
+
+.demo-vue {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+
+.demo-vue img { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+.demo-vue.active { opacity: 1; }
+
+/* Sans JavaScript, ou avant son execution, la premiere vignette reste
+   visible : l'en-tete n'est jamais vide. */
+.demo-vue[data-etape="0"] { opacity: 1; }
+html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
+
+/* --- Le curseur ---------------------------------------------------- */
+
+.demo-curseur {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 22px; height: 22px;
+  margin: -2px 0 0 -2px;
+  pointer-events: none;
+  opacity: 0;
+  transition: left .85s cubic-bezier(.33, .1, .25, 1),
+              top .85s cubic-bezier(.33, .1, .25, 1),
+              opacity .3s ease;
+  z-index: 3;
+}
+.demo-curseur.visible { opacity: 1; }
+
+.demo-curseur svg {
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, .4));
+}
+
+/* L'onde du clic part du bout de la fleche, pas de son centre. */
+.demo-clic {
+  position: absolute;
+  left: 1px; top: 1px;
+  width: 34px; height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 2px solid var(--bleu);
+  opacity: 0;
+  transform: scale(.3);
+}
+.demo-curseur.clique .demo-clic { animation: demo-clic .5s ease-out; }
+
+@keyframes demo-clic {
+  0%   { opacity: .9; transform: scale(.3); }
+  100% { opacity: 0;  transform: scale(1.6); }
+}
+
+/* --- La legende ---------------------------------------------------- */
+
+.demo-legende {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  margin: 0;
+  padding: 26px 18px 12px;
+  background: linear-gradient(to top, rgba(255, 255, 255, .97) 42%,
+                                      rgba(255, 255, 255, 0));
+  font-family: Nunito, sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+  z-index: 2;
+  transition: opacity .3s ease;
+}
+
+.demo-points {
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 4;
+}
+.demo-points span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(30, 58, 138, .22);
+  transition: background-color .3s ease, width .3s ease;
+}
+.demo-points span.actif { background: var(--bleu); width: 16px; border-radius: 3px; }
+
+@media (max-width: 900px) {
+  .demo-legende { font-size: .82rem; padding: 20px 12px 14px; }
+  .demo-curseur { width: 18px; height: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* On s'en tient a la premiere vue, fixe : un diaporama qui defile tout
+     seul est exactement ce que ce reglage demande d'eviter. */
+  .demo-vue { transition: none; }
+  .demo-curseur { display: none; }
 }

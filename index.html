@@ -22,7 +22,7 @@
 
 <link rel="icon" href="/img/favicon.png?v=2208486d" type="image/png">
 <link rel="apple-touch-icon" href="/img/icone-180.png?v=fcb36135">
-<link rel="stylesheet" href="/style.css?v=54f5776481">
+<link rel="stylesheet" href="/style.css?v=b5a8f8e28b">
 <link rel="preload" href="/fonts/manrope-400-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/manrope-800-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PrépaCards", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows 10, Windows 11", "url": "https://prepacards.fr", "description": "Application de flashcards à répétition espacée pour les prépas et les classes préparatoires, avec vérification de la prononciation à l'oral et reconnaissance de formules mathématiques en photo.", "offers": [{"@type": "Offer", "name": "PrépaCards Gratuit", "price": "0", "priceCurrency": "EUR"}, {"@type": "Offer", "name": "PrépaCards Premium", "price": "29.00", "priceCurrency": "EUR"}]}</script>
@@ -71,9 +71,39 @@
         Vos cartes restent sur votre ordinateur</p>
     </div>
     <div>
-      <img class="capture-accroche" src="/img/accueil.png?v=777c7244" width="1500" height="1025"
-           alt="Écran d'accueil de PrépaCards : liste de paquets avec les compteurs de cartes nouvelles, en cours et à réviser"
-           loading="eager">
+      <div class="demo-app" id="demo-app"
+           role="img"
+           aria-label="Démonstration de PrépaCards : ouverture d'un paquet, révision d'une carte de vocabulaire, notation, puis statistiques.">
+        <picture class="demo-vue" data-etape="0">
+          <source srcset="/img/demo/1-accueil.webp?v=96955ff8" type="image/webp">
+          <img src="/img/demo/1-accueil.png?v=2deee07c" width="1475" height="1008"
+               alt="Écran d'accueil de PrépaCards : liste de paquets avec les compteurs de cartes nouvelles, en cours et à réviser"
+               loading="eager" decoding="async">
+        </picture>
+        <img class="demo-vue" data-etape="1" src="/img/demo/2-paquet.webp?v=8e7b28c6"
+             width="1475" height="1008" alt="" aria-hidden="true"
+             loading="lazy" decoding="async">
+        <img class="demo-vue" data-etape="2" src="/img/demo/3-recto.webp?v=b60c1dc3"
+             width="1475" height="1008" alt="" aria-hidden="true"
+             loading="lazy" decoding="async">
+        <img class="demo-vue" data-etape="3" src="/img/demo/4-verso.webp?v=46ffeea9"
+             width="1475" height="1008" alt="" aria-hidden="true"
+             loading="lazy" decoding="async">
+        <img class="demo-vue" data-etape="4" src="/img/demo/5-statistiques.webp?v=f92db66b"
+             width="1475" height="1008" alt="" aria-hidden="true"
+             loading="lazy" decoding="async">
+
+        <span class="demo-curseur" aria-hidden="true">
+          <span class="demo-clic"></span>
+          <svg viewBox="0 0 24 24" fill="#fff" stroke="#0f172a"
+               stroke-width="1.4" stroke-linejoin="round">
+            <path d="M5 2.5 19 12.4l-6.1.5-3.1 5.6z"/>
+          </svg>
+        </span>
+
+        <p class="demo-legende" aria-hidden="true"></p>
+        <span class="demo-points" aria-hidden="true"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -199,14 +229,29 @@
 
       <div class="etape" data-anim="formule">
         <span class="etape-numero" aria-hidden="true">3</span>
-        <h3>Écrivez vos formules simplement</h3>
-        <p>Tapez la formule comme elle vient, ou photographiez-la dans votre
-          cours : elle s'affiche en notation mathématique propre sur la carte.</p>
+        <h3>Photographiez vos formules</h3>
+        <p>Une photo de votre cours, et la formule arrive sur la carte en
+          notation mathématique propre. Rien à taper, aucun code à
+          apprendre.</p>
 
         <div class="scene scene-formule" role="img"
-             aria-label="Animation : la formule tapée « x^2 + sqrt(y) = int f(t)dt » se transforme en notation mathématique rendue.">
-          <div class="brut" data-texte="x^2 + sqrt(y) = int f(t)dt"></div>
-          <span class="fleche-bas" aria-hidden="true">↓</span>
+             aria-label="Animation : l'appareil photo cadre une formule manuscrite, déclenche, et la formule apparaît en notation mathématique sur une carte.">
+
+          <div class="viseur">
+            <span class="coin hg" aria-hidden="true"></span>
+            <span class="coin hd" aria-hidden="true"></span>
+            <span class="coin bg" aria-hidden="true"></span>
+            <span class="coin bd" aria-hidden="true"></span>
+            <div class="formule-papier" aria-hidden="true">
+              <span class="formule-encre"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></span>
+            </div>
+            <span class="flash" aria-hidden="true"></span>
+          </div>
+
+          <span class="declencheur" aria-hidden="true">
+            <span class="declencheur-anneau"></span>
+          </span>
+
           <div class="rendu" aria-hidden="true"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></div>
         </div>
       </div>
@@ -426,6 +471,140 @@ document.documentElement.classList.add('js');
 
 </script>
 <script>
+// Demonstration animee de l'en-tete.
+//
+// Un enchainement de captures de l'application reelle, avec un curseur qui
+// va cliquer ou il faut avant chaque changement d'ecran. Les positions sont
+// en pourcentage de l'image, donc justes quelle que soit la taille affichee.
+//
+// La boucle ne tourne que pendant que le bloc est visible, comme celles de
+// la section « Comment ca marche ».
+(function () {
+  var bloc = document.getElementById('demo-app');
+  if (!bloc) return;
+
+  var vues = [].slice.call(bloc.querySelectorAll('.demo-vue'));
+  var curseur = bloc.querySelector('.demo-curseur');
+  var legende = bloc.querySelector('.demo-legende');
+  var points = bloc.querySelector('.demo-points');
+  var doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // vue    : index de la capture affichee
+  // cible  : ou le curseur va cliquer, en % de l'image ; null = pas de clic
+  // texte  : ce que dit la legende
+  // duree  : temps passe sur cette etape, en millisecondes
+  var etapes = [
+    { vue: 0, cible: [28, 19.5], duree: 2600,
+      texte: 'Vos paquets, et ce qu’il reste à réviser aujourd’hui' },
+    { vue: 1, cible: [50, 57.5], duree: 2400,
+      texte: 'Un paquet : ce qui vous attend, puis c’est parti' },
+    { vue: 2, cible: [50, 90.5], duree: 2600,
+      texte: 'La question. Vous répondez de tête — ou à voix haute' },
+    { vue: 3, cible: [62.5, 94], duree: 3000,
+      texte: 'La réponse, et quatre boutons qui disent quand la carte revient' },
+    { vue: 0, cible: [62, 3.7], duree: 2200,
+      texte: 'Tout est mesuré, sans rien avoir à noter' },
+    { vue: 4, cible: null, duree: 3400,
+      texte: 'Temps passé, régularité, réussite : mois par mois' }
+  ];
+
+  etapes.forEach(function () {
+    points.appendChild(document.createElement('span'));
+  });
+  var pastilles = [].slice.call(points.children);
+
+  function afficher(index) {
+    var etape = etapes[index];
+    vues.forEach(function (v, i) {
+      v.classList.toggle('active', i === etape.vue);
+    });
+    pastilles.forEach(function (p, i) {
+      p.classList.toggle('actif', i === index);
+    });
+    legende.textContent = etape.texte;
+  }
+
+  if (doux) {
+    // Mouvement reduit : on s'en tient a la premiere vue, sans diaporama.
+    afficher(0);
+    curseur.classList.remove('visible');
+    return;
+  }
+
+  // La premiere vue est posee TOUT DE SUITE, avant tout observateur : le
+  // CSS masque les vignettes des que JavaScript est actif, si bien qu'un
+  // en-tete pas encore entre dans le champ de vision serait entierement
+  // vide. C'est le cas sur mobile, ou la demonstration passe sous le pli.
+  afficher(0);
+
+  var minuteurs = [];
+  var index = 0;
+  var actif = false;
+
+  function plus_tard(delai, action) {
+    minuteurs.push(window.setTimeout(action, delai));
+  }
+
+  function vider() {
+    minuteurs.forEach(window.clearTimeout);
+    minuteurs = [];
+  }
+
+  function jouer() {
+    if (!actif) return;
+    var etape = etapes[index];
+    afficher(index);
+
+    if (etape.cible) {
+      curseur.classList.add('visible');
+      // Le deplacement est laisse a la transition CSS ; le clic part une
+      // fois le curseur arrive, sinon l'onde se declencherait dans le vide.
+      curseur.style.left = etape.cible[0] + '%';
+      curseur.style.top = etape.cible[1] + '%';
+      plus_tard(Math.max(0, etape.duree - 750), function () {
+        curseur.classList.remove('clique');
+        // Forcer un reflow relance l'animation meme si la classe vient
+        // d'etre retiree dans le meme tour de boucle.
+        void curseur.offsetWidth;
+        curseur.classList.add('clique');
+      });
+    } else {
+      curseur.classList.remove('visible');
+    }
+
+    plus_tard(etape.duree, function () {
+      index = (index + 1) % etapes.length;
+      jouer();
+    });
+  }
+
+  function demarrer() {
+    if (actif) return;
+    actif = true;
+    jouer();
+  }
+
+  function arreter() {
+    actif = false;
+    vider();
+    curseur.classList.remove('visible', 'clique');
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    demarrer();
+    return;
+  }
+
+  var observateur = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (entree) {
+      if (entree.isIntersecting) demarrer();
+      else arreter();
+    });
+  }, { threshold: 0.01 });
+  observateur.observe(bloc);
+})();
+</script>
+<script>
 // Animations de la section « Comment ca marche ».
 //
 // Trois boucles, chacune pilotee par une suite d'etapes datees. Le CSS
@@ -534,26 +713,26 @@ document.documentElement.classList.add('js');
     }
 
     if (genre === 'formule') {
-      var brut = bloc.querySelector('.brut');
+      var viseur = bloc.querySelector('.viseur');
       var rendu = bloc.querySelector('.rendu');
-      var source = brut.getAttribute('data-texte') || '';
+      // Cale sur les 4,6 s des animations CSS « viser » et « declic » :
+      // le flash part au moment du declenchement, la carte arrive ensuite.
       return new Sequenceur(bloc, function (s) {
-        brut.classList.remove('parti');
+        viseur.classList.remove('parti', 'declenche');
         rendu.classList.remove('vu');
-        var frappe = frapper(s, brut, source, 62);
-        s.plus_tard(frappe + 350, function () {
-          brut.classList.add('parti');
+        s.plus_tard(1300, function () { viseur.classList.add('declenche'); });
+        s.plus_tard(1700, function () {
+          viseur.classList.add('parti');
           rendu.classList.add('vu');
         });
-        s.plus_tard(frappe + 2200, function () {
-          brut.classList.remove('parti');
+        s.plus_tard(4100, function () {
+          viseur.classList.remove('parti', 'declenche');
           rendu.classList.remove('vu');
-          brut.textContent = '';
-          brut.classList.remove('fini');
         });
-        return frappe + 2800;
+        return 4600;
       });
     }
+
     return null;
   }
 
@@ -562,9 +741,9 @@ document.documentElement.classList.add('js');
     // ne lance aucune boucle. Le CSS s'occupe du reste.
     blocs.forEach(function (bloc) {
       var ligne = bloc.querySelector('.transcription');
-      var brut = bloc.querySelector('.brut');
       if (ligne) ligne.textContent = ligne.getAttribute('data-texte') || '';
-      if (brut) brut.textContent = brut.getAttribute('data-texte') || '';
+      var rendu = bloc.querySelector('.rendu');
+      if (rendu) rendu.classList.add('vu');
       bloc.querySelector('.carte-issue') &&
         bloc.querySelector('.carte-issue').classList.add('complete');
     });
