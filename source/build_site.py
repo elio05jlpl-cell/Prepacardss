@@ -322,6 +322,7 @@ NAV = [
     ("/importer-anki-quizlet/", "Importer", None),
     ("/fonctionnalites/", "Fonctionnalités", None),
     ("/tarifs/", "Tarifs", None),
+    ("/a-propos/", "À propos", None),
     ("/blog/", "Blog", None),
 ]
 

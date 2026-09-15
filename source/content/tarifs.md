@@ -1,73 +1,109 @@
 ---
-title: Tarifs : gratuit, et Premium à vie | PrépaCards
-description: Gratuit pour les paquets illimités, la répétition espacée et la vérification à l'oral. Premium ajoute la photo de formule et la traduction. Sans abonnement.
+title: Tarifs : gratuit, mensuel ou annuel | PrépaCards
+description: PrépaCards est gratuit pour la répétition espacée et vos cartes en nombre illimité. L'offre complète ajoute la voix, la photo de formule et les paquets exclusifs.
 slug: tarifs
 faq: true
 ---
 
-# Tarifs de PrépaCards
-
-<p class="chapeau">Le cœur de l'application est gratuit et sans limite de
-nombre de cartes. L'offre Premium finance le développement et donne accès aux
-deux fonctions les plus coûteuses à maintenir.</p>
-
-<div class="grille-tarifs">
-  <div class="offre">
-    <h3>Gratuit</h3>
-    <p class="prix">0 €</p>
-    <p style="color:var(--gris);font-size:.92rem">Pour toujours, sans publicité</p>
-    <ul>
-      <li>Paquets et cartes illimités</li>
-      <li>Sous-paquets imbriqués</li>
-      <li>Répétition espacée SM-2</li>
-      <li>Vérification de la prononciation à l'oral</li>
-      <li>Import et export CSV</li>
-      <li>Données stockées sur votre ordinateur</li>
-      <li class="absent">Reconnaissance de formules en photo</li>
-      <li class="absent">Traduction automatique des cartes</li>
-      <li class="absent">Lecture labiale par la webcam</li>
-    </ul>
-    <a class="bouton" href="/telecharger/">Télécharger</a>
+<section class="section tarifs-entete">
+  <div class="conteneur centre">
+    <span class="eyebrow">Tarifs simples</span>
+    <h1>Commencez gratuitement,<br>passez au complet quand vous voulez</h1>
+    <p class="chapeau">Le cœur de l'application est gratuit et sans limite de
+      nombre de cartes. L'offre complète ajoute ce qui coûte à maintenir.</p>
   </div>
 
-  <div class="offre mise-en-avant">
-    <h3>Premium</h3>
-    <p class="prix">29 €<small> / an</small></p>
-    <p style="color:var(--gris);font-size:.92rem">soit 2,42 € par mois</p>
-    <ul>
-      <li>Tout ce que contient l'offre gratuite</li>
-      <li><strong>Reconnaissance de formules en photo</strong>, sans limite</li>
-      <li><strong>Traduction automatique</strong> des cartes en 5 langues</li>
-      <li><strong>Lecture labiale</strong> par la webcam</li>
-      <li>Priorité sur les demandes de fonctionnalités</li>
-    </ul>
-    <a class="bouton-secondaire" href="#liste-attente">Être prévenu du lancement</a>
+  <div class="conteneur grille-tarifs">
+
+    <div class="offre">
+      <h3>Gratuit</h3>
+      <p class="offre-sous">Pour commencer, sans rien donner</p>
+      <p class="prix">0 €</p>
+      <p class="prix-detail">gratuit à vie</p>
+      <ul class="offre-liste">
+        <li>Paquets et cartes en nombre illimité</li>
+        <li>Sous-paquets imbriqués</li>
+        <li>Répétition espacée, réglages et profils</li>
+        <li>Dates cibles de colle ou de DS</li>
+        <li>Jours de repos</li>
+        <li>Statistiques détaillées</li>
+        <li>Import Anki, Quizlet et CSV</li>
+        <li>Paquet d'anglais ECG fourni</li>
+        <li>Données stockées sur votre ordinateur</li>
+      </ul>
+      <p><a class="bouton-secondaire" href="/telecharger/">Télécharger</a></p>
+    </div>
+
+    <div class="offre">
+      <h3>Mensuel</h3>
+      <p class="offre-sous">L'offre complète, sans engagement</p>
+      <p class="prix">2,99 €<small>/ mois</small></p>
+      <p class="prix-detail">résiliable à tout moment</p>
+      <ul class="offre-liste">
+        <li><strong>Tout ce que contient l'offre gratuite</strong></li>
+        <li>Vérification de la prononciation à la voix</li>
+        <li>Lecture labiale par la webcam</li>
+        <li>Photo d'une formule convertie en notation mathématique</li>
+        <li>Photo d'une feuille imprimée transformée en cartes</li>
+        <li>Traduction automatique à la saisie</li>
+        <li>Paquets de cartes exclusifs <em>(en préparation)</em></li>
+        <li>Annulation à tout moment — sans engagement</li>
+      </ul>
+      <p><a class="bouton-secondaire" href="#liste-attente">Être prévenu</a></p>
+    </div>
+
+    <div class="offre mise-en-avant">
+      <span class="offre-badge">Le plus avantageux</span>
+      <h3>Annuel</h3>
+      <p class="offre-sous">La même chose, 20&nbsp;% moins cher</p>
+      <p class="prix">28,70 €<small>/ an</small></p>
+      <p class="prix-detail">soit 2,39 € par mois</p>
+      <ul class="offre-liste">
+        <li><strong>Exactement l'offre mensuelle</strong></li>
+        <li>Vérification de la prononciation à la voix</li>
+        <li>Lecture labiale par la webcam</li>
+        <li>Photo d'une formule convertie en notation mathématique</li>
+        <li>Photo d'une feuille imprimée transformée en cartes</li>
+        <li>Traduction automatique à la saisie</li>
+        <li>Paquets de cartes exclusifs <em>(en préparation)</em></li>
+        <li><strong>20 % d'économie sur l'année</strong></li>
+      </ul>
+      <p><a class="bouton" href="#liste-attente">Être prévenu</a></p>
+    </div>
+
   </div>
-</div>
+</section>
+
+<section class="section" markdown="1">
+<div class="conteneur-texte" markdown="1">
 
 <div class="encart encart-attention" id="liste-attente">
-  <p><strong>Premium n'est pas encore ouvert à la vente.</strong> L'application
-  est téléchargeable et pleinement utilisable dès maintenant en version
-  gratuite, et aucune fonction n'est bridée pour l'instant. Laissez votre
-  e-mail ci-dessous pour être prévenu de l'ouverture — et bénéficier du tarif
-  de lancement.</p>
-  <p><a class="bouton" href="mailto:contact@prepacards.fr?subject=Premium%20-%20me%20prevenir">Me prévenir par e-mail</a></p>
+  <p><strong>Les offres payantes ne sont pas encore ouvertes à la vente.</strong>
+  L'application est téléchargeable et pleinement utilisable dès maintenant, et
+  aucune fonction n'est bridée pour l'instant. Laissez votre e-mail pour être
+  prévenu de l'ouverture — et bénéficier du tarif de lancement.</p>
+  <p><a class="bouton" href="mailto:contact@prepacards.fr?subject=Offre%20compl%C3%A8te%20-%20me%20prevenir">Me prévenir par e-mail</a></p>
 </div>
 
-## Pourquoi ces deux fonctions en Premium
+## Pourquoi ces fonctions sont payantes
 
-Ce ne sont pas des fonctions choisies au hasard pour remplir une offre payante.
-Ce sont les deux qui coûtent le plus à maintenir :
+Ce ne sont pas des fonctions choisies au hasard pour remplir une offre. Ce sont
+celles qui coûtent réellement à faire tourner et à maintenir :
 
 - **la reconnaissance de formules** repose sur des modèles d'intelligence
-  artificielle de près de 200 Mo, qu'il faut héberger, mettre à jour et dont la
+  artificielle de près de 200 Mo, qu'il faut héberger, mettre à jour, et dont la
   qualité demande un travail continu ;
-- **la traduction automatique** passe par un service tiers dont l'usage
-  intensif est facturé.
+- **la vérification vocale et la lecture labiale** s'appuient sur des modèles de
+  transcription et de suivi du visage, eux aussi à maintenir à mesure que les
+  systèmes d'exploitation évoluent ;
+- **la traduction automatique** passe par un service tiers dont l'usage intensif
+  est facturé ;
+- **les paquets exclusifs** demandent un travail de rédaction et de
+  vérification, mot par mot.
 
-La répétition espacée et la vérification à l'oral, elles, tournent entièrement
-sur votre ordinateur sans rien coûter en fonctionnement. Elles resteront
-gratuites.
+La répétition espacée, elle, tourne entièrement sur votre ordinateur sans rien
+coûter en fonctionnement. Elle restera gratuite, avec vos cartes en nombre
+illimité.
 
 ## Tarif étudiant et établissements
 
@@ -77,18 +113,42 @@ PrépaCards est déjà pensé pour des étudiants : le tarif annoncé est le tar
 
 ## Questions fréquentes
 
-### Le gratuit va-t-il devenir payant plus tard ?
+### La version gratuite est-elle limitée dans le temps ?
 
-Non. Les paquets illimités, la répétition espacée et la vérification à l'oral resteront gratuits. Elles ne coûtent rien en fonctionnement puisque tout se passe sur votre ordinateur, donc rien ne justifierait de les faire payer.
+Non. Elle est gratuite à vie, sans compte en ligne et sans publicité. Vos
+paquets et vos cartes sont en nombre illimité, et la répétition espacée y est
+complète — réglages, profils, dates cibles et statistiques compris.
 
-### Que se passe-t-il si j'arrête mon abonnement Premium ?
+### Puis-je annuler quand je veux ?
 
-Vos cartes vous appartiennent et restent sur votre disque, y compris celles créées à partir d'une photo de formule : une formule déjà convertie en LaTeX reste une carte normale. Vous perdez seulement la possibilité d'en convertir de nouvelles.
+Oui, à tout moment et sans engagement. L'offre mensuelle s'arrête à la fin du
+mois en cours, l'offre annuelle à la fin de l'année payée. Vos cartes restent
+sur votre ordinateur dans tous les cas : elles ne sont pas stockées chez nous,
+donc rien ne disparaît.
 
-### Y a-t-il un paiement unique plutôt qu'un abonnement ?
+### Quelle différence entre l'offre mensuelle et l'annuelle ?
 
-C'est à l'étude. Si cette formule vous intéresse davantage, dites-le en écrivant à contact@prepacards.fr : c'est le genre de retour qui décide de la suite.
+Aucune, sauf le prix. Les deux donnent accès exactement aux mêmes fonctions.
+L'annuelle revient 20 % moins cher, soit 2,39 € par mois au lieu de 2,99 €.
 
-### Puis-je essayer Premium avant de payer ?
+### Que deviennent mes cartes si j'arrête de payer ?
 
-L'application est aujourd'hui téléchargeable avec toutes les fonctions actives, le temps que l'offre Premium ouvre. C'est donc le meilleur moment pour tester la reconnaissance de formules et vous faire un avis.
+Elles restent chez vous et restent utilisables. Vous continuez à réviser, à
+créer et à importer des cartes ; seules les fonctions de l'offre complète
+cessent d'être disponibles.
+
+### Mes données sont-elles envoyées quelque part ?
+
+Vos cartes restent sur votre ordinateur. La transcription vocale et la lecture
+labiale tournent localement, hors ligne. Seule la traduction automatique
+proposée à la saisie appelle un service tiers, et uniquement quand vous la
+demandez.
+
+<div class="encart">
+  <p>PrépaCards est gratuit pour Windows 10 et 11, sans compte en ligne.
+  <a href="/telecharger/">Télécharger</a> ·
+  <a href="/fonctionnalites/">Voir les fonctionnalités</a></p>
+</div>
+
+</div>
+</section>

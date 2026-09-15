@@ -235,7 +235,7 @@ faq: true
       </blockquote>
       <figcaption>
         <span class="avis-nom">Jean</span>
-        <span class="avis-role">Étudiant à HEC Paris</span>
+        <span class="avis-role">Étudiant à HEC Paris · 20 à Maths I</span>
       </figcaption>
     </figure>
   </div>
@@ -300,7 +300,7 @@ faq: true
 
 ### PrépaCards est-il gratuit ?
 
-Oui. La version gratuite comprend les paquets et les cartes en nombre illimité, la répétition espacée et la vérification de la prononciation à l'oral. Une offre Premium ajoute la reconnaissance de formules en photo et la traduction automatique. Voir [les tarifs](/tarifs/).
+Oui. La version gratuite comprend les paquets et les cartes en nombre illimité, la répétition espacée complète avec ses réglages, ses dates cibles et ses statistiques, et l'import de vos paquets existants. L'offre complète ajoute la vérification de la prononciation, la photo de formule et la traduction automatique. Voir [les tarifs](/tarifs/).
 
 ### Mes cartes partent-elles sur un serveur ?
 

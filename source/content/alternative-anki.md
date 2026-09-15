@@ -119,7 +119,7 @@ Il reprend volontairement l'organisation qui a fait la réussite d'Anki — paqu
 
 ### Anki est gratuit : pourquoi payer pour PrépaCards ?
 
-Vous n'êtes pas obligé. Les paquets illimités, la répétition espacée et la vérification à l'oral sont gratuits dans PrépaCards aussi. L'offre Premium ne concerne que la reconnaissance de formules et la traduction automatique, les deux fonctions qui coûtent en hébergement de modèles et en appels à des services tiers.
+Vous n'êtes pas obligé. Les paquets et les cartes en nombre illimité, la répétition espacée complète et l'import de vos paquets existants sont gratuits dans PrépaCards aussi. L'offre payante ne concerne que les fonctions qui coûtent réellement à faire tourner : la vérification à l'oral, la reconnaissance de formules et la traduction automatique.
 
 ### Puis-je utiliser mes paquets partagés Anki dans PrépaCards ?
 

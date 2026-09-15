@@ -97,7 +97,7 @@ En prononçant, il n'y a pas d'autre moyen. Un mot révisé cent fois en silence
 Notez des mots-clés et un plan, pas des phrases rédigées. Un texte écrit sera lu, et une colle lue s'entend immédiatement : le débit devient plat et le regard quitte le colleur.
 
 <div class="encart">
-  <p>La vérification de la prononciation est gratuite dans PrépaCards, et
-  fonctionne hors ligne. <a href="/telecharger/">Télécharger</a> ·
+  <p>La vérification de la prononciation fonctionne hors ligne, dans l'offre
+  complète de PrépaCards. <a href="/telecharger/">Télécharger</a> ·
   <a href="/blog/reviser-a-voix-haute/">Pourquoi réviser à voix haute</a></p>
 </div>

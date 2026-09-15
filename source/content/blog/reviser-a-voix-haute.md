@@ -107,8 +107,8 @@ exercice de restitution — ce qui est exactement ce qu'on vous demandera le jou
 de l'épreuve.
 
 <div class="encart">
-  <p>La vérification de la prononciation est gratuite dans PrépaCards, et
-  fonctionne hors ligne en français, anglais, espagnol, allemand et italien.
+  <p>La vérification de la prononciation fonctionne hors ligne en français,
+  anglais, espagnol, allemand et italien, dans l'offre complète de PrépaCards.
   <a href="/telecharger/">Télécharger</a> ·
   <a href="/fonctionnalites/">Comment ça marche</a></p>
 </div>
