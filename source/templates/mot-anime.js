@@ -37,12 +37,30 @@
     minuteurs.push(window.setTimeout(action, delai));
   }
 
+  // Les arrets du degrade, du bleu de la marque au rose. La couleur de
+  // chaque lettre est interpolee entre eux selon sa position dans le mot.
+  var ARRETS = [[37, 99, 235], [99, 102, 241], [168, 85, 247], [236, 72, 153]];
+
+  function couleur(part) {
+    var echelle = part * (ARRETS.length - 1);
+    var bas = Math.min(Math.floor(echelle), ARRETS.length - 2);
+    var reste = echelle - bas;
+    var a = ARRETS[bas], b = ARRETS[bas + 1];
+    var c = [0, 1, 2].map(function (i) {
+      return Math.round(a[i] + (b[i] - a[i]) * reste);
+    });
+    return 'rgb(' + c.join(',') + ')';
+  }
+
   function ecrire(mot, apres) {
     cible.textContent = '';
     for (var i = 0; i < mot.length; i++) {
       var lettre = document.createElement('span');
       lettre.textContent = mot[i];
       lettre.style.animationDelay = (i * 55) + 'ms';
+      // Un mot d'une seule lettre n'a pas de progression : on le place au
+      // depart du degrade plutot que de diviser par zero.
+      lettre.style.color = couleur(mot.length > 1 ? i / (mot.length - 1) : 0);
       cible.appendChild(lettre);
     }
     plus_tard(mot.length * 55 + 320, apres);
