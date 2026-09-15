@@ -33,6 +33,25 @@ Puis lancer :  python build_site.py
 
 Le sommaire du blog, le plan du site et les liens internes se mettent a jour
 tout seuls.
+
+File d'attente
+--------------
+Une date POSTERIEURE a aujourd'hui met l'article en attente : il reste dans
+le depot sans etre construit, ni indexe, ni liste. Il parait tout seul le
+jour dit, quand l'action planifiee reconstruit le site
+(.github/workflows/publier.yml).
+
+Avant de livrer des articles en attente, verifiez-les TOUS :
+
+    PREPACARDS_TOUT=1 python build_site.py && PREPACARDS_TOUT=1 python audit_site.py
+
+Un titre trop long dans un article qui parait dans dix jours fera echouer
+l'audit ce jour-la, donc bloquera le push - et avec lui tous les articles
+qui attendent derriere. L'erreur serait alors silencieuse et differee de
+dix jours. Ce controle a deja rattrape quatre articles sur huit.
+
+N'utilisez jamais PREPACARDS_TOUT pour publier : cela sortirait la file
+entiere d'un coup.
 """
 
 import hashlib
@@ -731,7 +750,17 @@ def build() -> None:
     # construction automatique, sinon on publierait par accident en
     # relancant le script a la main.
     tous = [load_page(p) for p in CONTENT.glob("blog/*.md")]
-    aujourdhui = date.today().isoformat()
+    # PREPACARDS_TOUT=1 construit AUSSI les articles en attente. Sert a les
+    # verifier avant de les livrer : un titre trop long dans un article qui
+    # paraitra dans dix jours ferait echouer l'audit ce jour-la, donc
+    # bloquerait le push - et avec lui tous les articles suivants, qui
+    # attendent derriere. L'erreur est alors silencieuse et differee.
+    #
+    #     PREPACARDS_TOUT=1 python build_site.py && python audit_site.py
+    #
+    # A ne jamais utiliser pour publier : cela sortirait la file entiere
+    # d'un coup.
+    aujourdhui = "9999-12-31" if os.environ.get("PREPACARDS_TOUT") else date.today().isoformat()
     en_attente = [a for a in tous if a["date"] > aujourdhui]
     articles = [a for a in tous if a["date"] <= aujourdhui]
     if en_attente:

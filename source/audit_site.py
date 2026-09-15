@@ -22,6 +22,7 @@ import html as html_lib
 import json
 import re
 import struct
+import os
 import sys
 import xml.etree.ElementTree as ET
 from datetime import date, timedelta
@@ -133,10 +134,16 @@ def verifier_plan_du_site(pages: list) -> list:
         problemes.append(f"{fantome} : listee au sitemap mais n'existe pas")
 
     # Une date de modification dans le futur decredibilise tout le fichier.
-    demain = (date.today() + timedelta(days=1)).isoformat()
-    for chemin, quand in dates.items():
-        if quand >= demain:
-            problemes.append(f"{chemin} : lastmod dans le futur ({quand})")
+    #
+    # Sauf en mode verification de la file d'attente : on construit alors
+    # deliberement des articles a paraitre, et leur date EST dans le futur.
+    # Sans cette exception, le controle utile - titres, descriptions, liens -
+    # serait noye sous des signalements attendus.
+    if not os.environ.get("PREPACARDS_TOUT"):
+        demain = (date.today() + timedelta(days=1)).isoformat()
+        for chemin, quand in dates.items():
+            if quand >= demain:
+                problemes.append(f"{chemin} : lastmod dans le futur ({quand})")
 
     if robots.exists():
         contenu = robots.read_text(encoding="utf-8")

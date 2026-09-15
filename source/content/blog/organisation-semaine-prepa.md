@@ -1,5 +1,5 @@
 ---
-title: Organisation en prépa : tenir une semaine sans couler | PrépaCards
+title: Organisation en prépa : tenir sa semaine | PrépaCards
 description: DS, colles, DM et cours qui s'empilent : comment répartir une semaine de prépa, quoi sacrifier quand tout ne rentre pas, et pourquoi le sommeil n'est pas négociable.
 date: 2026-09-17
 slug: organisation-semaine-prepa
