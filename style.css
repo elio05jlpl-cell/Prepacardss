@@ -474,18 +474,7 @@ td strong { color: var(--encre); }
 /* Contenu Markdown des pages simples : meme largeur de lecture, pose sur
    une feuille blanche. Un texte long - mentions legales, CGV - se lit mal
    directement sur le degrade de fond. */
-.feuille-texte {
-  max-width: calc(var(--largeur-texte) + 104px);
-  margin: 52px auto 0;
-  background: #fff;
-  border: 1px solid var(--bord);
-  border-radius: var(--rayon-xl);
-  box-shadow: var(--ombre-panneau);
-  padding: 48px 52px;
-}
-.feuille-texte > h1:first-child { margin-top: 0; }
-.feuille-texte > .grille-tarifs,
-.feuille-texte > .grille-3 { max-width: none; }
+
 
 /* Le sommaire du blog n'est pas enveloppe : ses cartes blanches se posent
    deja d'elles-memes sur le fond. Il garde donc la largeur de lecture. */
@@ -1389,15 +1378,39 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
 
 /* Le visuel : la scene animee, agrandie par rapport a la version en
    grille, puisqu'elle occupe desormais la moitie d'une rangee. */
+/* La regle de base de .scene avait ete supprimee avec l'ancienne grille
+   « Comment ca marche » : il ne restait que les variantes. Sans display:
+   flex ni overflow: hidden, les elements s'empilaient en blocs et le
+   contenu du scan debordait de 223 px SUR LA SECTION SUIVANTE.
+
+   overflow: hidden n'est pas cosmetique ici : c'est la garantie qu'une
+   animation ne peut jamais deborder sur ce qui l'entoure, quoi qu'il
+   arrive a l'interieur. */
 .duo-visuel .scene {
+  position: relative;
   height: 268px;
   margin: 0;
   border-radius: 18px;
   background: var(--fond-doux);
   box-shadow: inset 0 0 0 1px rgba(148, 163, 184, .16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+
+.duo-visuel .scene-voix,
+.duo-visuel .scene-formule { flex-direction: column; }
+.duo-visuel .scene-formule { gap: 10px; padding: 14px 18px; }
+.duo-visuel .scene-scan { flex-direction: row; padding: 0 22px; gap: 16px; }
+
 .duo-visuel .mini-carte { width: 72%; }
-.duo-visuel .scene-scan { padding: 0 22px; gap: 14px; }
+
+/* La feuille est bornee en largeur, donc en hauteur : son SVG garde son
+   rapport 120/86, et sans borne il grandissait avec la colonne jusqu'a
+   depasser la scene. */
+.duo-visuel .feuille { flex: 0 1 236px; max-width: 236px; }
+.duo-visuel .carte-issue { flex: 0 1 200px; }
 .duo-visuel .rendu { font-size: 1.32rem; }
 .duo-visuel .formule-encre { font-size: 1.2rem; }
 
@@ -1616,4 +1629,186 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
 @media (max-width: 980px) {
   .grille-tarifs { grid-template-columns: 1fr; max-width: 460px; }
   .offre-sous { min-height: 0; }
+}
+
+/* ==================================================================
+   Pages de contenu : sortir de la grosse bulle
+   ==================================================================
+
+   Tout le texte tenait dans une carte blanche unique posee sur un fond
+   blanc : une bordure et une ombre autour de trois mille mots, qui ne
+   separaient rien et donnaient le meme bloc figé a chaque page.
+
+   A la place : le texte respire sur la page, et c'est la TYPOGRAPHIE qui
+   cree le rythme - un en-tete distinct, des titres marques, des reperes
+   qui reagissent au defilement. */
+
+.feuille-texte {
+  max-width: var(--largeur-texte);
+  margin: 0 auto;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 22px;
+}
+.feuille-texte > .grille-tarifs,
+.feuille-texte > .grille-3,
+.feuille-texte > .grille-2 { max-width: none; }
+
+/* --- L'en-tete d'une page de contenu -------------------------------- */
+
+/* Le premier titre et le paragraphe qui le suit forment un en-tete : plus
+   grand, centre, detache du corps par un filet. C'est ce qui remplace la
+   bordure de la carte pour dire « le contenu commence ici ». */
+.feuille-texte > h1:first-child,
+.page-entete h1 {
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  line-height: 1.14;
+  letter-spacing: -.025em;
+  text-align: center;
+  margin: 12px auto .5em;
+  max-width: 18ch;
+}
+
+.feuille-texte > h1:first-child + p {
+  text-align: center;
+  font-size: 1.14rem;
+  color: var(--gris);
+  max-width: 62ch;
+  margin: 0 auto 2.4em;
+  padding-bottom: 2.4em;
+  border-bottom: 1px solid var(--bord);
+}
+
+/* --- Titres de section ---------------------------------------------- */
+
+/* Un trait court en degrade au-dessus de chaque h2 : il donne un point
+   d'accroche a l'oeil qui parcourt, sans ajouter de boite. */
+.feuille-texte h2 {
+  position: relative;
+  margin-top: 2.4em;
+  padding-top: .85em;
+  letter-spacing: -.018em;
+}
+.feuille-texte h2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 46px; height: 3px;
+  border-radius: 3px;
+  background: var(--degrade);
+}
+
+.feuille-texte h3 { margin-top: 1.8em; }
+
+/* Un paragraphe qui suit immediatement un h2 sert d'amorce : legerement
+   plus grand, il fait entrer dans la section. */
+.feuille-texte h2 + p {
+  font-size: 1.06rem;
+  color: var(--texte);
+}
+
+/* --- Tableaux et encadres ------------------------------------------- */
+
+.feuille-texte table {
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* --- Apparition au defilement --------------------------------------- */
+
+/* Chaque bloc de contenu monte de quelques pixels en entrant dans le
+   champ de vision. L'effet est volontairement faible : une page de texte
+   qui gesticule est plus penible qu'une page fixe. */
+html.js .feuille-texte > h2,
+html.js .feuille-texte > h3,
+html.js .feuille-texte > p,
+html.js .feuille-texte > ul,
+html.js .feuille-texte > ol,
+html.js .feuille-texte > table,
+html.js .feuille-texte > .encart,
+html.js .feuille-texte > .tableau-enveloppe {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2, .8, .3, 1);
+}
+html.js .feuille-texte > .vue {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Barre de progression de lecture -------------------------------- */
+
+/* Sur un article long, elle dit ou l'on en est. Un seul element, mis a
+   jour par une transformation : aucune mise en page n'est recalculee au
+   defilement, ce qui serait le moyen le plus sur de rendre la page
+   saccadee. */
+.progression-lecture {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--degrade);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* --- Sommaire lateral ----------------------------------------------- */
+
+/* Sur grand ecran, les titres de la page se resument dans une colonne
+   collante, et celui qu'on lit s'allume. Sur petit ecran il disparait :
+   il prendrait la moitie de la hauteur utile. */
+.sommaire-page {
+  position: fixed;
+  top: 50%;
+  right: 26px;
+  transform: translateY(-50%);
+  z-index: 20;
+  max-width: 210px;
+  display: none;
+}
+
+@media (min-width: 1320px) {
+  .sommaire-page { display: block; }
+}
+
+.sommaire-page ol {
+  list-style: none;
+  margin: 0; padding: 0;
+  border-left: 2px solid var(--bord);
+}
+.sommaire-page li { margin: 0; }
+.sommaire-page a {
+  display: block;
+  padding: 6px 0 6px 14px;
+  margin-left: -2px;
+  border-left: 2px solid transparent;
+  font-size: .82rem;
+  line-height: 1.3;
+  color: var(--gris-clair);
+  text-decoration: none;
+  transition: color .2s ease, border-color .2s ease;
+}
+.sommaire-page a:hover { color: var(--texte); }
+.sommaire-page a.actif {
+  color: var(--bleu-fonce);
+  font-weight: 600;
+  border-left-color: var(--bleu);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .feuille-texte > h2,
+  html.js .feuille-texte > h3,
+  html.js .feuille-texte > p,
+  html.js .feuille-texte > ul,
+  html.js .feuille-texte > ol,
+  html.js .feuille-texte > table,
+  html.js .feuille-texte > .encart,
+  html.js .feuille-texte > .tableau-enveloppe {
+    opacity: 1; transform: none; transition: none;
+  }
+  .progression-lecture { display: none; }
 }

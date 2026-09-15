@@ -22,7 +22,7 @@
 
 <link rel="icon" href="/img/favicon.png?v=2208486d" type="image/png">
 <link rel="apple-touch-icon" href="/img/icone-180.png?v=fcb36135">
-<link rel="stylesheet" href="/style.css?v=29581fc0d5">
+<link rel="stylesheet" href="/style.css?v=ed3f86debd">
 <link rel="preload" href="/fonts/manrope-400-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/manrope-800-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "PrépaCards lit-il vraiment les fichiers .apkg ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, les trois variantes du format produites par Anki au fil des versions : collection.anki2, collection.anki21 et la version compressée collection.anki21b des versions 2.1.50 et suivantes. Les fichiers .colpkg, qui sauvegardent une collection entière, sont également lus."}}, {"@type": "Question", "name": "Mes cartes Anki vont-elles garder leur avancement ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les intervalles d'Anki sont calculés par l'algorithme FSRS, PrépaCards utilise SM-2 : les transposer donnerait des dates de révision fausses. Vos cartes repartent comme neuves. C'est la seule perte que nous considérons comme vraiment gênante, et nous préférons l'annoncer plutôt que d'inventer une conversion approximative."}}, {"@type": "Question", "name": "Et si mon paquet contient des images ?", "acceptedAnswer": {"@type": "Answer", "text": "Les cartes sont importées avec leur texte, sans l'image. Avant de valider, l'application affiche le nombre exact de cartes concernées, ce qui permet de décider en connaissance de cause — et de garder Anki en parallèle si ces cartes vous sont indispensables."}}, {"@type": "Question", "name": "Puis-je importer plusieurs paquets ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, un fichier à la fois. Rien n'est écrasé : un import ajoute des cartes aux paquets existants sans toucher à celles qui s'y trouvent déjà. Les doublons exacts présents dans le fichier source sont écartés automatiquement."}}, {"@type": "Question", "name": "L'import fonctionne-t-il hors ligne ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La conversion se fait entièrement sur votre ordinateur, rien n'est envoyé à un serveur. Vos cartes ne quittent pas votre machine."}}]}</script>
@@ -243,6 +243,118 @@ document.documentElement.classList.add('js');
 })();
 
 </script>
+<script>
+// Ce qui rend une page de contenu vivante : apparition des blocs au
+// defilement, barre de progression de lecture, et sommaire lateral dont
+// l'entree courante s'allume.
+//
+// Rien de tout cela n'est indispensable a la lecture : si le script
+// echoue, la page reste complete et lisible. C'est pour cela que les
+// regles d'apparition sont derriere html.js, pose par le script principal.
+(function () {
+  var feuille = document.querySelector('.feuille-texte');
+  if (!feuille) return;
 
+  var doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Apparition des blocs -----------------------------------------
+  var blocs = [].slice.call(feuille.children).filter(function (e) {
+    return /^(H2|H3|P|UL|OL|TABLE|DIV)$/.test(e.tagName);
+  });
+
+  if (doux || !('IntersectionObserver' in window)) {
+    blocs.forEach(function (e) { e.classList.add('vue'); });
+  } else {
+    var apparition = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (entree) {
+        if (!entree.isIntersecting) return;
+        entree.target.classList.add('vue');
+        apparition.unobserve(entree.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.02 });
+    blocs.forEach(function (e) { apparition.observe(e); });
+
+    // Ce qui est deja visible au chargement ne doit pas attendre un
+    // defilement : sans cela, le haut de la page reste vide tant qu'on
+    // n'a pas touche a la molette.
+    window.setTimeout(function () {
+      blocs.forEach(function (e) {
+        var r = e.getBoundingClientRect();
+        if (r.top < window.innerHeight) e.classList.add('vue');
+      });
+    }, 60);
+  }
+
+  if (doux) return;
+
+  // --- Barre de progression ------------------------------------------
+  var barre = document.createElement('div');
+  barre.className = 'progression-lecture';
+  document.body.appendChild(barre);
+
+  // --- Sommaire lateral ----------------------------------------------
+  var titres = [].slice.call(feuille.querySelectorAll('h2'));
+  var liens = [];
+  if (titres.length >= 3) {
+    var nav = document.createElement('nav');
+    nav.className = 'sommaire-page';
+    nav.setAttribute('aria-label', 'Sommaire de la page');
+    var liste = document.createElement('ol');
+
+    titres.forEach(function (titre, rang) {
+      if (!titre.id) {
+        titre.id = 'section-' + (rang + 1);
+      }
+      var item = document.createElement('li');
+      var lien = document.createElement('a');
+      lien.href = '#' + titre.id;
+      lien.textContent = titre.textContent;
+      item.appendChild(lien);
+      liste.appendChild(item);
+      liens.push(lien);
+    });
+
+    nav.appendChild(liste);
+    document.body.appendChild(nav);
+  }
+
+  // --- Mise a jour, une seule fois par image ------------------------
+  //
+  // Le defilement declenche bien plus souvent que l'ecran ne se rafraichit.
+  // On se contente donc de noter qu'il faut recalculer, et le calcul a lieu
+  // au prochain rendu : la page reste fluide meme sur une machine lente.
+  var enAttente = false;
+
+  function majEtat() {
+    enAttente = false;
+
+    var hauteur = document.documentElement.scrollHeight - window.innerHeight;
+    var part = hauteur > 0 ? window.scrollY / hauteur : 0;
+    barre.style.transform = 'scaleX(' + Math.min(1, Math.max(0, part)) + ')';
+
+    if (!liens.length) return;
+    // Le titre courant est le dernier passe au-dessus du tiers superieur
+    // de la fenetre : c'est la zone que l'oeil lit reellement.
+    var repere = window.innerHeight / 3;
+    var actif = 0;
+    for (var i = 0; i < titres.length; i++) {
+      if (titres[i].getBoundingClientRect().top <= repere) actif = i;
+    }
+    liens.forEach(function (l, i) {
+      l.classList.toggle('actif', i === actif);
+    });
+  }
+
+  function demander() {
+    if (enAttente) return;
+    enAttente = true;
+    window.requestAnimationFrame(majEtat);
+  }
+
+  window.addEventListener('scroll', demander, { passive: true });
+  window.addEventListener('resize', demander, { passive: true });
+  majEtat();
+})();
+</script>
 </body>
 </html>
