@@ -1,5 +1,15 @@
 [
  {
+  "fichier": "anglais-armes-us.pcards",
+  "titre": "Armes à feu et sécurité intérieure",
+  "matiere": "Anglais",
+  "groupe": "Civilisation américaine",
+  "annee": "2",
+  "description": "Deuxième amendement, fusillades de masse et lobby : le lexique d'un débat américain sans équivalent.",
+  "cartes": 142,
+  "octets": 3642
+ },
+ {
   "fichier": "anglais-brexit.pcards",
   "titre": "Brexit et relations UK-UE",
   "matiere": "Anglais",
@@ -40,6 +50,56 @@
   "octets": 3536
  },
  {
+  "fichier": "anglais-environnement.pcards",
+  "titre": "Environnement et changement climatique",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "1",
+  "description": "Neutralité carbone, transition énergétique et justice climatique : le lexique indispensable du sujet le plus probable.",
+  "cartes": 149,
+  "octets": 3556
+ },
+ {
+  "fichier": "anglais-feminisme.pcards",
+  "titre": "Féminisme et droits reproductifs",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "2",
+  "description": "Égalité salariale, #MeToo et droit à l'avortement : le lexique des droits des femmes dans le monde anglophone.",
+  "cartes": 148,
+  "octets": 3616
+ },
+ {
+  "fichier": "anglais-genre-lgbt.pcards",
+  "titre": "Genre et droits LGBT+",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "2",
+  "description": "Mariage pour tous, transidentité et reculs législatifs : le lexique précis d'un sujet à manier avec rigueur.",
+  "cartes": 145,
+  "octets": 3405
+ },
+ {
+  "fichier": "anglais-geopolitique.pcards",
+  "titre": "Géopolitique : UK, US, Chine et conflits",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "2",
+  "description": "Alliances, rivalité sino-américaine, Ukraine et Moyen-Orient : le lexique des relations internationales.",
+  "cartes": 151,
+  "octets": 3395
+ },
+ {
+  "fichier": "anglais-ia-reseaux.pcards",
+  "titre": "IA, réseaux sociaux et désinformation",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "2",
+  "description": "Algorithmes, régulation et vérité factuelle : le lexique du numérique, sujet devenu incontournable.",
+  "cartes": 146,
+  "octets": 3414
+ },
+ {
   "fichier": "anglais-immigration-uk.pcards",
   "titre": "Immigration, diversité et identité nationale",
   "matiere": "Anglais",
@@ -48,6 +108,16 @@
   "description": "Du multiculturalisme aux traversées de la Manche : le lexique du débat migratoire et identitaire britannique.",
   "cartes": 150,
   "octets": 3672
+ },
+ {
+  "fichier": "anglais-immigration-us.pcards",
+  "titre": "Immigration et frontière mexicaine",
+  "matiere": "Anglais",
+  "groupe": "Civilisation américaine",
+  "annee": "2",
+  "description": "Mur, DACA et réforme bloquée : le vocabulaire du débat migratoire américain.",
+  "cartes": 146,
+  "octets": 3620
  },
  {
   "fichier": "anglais-inegalites.pcards",
@@ -80,6 +150,16 @@
   "octets": 3584
  },
  {
+  "fichier": "anglais-memoire-coloniale.pcards",
+  "titre": "Mémoire coloniale et réparations",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "2",
+  "description": "Statues, restitutions et excuses officielles : le lexique du débat mémoriel dans le monde anglophone.",
+  "cartes": 150,
+  "octets": 3366
+ },
+ {
   "fichier": "anglais-monarchie.pcards",
   "titre": "La monarchie britannique",
   "matiere": "Anglais",
@@ -90,6 +170,16 @@
   "octets": 3747
  },
  {
+  "fichier": "anglais-mondialisation.pcards",
+  "titre": "Mondialisation et commerce international",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "1",
+  "description": "Libre-échange, chaînes de valeur et démondialisation : le lexique économique attendu à l'écrit.",
+  "cartes": 146,
+  "octets": 3500
+ },
+ {
   "fichier": "anglais-nhs-sante.pcards",
   "titre": "Le NHS et le système de santé",
   "matiere": "Anglais",
@@ -98,5 +188,45 @@
   "description": "Gratuité des soins, listes d'attente, sous-financement et grèves : le vocabulaire du débat sanitaire britannique.",
   "cartes": 149,
   "octets": 3749
+ },
+ {
+  "fichier": "anglais-polarisation-us.pcards",
+  "titre": "Polarisation politique et élections",
+  "matiere": "Anglais",
+  "groupe": "Civilisation américaine",
+  "annee": "1",
+  "description": "Primaires, collège électoral et fracture partisane : le lexique de la vie politique américaine.",
+  "cartes": 150,
+  "octets": 3421
+ },
+ {
+  "fichier": "anglais-racisme-us.pcards",
+  "titre": "Racisme structurel et mouvements civiques",
+  "matiere": "Anglais",
+  "groupe": "Civilisation américaine",
+  "annee": "2",
+  "description": "De la ségrégation à Black Lives Matter : discrimination positive, violences policières et mémoire.",
+  "cartes": 147,
+  "octets": 3564
+ },
+ {
+  "fichier": "anglais-sante-us.pcards",
+  "titre": "Santé publique et accès aux soins",
+  "matiere": "Anglais",
+  "groupe": "Civilisation américaine",
+  "annee": "1",
+  "description": "Obésité, assurance privée et crise des opioïdes : le lexique du système de santé américain.",
+  "cartes": 148,
+  "octets": 3658
+ },
+ {
+  "fichier": "anglais-travail.pcards",
+  "titre": "Travail, automatisation et gig economy",
+  "matiere": "Anglais",
+  "groupe": "Enjeux contemporains",
+  "annee": "2",
+  "description": "Ubérisation, télétravail et fin du salariat : le lexique des transformations du monde du travail.",
+  "cartes": 151,
+  "octets": 3467
  }
 ]
