@@ -290,11 +290,12 @@ strong { color: var(--encre); font-weight: 700; }
   /* Les dimensions viennent des attributs width/height du HTML : chaque logo
      a sa hauteur propre, calculee selon sa forme par preparer_logos.py. */
   height: auto; max-width: 170px;
-  filter: grayscale(1);
-  opacity: .66;
-  transition: opacity .2s, filter .2s;
+  /* En couleur : les logos d'ecole sont reconnus a leur couleur autant
+     qu'a leur forme, et un bandeau gris les rendait tous semblables. */
+  opacity: .92;
+  transition: opacity .2s;
 }
-.defile:hover .logo-ecole img { opacity: .9; }
+.defile:hover .logo-ecole img { opacity: 1; }
 
 @keyframes defiler {
   from { transform: translateX(0); }
@@ -1811,4 +1812,98 @@ html.js .feuille-texte > .vue {
     opacity: 1; transform: none; transition: none;
   }
   .progression-lecture { display: none; }
+}
+
+/* --- Page des paquets gratuits --------------------------------------- */
+
+.decks-entete h1 {
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -.025em;
+  margin: 0 0 .5em;
+}
+
+.decks-compte {
+  text-align: center;
+  color: var(--gris);
+  margin: 0 0 2.4em;
+}
+.decks-compte strong { color: var(--encre); }
+
+.decks-annee {
+  margin: 2.2em 0 .2em;
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  letter-spacing: -.018em;
+}
+.decks-annee:first-of-type { margin-top: 0; }
+
+.decks-groupe {
+  margin: 1.5em 0 .9em;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--bleu);
+}
+
+.decks-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 16px;
+}
+
+/* La carte entiere est le lien : sur un bloc de cette taille, obliger a
+   viser un mot souligne est une gene inutile. */
+.deck-carte {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: #fff;
+  border: 1px solid var(--bord);
+  border-radius: 16px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.deck-carte:hover {
+  transform: translateY(-3px);
+  border-color: rgba(37, 99, 235, .4);
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .22);
+}
+
+.deck-titre {
+  font-weight: 700;
+  color: var(--encre);
+  line-height: 1.3;
+}
+
+.deck-desc {
+  font-size: .89rem;
+  color: var(--gris);
+  line-height: 1.45;
+  flex: 1 1 auto;
+}
+
+.deck-pied {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: .82rem;
+}
+.deck-nombre {
+  background: var(--bleu-pale);
+  color: var(--bleu-fonce);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.deck-poids { color: var(--gris-clair); }
+
+/* La flèche de téléchargement, dessinée en CSS plutôt qu'en image. */
+.deck-carte::after {
+  content: '↓';
+  position: absolute;
+  opacity: 0;
 }

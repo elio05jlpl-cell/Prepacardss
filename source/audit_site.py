@@ -39,7 +39,8 @@ DESCRIPTION_MAX = 165
 
 # Extensions servies telles quelles : le lien pointe vers un fichier, pas vers
 # un dossier contenant un index.html.
-FICHIERS = re.compile(r"\.(css|png|jpg|jpeg|svg|ico|xml|txt|zip|webp|woff2)$")
+FICHIERS = re.compile(
+    r"\.(css|js|png|jpg|jpeg|svg|ico|xml|txt|zip|webp|woff2|pcards)$")
 
 # Cloudflare Pages et Netlify refusent tout fichier de plus de 25 Mo. Un
 # echec d'upload a reellement eu lieu parce que l'archive d'installation

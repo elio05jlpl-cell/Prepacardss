@@ -1,0 +1,32 @@
+[
+ {
+  "fichier": "anglais-brexit.pcards",
+  "titre": "Brexit et relations UK-UE",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "1",
+  "description": "Du référendum de 2016 aux frictions commerciales actuelles : le lexique complet pour traiter le sujet à l'écrit comme en colle.",
+  "cartes": 153,
+  "octets": 3923
+ },
+ {
+  "fichier": "anglais-monarchie.pcards",
+  "titre": "La monarchie britannique",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "1",
+  "description": "Couronne, succession, coût civil et débat républicain, depuis la mort d'Elizabeth II.",
+  "cartes": 149,
+  "octets": 3747
+ },
+ {
+  "fichier": "anglais-nhs-sante.pcards",
+  "titre": "Le NHS et le système de santé",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "1",
+  "description": "Gratuité des soins, listes d'attente, sous-financement et grèves : le vocabulaire du débat sanitaire britannique.",
+  "cartes": 149,
+  "octets": 3749
+ }
+]

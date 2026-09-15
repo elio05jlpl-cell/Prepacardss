@@ -114,7 +114,8 @@ BLOC_TELECHARGEMENT_ATTENTE = """<div class="encart encart-attention">
 
 # Marqueurs dont la valeur est un bloc HTML, et non du texte en
 # ligne : ils ne doivent jamais rester enfermes dans un <p>.
-MARQUEURS_DE_BLOC = ("{{bloc_telechargement}}", "{{bandeau_ecoles}}")
+MARQUEURS_DE_BLOC = ("{{bloc_telechargement}}", "{{bandeau_ecoles}}",
+                     "{{bloc_decks}}")
 
 
 def transformer_faq(corps: str) -> str:
@@ -222,6 +223,74 @@ def scripts_animes(corps: str) -> str:
     return chr(10).join(morceaux)
 
 
+def bloc_decks() -> str:
+    """La liste des paquets telechargeables, batie sur le manifeste.
+
+    Le manifeste est ecrit par _generer_decks.py, qui fabrique les fichiers
+    depuis les listes de vocabulaire. Rien n'est saisi deux fois : ajouter
+    un paquet, c'est ajouter un fichier source et relancer le generateur.
+
+    Si le manifeste est absent, la page affiche une attente plutot qu'une
+    liste vide - un tableau de zero ligne ressemble a une panne.
+    """
+    manifeste = STATIC / "decks" / "decks.json"
+    if not manifeste.exists():
+        return ('<div class="encart encart-attention"><p>Les paquets sont en '
+                'cours de préparation.</p></div>')
+
+    fiches = json.loads(manifeste.read_text(encoding="utf-8"))
+    if not fiches:
+        return ('<div class="encart encart-attention"><p>Les paquets sont en '
+                'cours de préparation.</p></div>')
+
+    # Regroupement : matiere, puis annee, puis groupe. L'ordre des annees
+    # est numerique et non alphabetique - « 10 » viendrait avant « 2 ».
+    arbre = {}
+    for fiche in fiches:
+        annee = arbre.setdefault(fiche["matiere"], {}).setdefault(
+            str(fiche["annee"]), {})
+        annee.setdefault(fiche["groupe"], []).append(fiche)
+
+    total_cartes = sum(f["cartes"] for f in fiches)
+    morceaux = [
+        '<p class="decks-compte">'
+        f'<strong>{len(fiches)} paquets</strong> · '
+        f'<strong>{total_cartes:,} cartes</strong> · gratuits et sans compte'
+        '</p>'.replace(",", " ")
+    ]
+
+    for matiere in sorted(arbre):
+        for annee in sorted(arbre[matiere], key=lambda a: int(a or 0)):
+            morceaux.append(
+                f'<h2 class="decks-annee">{html.escape(matiere)} — '
+                f'{annee}<sup>re</sup> année</h2>'
+                if annee == "1" else
+                f'<h2 class="decks-annee">{html.escape(matiere)} — '
+                f'{annee}<sup>e</sup> année</h2>'
+            )
+            for groupe in sorted(arbre[matiere][annee]):
+                morceaux.append(
+                    f'<h3 class="decks-groupe">{html.escape(groupe)}</h3>')
+                morceaux.append('<div class="decks-grille">')
+                for fiche in sorted(arbre[matiere][annee][groupe],
+                                    key=lambda f: f["titre"]):
+                    poids = f'{fiche["octets"] / 1024:.0f} ko'
+                    morceaux.append(
+                        '<a class="deck-carte" '
+                        f'href="/decks/{html.escape(fiche["fichier"])}" '
+                        f'download>'
+                        f'<span class="deck-titre">{html.escape(fiche["titre"])}</span>'
+                        f'<span class="deck-desc">{html.escape(fiche["description"])}</span>'
+                        f'<span class="deck-pied">'
+                        f'<span class="deck-nombre">{fiche["cartes"]} cartes</span>'
+                        f'<span class="deck-poids">{poids}</span></span>'
+                        '</a>'
+                    )
+                morceaux.append('</div>')
+
+    return "\n".join(morceaux)
+
+
 def bloc_telechargement() -> str:
     """Bouton reel, ou encadre d'attente si l'adresse n'est pas renseignee."""
     if DOWNLOAD_PLACEHOLDER in DOWNLOAD_URL:
@@ -320,11 +389,10 @@ NAV = [
         ("/prepa-commerciale/", "Prépas commerciales", "ECG et ECT"),
         ("/prepa-litteraire/", "Prépas littéraires", "Khâgnes A/L et B/L"),
     ]),
+    ("/decks/", "Paquets gratuits", None),
     ("/importer-anki-quizlet/", "Importer", None),
     ("/fonctionnalites/", "Fonctionnalités", None),
     ("/tarifs/", "Tarifs", None),
-    ("/a-propos/", "À propos", None),
-    ("/blog/", "Blog", None),
 ]
 
 FOOTER_LINKS = [
@@ -633,6 +701,7 @@ def render(page: dict, url_path: str, template: str, jsonld_blocks: list) -> str
         "{{lien_telechargement}}": DOWNLOAD_URL,
         "{{version_css}}": css_version(),
         "{{bloc_telechargement}}": bloc_telechargement(),
+        "{{bloc_decks}}": bloc_decks(),
         "{{bandeau_ecoles}}": bandeau_ecoles(),
     }
     for marker, value in replacements.items():
