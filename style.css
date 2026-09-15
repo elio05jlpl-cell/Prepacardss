@@ -1303,17 +1303,18 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
   margin-bottom: .9em;
 }
 
-.duos { display: flex; flex-direction: column; gap: 30px; margin-top: 3em; }
+.duos { display: flex; flex-direction: column; gap: 56px; margin-top: 3.2em; }
 
+/* Pas de carte autour d'un bloc : le texte et son animation se posent
+   directement sur le fond de la page. Une bulle blanche sur fond blanc
+   n'ajoutait qu'une ombre et des coins, elle ne separait rien. C'est
+   l'espace entre les blocs qui fait la separation. */
 .duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 48px;
-  background: #fff;
-  border-radius: var(--rayon-xl, 24px);
-  padding: 40px 44px;
-  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
+  gap: 64px;
+  padding: 28px 0;
 }
 
 /* L'alternance se fait en inversant l'ORDRE des colonnes, pas en
@@ -1392,8 +1393,8 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
 @media (max-width: 900px) {
   .duo {
     grid-template-columns: 1fr;
-    gap: 26px;
-    padding: 28px 24px;
+    gap: 24px;
+    padding: 0;
   }
   /* Sur une colonne, le visuel passe sous son texte dans les deux sens :
      une alternance n'a plus de sens, et l'inversion casserait la lecture. */
@@ -1462,10 +1463,33 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
 }
 .faq-item[open] .faq-chevron { transform: rotate(180deg); color: var(--bleu); }
 
+/* Depliage progressif.
+   
+   <details> ouvre et ferme d'un coup : aucune propriete animable ne change
+   entre les deux etats, la hauteur passe de zero a auto. On anime donc une
+   grille dont l'unique rangee va de 0fr a 1fr - une fraction, elle,
+   s'interpole. L'enfant doit porter overflow: hidden, sans quoi le texte
+   deborderait pendant la fermeture au lieu d'etre rogne.
+
+   Ce detour plutot que interpolate-size / calc-size, qui font exactement
+   cela en une ligne mais ne sont pas encore repandus. */
+.faq-enveloppe {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .32s cubic-bezier(.32, .72, .35, 1);
+}
+.faq-item[open] .faq-enveloppe { grid-template-rows: 1fr; }
+
 .faq-reponse {
-  padding: 0 24px 20px;
+  overflow: hidden;
+  min-height: 0;
   color: var(--gris);
 }
+/* La marge basse vit sur le contenu et non sur l'enveloppe : posee sur
+   l'enveloppe, elle resterait visible une fois repliee. */
+.faq-reponse > :first-child { padding-top: 2px; }
+.faq-reponse > :last-child { padding-bottom: 20px; }
+.faq-reponse p { padding-left: 24px; padding-right: 24px; }
 .faq-reponse p { margin: 0 0 .7em; }
 .faq-reponse p:last-child { margin-bottom: 0; }
 .faq-reponse a { color: var(--bleu-fonce); }
@@ -1474,4 +1498,56 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
   .mot-lettres span { animation: none; }
   .mot-curseur { animation: none; }
   .faq-chevron { transition: none; }
+  .faq-enveloppe { transition: none; }
+}
+
+/* --- Avis ----------------------------------------------------------- */
+
+.avis-section { padding-top: 10px; }
+
+.avis {
+  position: relative;
+  max-width: 680px;
+  margin: 1.6em auto 0;
+  padding: 40px 38px 32px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
+}
+
+.avis-guillemet {
+  position: absolute;
+  top: -6px; left: 28px;
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  line-height: 1;
+  /* Couleur pleine, et non un degrade decoupe sur le texte : ce dernier
+     rend le texte transparent, et il suffit d'un transform quelque part
+     au-dessus pour qu'il cesse de peindre - la panne est alors totale et
+     silencieuse. Pour un signe decoratif, le risque n'en vaut pas la
+     peine. */
+  color: var(--violet);
+  opacity: .55;
+}
+
+.avis blockquote { margin: 0; }
+.avis blockquote p {
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  line-height: 1.45;
+  color: var(--encre);
+  font-weight: 500;
+  margin: 0 0 1.1em;
+}
+
+.avis figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.avis-nom { font-weight: 700; color: var(--encre); }
+.avis-role { font-size: .93rem; color: var(--gris); }
+
+@media (max-width: 640px) {
+  .avis { padding: 32px 24px 26px; }
+  .avis-guillemet { left: 18px; font-size: 4rem; }
 }

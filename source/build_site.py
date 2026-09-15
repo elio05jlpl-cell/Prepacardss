@@ -166,7 +166,8 @@ def transformer_faq(corps: str) -> str:
             'stroke="currentColor" stroke-width="2" stroke-linecap="round" '
             'stroke-linejoin="round" aria-hidden="true">'
             '<path d="m6 9 6 6 6-6"/></svg></summary>\n'
-            f'    <div class="faq-reponse">{reponse}</div>\n'
+            '    <div class="faq-enveloppe">'
+            f'<div class="faq-reponse">{reponse}</div></div>\n'
             '  </details>'
         )
 

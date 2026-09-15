@@ -224,6 +224,23 @@ faq: true
   </div>
 </section>
 
+<section class="section avis-section">
+  <div class="conteneur centre">
+    <span class="eyebrow">Ils l'utilisent</span>
+    <figure class="avis">
+      <span class="avis-guillemet" aria-hidden="true">“</span>
+      <blockquote>
+        <p>Super app, comble la difficulté d'appréhension d'Anki et permet de
+          mettre les maths en flashcard.</p>
+      </blockquote>
+      <figcaption>
+        <span class="avis-nom">Jean</span>
+        <span class="avis-role">Étudiant à HEC Paris</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <section class="section">
   <div class="conteneur grille-2">
     <div>
