@@ -10,6 +10,76 @@
   "octets": 3923
  },
  {
+  "fichier": "anglais-commonwealth.pcards",
+  "titre": "Le Commonwealth",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "1",
+  "description": "De l'Empire à l'association volontaire : héritage colonial, influence résiduelle et contestations actuelles.",
+  "cartes": 145,
+  "octets": 3536
+ },
+ {
+  "fichier": "anglais-devolution.pcards",
+  "titre": "Devolution et velléités d'indépendance",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "2",
+  "description": "Écosse, Irlande du Nord, Pays de Galles : autonomie, référendums et tensions sur l'unité du Royaume-Uni.",
+  "cartes": 146,
+  "octets": 3710
+ },
+ {
+  "fichier": "anglais-education.pcards",
+  "titre": "Le système éducatif britannique",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "1",
+  "description": "Public schools, universités et frais de scolarité : le lexique de la reproduction sociale par l'école.",
+  "cartes": 145,
+  "octets": 3536
+ },
+ {
+  "fichier": "anglais-immigration-uk.pcards",
+  "titre": "Immigration, diversité et identité nationale",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "2",
+  "description": "Du multiculturalisme aux traversées de la Manche : le lexique du débat migratoire et identitaire britannique.",
+  "cartes": 150,
+  "octets": 3672
+ },
+ {
+  "fichier": "anglais-inegalites.pcards",
+  "titre": "Inégalités, pauvreté et État social",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "2",
+  "description": "Welfare state, crise du coût de la vie et banques alimentaires : le vocabulaire des fractures sociales britanniques.",
+  "cartes": 143,
+  "octets": 3427
+ },
+ {
+  "fichier": "anglais-institutions-us.pcards",
+  "titre": "Institutions américaines et fédéralisme",
+  "matiere": "Anglais",
+  "groupe": "Civilisation américaine",
+  "annee": "1",
+  "description": "Congrès, Cour suprême et séparation des pouvoirs : le lexique institutionnel des États-Unis.",
+  "cartes": 149,
+  "octets": 3482
+ },
+ {
+  "fichier": "anglais-medias-uk.pcards",
+  "titre": "Médias britanniques et régulation",
+  "matiere": "Anglais",
+  "groupe": "Civilisation britannique",
+  "annee": "2",
+  "description": "BBC, tabloïds et régulation : indépendance éditoriale, redevance et déontologie de la presse.",
+  "cartes": 147,
+  "octets": 3584
+ },
+ {
   "fichier": "anglais-monarchie.pcards",
   "titre": "La monarchie britannique",
   "matiere": "Anglais",
