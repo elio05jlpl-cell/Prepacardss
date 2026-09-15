@@ -6,8 +6,8 @@
   "groupe": "Civilisation américaine",
   "annee": "2",
   "description": "Deuxième amendement, fusillades de masse et lobby : le lexique d'un débat américain sans équivalent.",
-  "cartes": 142,
-  "octets": 3642
+  "cartes": 150,
+  "octets": 3836
  },
  {
   "fichier": "anglais-brexit.pcards",
@@ -26,8 +26,8 @@
   "groupe": "Civilisation britannique",
   "annee": "1",
   "description": "De l'Empire à l'association volontaire : héritage colonial, influence résiduelle et contestations actuelles.",
-  "cartes": 145,
-  "octets": 3536
+  "cartes": 150,
+  "octets": 3622
  },
  {
   "fichier": "anglais-devolution.pcards",
@@ -36,8 +36,8 @@
   "groupe": "Civilisation britannique",
   "annee": "2",
   "description": "Écosse, Irlande du Nord, Pays de Galles : autonomie, référendums et tensions sur l'unité du Royaume-Uni.",
-  "cartes": 146,
-  "octets": 3710
+  "cartes": 150,
+  "octets": 3795
  },
  {
   "fichier": "anglais-education.pcards",
@@ -46,8 +46,8 @@
   "groupe": "Civilisation britannique",
   "annee": "1",
   "description": "Public schools, universités et frais de scolarité : le lexique de la reproduction sociale par l'école.",
-  "cartes": 145,
-  "octets": 3536
+  "cartes": 150,
+  "octets": 3661
  },
  {
   "fichier": "anglais-environnement.pcards",
@@ -56,8 +56,8 @@
   "groupe": "Enjeux contemporains",
   "annee": "1",
   "description": "Neutralité carbone, transition énergétique et justice climatique : le lexique indispensable du sujet le plus probable.",
-  "cartes": 149,
-  "octets": 3556
+  "cartes": 150,
+  "octets": 3578
  },
  {
   "fichier": "anglais-feminisme.pcards",
@@ -66,8 +66,8 @@
   "groupe": "Enjeux contemporains",
   "annee": "2",
   "description": "Égalité salariale, #MeToo et droit à l'avortement : le lexique des droits des femmes dans le monde anglophone.",
-  "cartes": 148,
-  "octets": 3616
+  "cartes": 150,
+  "octets": 3666
  },
  {
   "fichier": "anglais-genre-lgbt.pcards",
@@ -76,8 +76,8 @@
   "groupe": "Enjeux contemporains",
   "annee": "2",
   "description": "Mariage pour tous, transidentité et reculs législatifs : le lexique précis d'un sujet à manier avec rigueur.",
-  "cartes": 145,
-  "octets": 3405
+  "cartes": 150,
+  "octets": 3522
  },
  {
   "fichier": "anglais-geopolitique.pcards",
@@ -96,8 +96,8 @@
   "groupe": "Enjeux contemporains",
   "annee": "2",
   "description": "Algorithmes, régulation et vérité factuelle : le lexique du numérique, sujet devenu incontournable.",
-  "cartes": 146,
-  "octets": 3414
+  "cartes": 150,
+  "octets": 3521
  },
  {
   "fichier": "anglais-immigration-uk.pcards",
@@ -116,8 +116,8 @@
   "groupe": "Civilisation américaine",
   "annee": "2",
   "description": "Mur, DACA et réforme bloquée : le vocabulaire du débat migratoire américain.",
-  "cartes": 146,
-  "octets": 3620
+  "cartes": 150,
+  "octets": 3703
  },
  {
   "fichier": "anglais-inegalites.pcards",
@@ -126,8 +126,8 @@
   "groupe": "Civilisation britannique",
   "annee": "2",
   "description": "Welfare state, crise du coût de la vie et banques alimentaires : le vocabulaire des fractures sociales britanniques.",
-  "cartes": 143,
-  "octets": 3427
+  "cartes": 150,
+  "octets": 3566
  },
  {
   "fichier": "anglais-institutions-us.pcards",
@@ -136,8 +136,8 @@
   "groupe": "Civilisation américaine",
   "annee": "1",
   "description": "Congrès, Cour suprême et séparation des pouvoirs : le lexique institutionnel des États-Unis.",
-  "cartes": 149,
-  "octets": 3482
+  "cartes": 150,
+  "octets": 3502
  },
  {
   "fichier": "anglais-medias-uk.pcards",
@@ -146,8 +146,8 @@
   "groupe": "Civilisation britannique",
   "annee": "2",
   "description": "BBC, tabloïds et régulation : indépendance éditoriale, redevance et déontologie de la presse.",
-  "cartes": 147,
-  "octets": 3584
+  "cartes": 150,
+  "octets": 3630
  },
  {
   "fichier": "anglais-memoire-coloniale.pcards",
@@ -166,8 +166,8 @@
   "groupe": "Civilisation britannique",
   "annee": "1",
   "description": "Couronne, succession, coût civil et débat républicain, depuis la mort d'Elizabeth II.",
-  "cartes": 149,
-  "octets": 3747
+  "cartes": 150,
+  "octets": 3762
  },
  {
   "fichier": "anglais-mondialisation.pcards",
@@ -176,8 +176,8 @@
   "groupe": "Enjeux contemporains",
   "annee": "1",
   "description": "Libre-échange, chaînes de valeur et démondialisation : le lexique économique attendu à l'écrit.",
-  "cartes": 146,
-  "octets": 3500
+  "cartes": 150,
+  "octets": 3573
  },
  {
   "fichier": "anglais-nhs-sante.pcards",
@@ -186,8 +186,8 @@
   "groupe": "Civilisation britannique",
   "annee": "1",
   "description": "Gratuité des soins, listes d'attente, sous-financement et grèves : le vocabulaire du débat sanitaire britannique.",
-  "cartes": 149,
-  "octets": 3749
+  "cartes": 150,
+  "octets": 3776
  },
  {
   "fichier": "anglais-polarisation-us.pcards",
@@ -206,8 +206,8 @@
   "groupe": "Civilisation américaine",
   "annee": "2",
   "description": "De la ségrégation à Black Lives Matter : discrimination positive, violences policières et mémoire.",
-  "cartes": 147,
-  "octets": 3564
+  "cartes": 150,
+  "octets": 3636
  },
  {
   "fichier": "anglais-sante-us.pcards",
@@ -216,8 +216,8 @@
   "groupe": "Civilisation américaine",
   "annee": "1",
   "description": "Obésité, assurance privée et crise des opioïdes : le lexique du système de santé américain.",
-  "cartes": 148,
-  "octets": 3658
+  "cartes": 150,
+  "octets": 3707
  },
  {
   "fichier": "anglais-travail.pcards",
