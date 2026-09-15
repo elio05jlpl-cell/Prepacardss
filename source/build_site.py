@@ -117,6 +117,71 @@ BLOC_TELECHARGEMENT_ATTENTE = """<div class="encart encart-attention">
 MARQUEURS_DE_BLOC = ("{{bloc_telechargement}}", "{{bandeau_ecoles}}")
 
 
+def transformer_faq(corps: str) -> str:
+    """Transforme la liste de questions en accordeon depliable.
+
+    En Markdown, une FAQ s'ecrit naturellement en « ### question » suivi de
+    sa reponse. C'est confortable a rediger et brut a lire : dix questions
+    ouvertes d'affilee font un mur de texte ou l'oeil ne se pose nulle part.
+
+    On la replie donc ici, a la construction, plutot que de demander a
+    chaque page d'ecrire son propre balisage. Toutes les pages portant
+    « faq: true » en profitent sans etre retouchees.
+
+    Le pliage utilise <details>/<summary>, pas du JavaScript : l'accordeon
+    fonctionne sans script, se replie correctement a l'impression, et la
+    recherche du navigateur (Ctrl+F) ouvre d'elle-meme la bonne reponse.
+
+    Attention a l'ordre d'appel : faq_jsonld() lit les paires <h3>/<p> du
+    corps d'origine. Cette transformation doit donc intervenir APRES, au
+    moment du rendu, sinon le balisage structure disparaitrait.
+    """
+    entete = re.search(r"<h2[^>]*>\s*Questions fr[^<]*</h2>", corps)
+    if not entete:
+        return corps
+
+    avant, reste = corps[:entete.start()], corps[entete.end():]
+
+    # Ce qui suit la derniere reponse n'appartient pas a la FAQ : sur ces
+    # pages, c'est l'encadre de telechargement. On le met de cote pour le
+    # remettre apres l'accordeon.
+    queue = ""
+    fin = re.search(r'<(?:div|section)\s+class="(?:encart|section)', reste)
+    if fin:
+        reste, queue = reste[:fin.start()], reste[fin.start():]
+
+    morceaux = re.split(r"<h3[^>]*>(.*?)</h3>", reste, flags=re.DOTALL)
+    if len(morceaux) < 3:
+        return corps          # pas de question : on ne touche a rien
+
+    intro = morceaux[0].strip()
+    items = []
+    for index in range(1, len(morceaux) - 1, 2):
+        question = morceaux[index].strip()
+        reponse = morceaux[index + 1].strip()
+        items.append(
+            '  <details class="faq-item">\n'
+            f'    <summary><span>{question}</span>'
+            '<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" '
+            'stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+            'stroke-linejoin="round" aria-hidden="true">'
+            '<path d="m6 9 6 6 6-6"/></svg></summary>\n'
+            f'    <div class="faq-reponse">{reponse}</div>\n'
+            '  </details>'
+        )
+
+    bloc = (
+        '<section class="faq">\n'
+        '  <p class="faq-eyebrow">FAQ</p>\n'
+        '  <h2>Questions fréquentes</h2>\n'
+        + (f'  <p class="faq-chapeau">{intro}</p>\n' if intro else "")
+        + '  <div class="faq-liste">\n'
+        + "\n".join(items)
+        + '\n  </div>\n</section>\n'
+    )
+    return avant + bloc + queue
+
+
 def desenvelopper_blocs(html: str) -> str:
     """Sort les marqueurs de bloc du paragraphe ou Markdown les a mis.
 
@@ -145,7 +210,8 @@ def scripts_animes(corps: str) -> str:
     """
     dossier = Path(__file__).parent / "templates"
     morceaux = []
-    for marqueur, fichier in (('id="demo-app"', "demo-accueil.js"),
+    for marqueur, fichier in (('class="mot-anime"', "mot-anime.js"),
+                              ('id="demo-app"', "demo-accueil.js"),
                               ("data-anim=", "etapes.js")):
         chemin = dossier / fichier
         if marqueur in corps and chemin.exists():
@@ -551,7 +617,7 @@ def render(page: dict, url_path: str, template: str, jsonld_blocks: list) -> str
         "{{title}}": html.escape(page["title"]),
         "{{description}}": html.escape(page["description"]),
         "{{canonical}}": canonical,
-        "{{content}}": desenvelopper_blocs(page["body_html"]),
+        "{{content}}": transformer_faq(desenvelopper_blocs(page["body_html"])),
         "{{script_etapes}}": scripts_animes(page["body_html"]),
         "{{jsonld}}": jsonld,
         "{{nav}}": render_nav(url_path),

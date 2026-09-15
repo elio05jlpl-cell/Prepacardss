@@ -689,67 +689,6 @@ main a { transition: color .2s ease; }
    Tout ce qui peut boucler seul est en CSS ; le JavaScript ne sert qu'a la
    frappe lettre par lettre et a l'enchainement des phases. */
 
-.etapes { background: #f8fafc; }
-
-.etapes-grille {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
-  margin-top: 2.4em;
-  text-align: left;
-}
-
-.etape {
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px 22px 26px;
-  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
-  display: flex;
-  flex-direction: column;
-}
-
-.etape-numero {
-  width: 34px; height: 34px;
-  display: grid; place-items: center;
-  border-radius: 50%;
-  background: #1e3a8a; color: #fff;
-  font-family: Poppins, sans-serif;
-  font-weight: 700; font-size: .95rem;
-  margin-bottom: 14px;
-}
-
-.etape h3 {
-  font-family: Poppins, sans-serif;
-  font-weight: 600;
-  font-size: 1.12rem;
-  color: #0f172a;
-  margin: 0 0 .4em;
-}
-
-.etape > p {
-  font-family: Nunito, sans-serif;
-  font-weight: 400;
-  color: #64748b;
-  font-size: .96rem;
-  line-height: 1.55;
-  margin: 0 0 18px;
-}
-
-/* Hauteur fixe, pour que les trois blocs restent alignes quelle que soit
-   la phase en cours de chaque animation. */
-.scene {
-  margin-top: auto;
-  height: 190px;
-  border-radius: 16px;
-  background: #f8fafc;
-  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* --- Etape 1 : la voix -------------------------------------------- */
 
 .scene-voix { flex-direction: column; }
@@ -1232,4 +1171,303 @@ html.js .demo-vue[data-etape="0"]:not(.active) { opacity: 0; }
      seul est exactement ce que ce reglage demande d'eviter. */
   .demo-vue { transition: none; }
   .demo-curseur { display: none; }
+}
+
+/* ==================================================================
+   Refonte : en-tete centre, blocs alternes, FAQ repliee
+   ================================================================== */
+
+.conteneur-etroit {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- En-tete ------------------------------------------------------- */
+
+.heros { padding: 64px 0 0; }
+
+.pastille {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--bord);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: .93rem;
+  font-weight: 600;
+  color: var(--texte);
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
+  margin-bottom: 26px;
+}
+.pastille i {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, .18);
+}
+
+.heros h1 {
+  font-size: clamp(2.1rem, 4.8vw, 3.55rem);
+  line-height: 1.1;
+  letter-spacing: -.028em;
+  margin: 0 0 .5em;
+}
+
+/* Le mot anime. Sa largeur change a chaque lettre : sans hauteur de ligne
+   figee et sans reservation verticale, tout le bloc sauterait a chaque
+   frappe et la page entiere avec lui. */
+.mot-anime {
+  display: inline-flex;
+  align-items: baseline;
+  min-height: 1.1em;
+}
+
+.mot-lettres {
+  background-image: linear-gradient(100deg, #2563eb 0%, #6366f1 38%,
+                                    #a855f7 68%, #ec4899 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Chaque lettre arrive avec un leger fondu montant : l'apparition se lit
+   comme une frappe, pas comme un texte qui clignote. */
+.mot-lettres span {
+  display: inline-block;
+  white-space: pre;
+  animation: lettre .28s ease-out both;
+}
+
+@keyframes lettre {
+  from { opacity: 0; transform: translateY(.18em); }
+  to   { opacity: 1; transform: none; }
+}
+
+.mot-curseur {
+  display: inline-block;
+  width: .055em;
+  min-width: 3px;
+  height: .92em;
+  margin-left: .06em;
+  background: #cbd5e1;
+  border-radius: 2px;
+  animation: clignote 1s steps(1) infinite;
+}
+
+.heros .chapeau {
+  font-size: 1.16rem;
+  color: var(--gris);
+  max-width: 660px;
+  margin: 0 auto 2em;
+}
+
+.heros .actions { margin-bottom: .9em; }
+.heros .sous-bouton { color: var(--gris-clair); margin-bottom: 0; }
+
+/* --- Le cadre de la demonstration ---------------------------------- */
+
+.cadre-demo {
+  margin-top: 56px;
+  padding: 16px 16px 0;
+  border-radius: 26px 26px 0 0;
+  background: linear-gradient(135deg, #2563eb, #7c3aed 55%, #ec4899);
+  box-shadow: 0 -2px 60px rgba(37, 99, 235, .18);
+}
+.cadre-demo .demo-app {
+  border: 0;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -10px 40px rgba(15, 23, 42, .18);
+}
+
+@media (max-width: 700px) {
+  .cadre-demo { margin-top: 36px; padding: 9px 9px 0; border-radius: 18px 18px 0 0; }
+  .cadre-demo .demo-app { border-radius: 12px 12px 0 0; }
+}
+
+/* --- Blocs alternes ------------------------------------------------- */
+
+.eyebrow {
+  display: inline-block;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--bleu);
+  margin-bottom: .9em;
+}
+
+.duos { display: flex; flex-direction: column; gap: 30px; margin-top: 3em; }
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  background: #fff;
+  border-radius: var(--rayon-xl, 24px);
+  padding: 40px 44px;
+  box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18);
+}
+
+/* L'alternance se fait en inversant l'ORDRE des colonnes, pas en
+   reordonnant le balisage : le texte reste avant le visuel dans le
+   document, donc dans l'ordre de lecture d'un lecteur d'ecran. */
+.duo.inverse .duo-texte { order: 2; }
+.duo.inverse .duo-visuel { order: 1; }
+
+.duo-numero {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--degrade);
+  color: #fff;
+  font-weight: 700; font-size: .95rem;
+  margin-bottom: 16px;
+}
+
+.duo h3 {
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  margin: 0 0 .5em;
+}
+
+.duo-texte > p { color: var(--gris); margin-bottom: 1.1em; }
+
+.duo-liste { list-style: none; margin: 0 0 1.5em; padding: 0; }
+.duo-liste li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: .62em;
+  color: var(--texte);
+  font-size: .97rem;
+}
+.duo-liste li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: .18em;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, .12);
+  /* La coche est dessinee en fond : pas d'image a charger, et elle suit la
+     couleur du texte si le theme change. */
+  background-image:
+    linear-gradient(to bottom right, transparent 45%, var(--bleu) 45%, var(--bleu) 55%, transparent 55%),
+    linear-gradient(to bottom left, transparent 45%, var(--bleu) 45%, var(--bleu) 55%, transparent 55%);
+  background-size: 9px 2px, 5px 2px;
+  background-position: 7px 8px, 4px 9px;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 18px rgba(37, 99, 235, .1);
+}
+
+.bouton-fin {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--bleu-fonce);
+  text-decoration: none;
+}
+.bouton-fin:hover { text-decoration: underline; }
+
+/* Le visuel : la scene animee, agrandie par rapport a la version en
+   grille, puisqu'elle occupe desormais la moitie d'une rangee. */
+.duo-visuel .scene {
+  height: 268px;
+  margin: 0;
+  border-radius: 18px;
+  background: var(--fond-doux);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, .16);
+}
+.duo-visuel .mini-carte { width: 72%; }
+.duo-visuel .scene-scan { padding: 0 22px; gap: 14px; }
+.duo-visuel .rendu { font-size: 1.32rem; }
+.duo-visuel .formule-encre { font-size: 1.2rem; }
+
+@media (max-width: 900px) {
+  .duo {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 28px 24px;
+  }
+  /* Sur une colonne, le visuel passe sous son texte dans les deux sens :
+     une alternance n'a plus de sens, et l'inversion casserait la lecture. */
+  .duo.inverse .duo-texte { order: 0; }
+  .duo.inverse .duo-visuel { order: 0; }
+  .duo-visuel .scene { height: 210px; }
+}
+
+/* --- FAQ repliee ---------------------------------------------------- */
+
+.faq {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 10px 0 0;
+  text-align: center;
+}
+
+.faq-eyebrow {
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin: 0 0 .5em;
+}
+
+.faq h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  letter-spacing: -.02em;
+  margin: 0 0 .45em;
+}
+
+.faq-chapeau { color: var(--gris); margin: 0 auto 2.2em; max-width: 620px; }
+
+.faq-liste { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+
+.faq-item {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, .08);
+  transition: box-shadow .25s ease;
+}
+.faq-item[open] { box-shadow: 0 8px 24px -8px rgba(30, 58, 138, .18); }
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 19px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--encre);
+  list-style: none;
+}
+/* Safari et Chrome dessinent chacun leur propre marqueur : on retire les
+   deux, le chevron est le notre. */
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ''; }
+
+.faq-chevron {
+  flex: 0 0 auto;
+  width: 19px; height: 19px;
+  color: var(--gris);
+  transition: transform .25s ease, color .25s ease;
+}
+.faq-item[open] .faq-chevron { transform: rotate(180deg); color: var(--bleu); }
+
+.faq-reponse {
+  padding: 0 24px 20px;
+  color: var(--gris);
+}
+.faq-reponse p { margin: 0 0 .7em; }
+.faq-reponse p:last-child { margin-bottom: 0; }
+.faq-reponse a { color: var(--bleu-fonce); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mot-lettres span { animation: none; }
+  .mot-curseur { animation: none; }
+  .faq-chevron { transition: none; }
 }

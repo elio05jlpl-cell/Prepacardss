@@ -5,23 +5,29 @@ slug: index
 faq: true
 ---
 
-<section class="accroche">
+<section class="heros">
+  <div class="conteneur-etroit centre">
+    <span class="pastille">
+      <i aria-hidden="true"></i> Réviser plus intelligemment, pas plus longtemps
+    </span>
+    <h1>Des flashcards pour la prépa<br>
+      qui vous font<br><span class="mot-anime"
+        data-mots="réussir|retenir|tenir le rythme|progresser"
+        aria-label="réussir"><span class="mot-lettres"></span><span class="mot-curseur" aria-hidden="true"></span></span></h1>
+    <p class="chapeau">PrépaCards reprend la répétition espacée qui a fait la
+      réputation d'Anki, et ajoute ce qui manquait vraiment : il
+      <strong>écoute si vous prononcez le mot</strong>, et il transforme
+      <strong>la photo d'une formule en carte de maths</strong>.</p>
+    <p class="actions">
+      <a class="bouton" href="/telecharger/">Télécharger gratuitement</a>
+      <a class="bouton-secondaire" href="/fonctionnalites/">Voir les fonctionnalités</a>
+    </p>
+    <p class="sous-bouton">Windows 10 et 11 · Gratuit, sans compte en ligne ·
+      Vos cartes restent sur votre ordinateur</p>
+  </div>
+
   <div class="conteneur">
-    <div>
-      <span class="etiquette">ECG · MPSI · PCSI · PTSI · BCPST · Khâgne</span>
-      <h1>Des flashcards pour la prépa, sans les deux heures de configuration</h1>
-      <p class="chapeau">PrépaCards reprend la répétition espacée qui a fait la
-        réputation d'Anki, mais ajoute ce qui manquait vraiment : il
-        <strong>écoute si vous prononcez le mot</strong>, et il transforme
-        <strong>la photo d'une formule en carte de maths</strong>.</p>
-      <p>
-        <a class="bouton" href="/telecharger/">Télécharger gratuitement</a>
-        <a class="bouton-secondaire" href="/fonctionnalites/">Voir les fonctionnalités</a>
-      </p>
-      <p class="sous-bouton">Windows 10 et 11 · Gratuit, sans compte en ligne ·
-        Vos cartes restent sur votre ordinateur</p>
-    </div>
-    <div>
+    <div class="cadre-demo">
       <div class="demo-app" id="demo-app"
            role="img"
            aria-label="Démonstration de PrépaCards : ouverture d'un paquet, révision d'une carte de vocabulaire, notation, puis statistiques.">
@@ -68,29 +74,37 @@ faq: true
     application indépendante, sans affiliation avec ces établissements.</p>
 </section>
 
-<section class="section etapes">
+<section class="section">
   <div class="conteneur centre">
-    <h2>Comment ça marche</h2>
-    <p class="chapeau">Trois gestes, et vos cartes existent. Le reste, c'est de
-      la révision.</p>
+    <span class="eyebrow">Trois manques que rien ne comblait</span>
+    <h2>PrépaCards n'est pas un clone d'Anki</h2>
+    <p class="chapeau">Il existe parce que trois choses précises nous
+      manquaient — et chacune se voit en dix secondes.</p>
+  </div>
 
-    <div class="etapes-grille revelation">
+  <div class="conteneur duos">
 
-      <div class="etape" data-anim="voix">
-        <span class="etape-numero" aria-hidden="true">1</span>
-        <h3>Récitez à voix haute</h3>
-        <p>Dites votre réponse au micro : l'application écoute, transcrit ce
-          que vous avez prononcé et note la carte toute seule.</p>
-
+    <div class="duo etape" data-anim="voix">
+      <div class="duo-texte">
+        <span class="duo-numero" aria-hidden="true">1</span>
+        <h3>Personne ne vous fait réviser à l'oral</h3>
+        <p>Anki et Quizlet vous montrent la réponse et vous demandent si vous
+          la saviez. Vous êtes seul juge, et vous êtes indulgent.</p>
+        <ul class="duo-liste">
+          <li>L'application écoute au micro et transcrit ce que vous avez dit</li>
+          <li>Français, anglais, espagnol, allemand, italien</li>
+          <li>Tout se passe sur votre ordinateur, hors ligne</li>
+        </ul>
+        <p><a class="bouton-fin" href="/blog/reviser-a-voix-haute/">Pourquoi ça change tout →</a></p>
+      </div>
+      <div class="duo-visuel">
         <div class="scene scene-voix" role="img"
-             aria-label="Animation : une carte affiche le mot « une percée », un micro pulse et la réponse « a breakthrough » s'écrit, puis est validée.">
+             aria-label="Animation : une carte affiche « une percée », un micro pulse et la réponse « a breakthrough » s'écrit, puis est validée.">
           <div class="mini-carte">
             <span class="mot">une percée</span>
             <div class="micro" aria-hidden="true">
               <span class="micro-pastille"></span>
-              <span class="onde"></span>
-              <span class="onde"></span>
-              <span class="onde"></span>
+              <span class="onde"></span><span class="onde"></span><span class="onde"></span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/>
                 <path d="M18 11a6 6 0 0 1-12 0H4a8 8 0 0 0 7 7.9V22h2v-3.1A8 8 0 0 0 20 11z"/>
@@ -106,14 +120,54 @@ faq: true
           </span>
         </div>
       </div>
+    </div>
 
-      <div class="etape" data-anim="scan">
-        <span class="etape-numero" aria-hidden="true">2</span>
-        <h3>Photographiez votre liste</h3>
-        <p>Une feuille de vocabulaire imprimée, une photo, et l'application
-          repère les deux colonnes et fabrique les cartes. Vous relisez, vous
-          validez.</p>
+    <div class="duo inverse etape" data-anim="formule">
+      <div class="duo-texte">
+        <span class="duo-numero" aria-hidden="true">2</span>
+        <h3>Les formules de maths étaient ingérables</h3>
+        <p>Saisir du LaTeX à la main pour chaque intégrale décourage en trois
+          cartes. Photographiez la formule de votre cours, c'est tout.</p>
+        <ul class="duo-liste">
+          <li>Photo du cours ou capture d'écran d'un PDF</li>
+          <li>La page est découpée en formules, vous désignez la bonne</li>
+          <li>Le résultat reste modifiable, avec un aperçu rendu</li>
+        </ul>
+        <p><a class="bouton-fin" href="/blog/flashcards-formules-de-maths/">Flashcards de formules →</a></p>
+      </div>
+      <div class="duo-visuel">
+        <div class="scene scene-formule" role="img"
+             aria-label="Animation : l'appareil photo cadre une formule écrite dans un cours, déclenche, et la formule apparaît en notation mathématique sur une carte.">
+          <div class="viseur">
+            <span class="coin hg" aria-hidden="true"></span>
+            <span class="coin hd" aria-hidden="true"></span>
+            <span class="coin bg" aria-hidden="true"></span>
+            <span class="coin bd" aria-hidden="true"></span>
+            <div class="formule-papier" aria-hidden="true">
+              <span class="formule-encre"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></span>
+            </div>
+            <span class="flash" aria-hidden="true"></span>
+          </div>
+          <span class="declencheur" aria-hidden="true"><span class="declencheur-anneau"></span></span>
+          <div class="rendu" aria-hidden="true"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></div>
+        </div>
+      </div>
+    </div>
 
+    <div class="duo etape" data-anim="scan">
+      <div class="duo-texte">
+        <span class="duo-numero" aria-hidden="true">3</span>
+        <h3>Recopier une liste de vocabulaire prend une heure</h3>
+        <p>Photographiez une feuille imprimée : la mise en page est reconnue et
+          les cartes sont fabriquées. Vous relisez, vous validez.</p>
+        <ul class="duo-liste">
+          <li>Deux colonnes, question puis réponse, ou « to curb - enrayer »</li>
+          <li>Titres et numérotations écartés tout seuls</li>
+          <li>Écriture manuscrite liée : mal lue, et l'application le dit</li>
+        </ul>
+        <p><a class="bouton-fin" href="/importer-anki-quizlet/">Importer ses paquets →</a></p>
+      </div>
+      <div class="duo-visuel">
         <div class="scene scene-scan" role="img"
              aria-label="Animation : une ligne lumineuse balaie une feuille de vocabulaire, et une flashcard se construit à droite.">
           <div class="feuille">
@@ -133,9 +187,7 @@ faq: true
             </svg>
             <span class="rayon" aria-hidden="true"></span>
           </div>
-
           <span class="fleche-scan" aria-hidden="true">→</span>
-
           <div class="carte-issue">
             <span class="etiquette-carte">Recto</span>
             <span class="champ c1"></span>
@@ -145,70 +197,8 @@ faq: true
           </div>
         </div>
       </div>
-
-      <div class="etape" data-anim="formule">
-        <span class="etape-numero" aria-hidden="true">3</span>
-        <h3>Photographiez vos formules</h3>
-        <p>Une photo de votre cours, et la formule arrive sur la carte en
-          notation mathématique propre. Rien à taper, aucun code à
-          apprendre.</p>
-
-        <div class="scene scene-formule" role="img"
-             aria-label="Animation : l'appareil photo cadre une formule manuscrite, déclenche, et la formule apparaît en notation mathématique sur une carte.">
-
-          <div class="viseur">
-            <span class="coin hg" aria-hidden="true"></span>
-            <span class="coin hd" aria-hidden="true"></span>
-            <span class="coin bg" aria-hidden="true"></span>
-            <span class="coin bd" aria-hidden="true"></span>
-            <div class="formule-papier" aria-hidden="true">
-              <span class="formule-encre"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></span>
-            </div>
-            <span class="flash" aria-hidden="true"></span>
-          </div>
-
-          <span class="declencheur" aria-hidden="true">
-            <span class="declencheur-anneau"></span>
-          </span>
-
-          <div class="rendu" aria-hidden="true"><span class="var">x</span><sup>2</sup> + <span class="racine"><span class="radical">√</span><span class="radicande"><span class="var">y</span></span></span> = <span class="integrale">∫</span><span class="var">f</span>(<span class="var">t</span>)&#8202;d<span class="var">t</span></div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
 
-<section class="section">
-  <div class="conteneur centre">
-    <h2>Trois manques que rien ne comblait</h2>
-    <p class="chapeau">PrépaCards n'est pas un clone d'Anki avec un thème
-      différent. Il existe parce que trois choses précises nous manquaient.</p>
-    <div class="grille-3">
-      <div class="carte">
-        <span class="pictogramme">🎙️</span>
-        <h3>Personne ne vous fait réviser à l'oral</h3>
-        <p>Anki et Quizlet vous montrent la réponse et vous demandent si vous
-          la saviez. PrépaCards écoute au micro, transcrit ce que vous avez dit
-          et note la carte tout seul. Une colle d'allemand ou une définition
-          d'ESH se récitent à voix haute, pas dans sa tête.</p>
-      </div>
-      <div class="carte">
-        <span class="pictogramme">📐</span>
-        <h3>Les formules de maths étaient ingérables</h3>
-        <p>Saisir du LaTeX à la main pour chaque intégrale décourage en trois
-          cartes. Photographiez la formule de votre cours : PrépaCards la lit,
-          la convertit et vous laissez relire avant d'enregistrer.</p>
-      </div>
-      <div class="carte">
-        <span class="pictogramme">⚙️</span>
-        <h3>Anki demande d'apprendre Anki</h3>
-        <p>Modules complémentaires, types de notes, filtres de recherche,
-          tutoriels d'une heure. L'algorithme d'Anki est excellent ; son
-          interface a vingt ans. PrépaCards garde le premier et refait
-          la seconde.</p>
-      </div>
-    </div>
   </div>
 </section>
 

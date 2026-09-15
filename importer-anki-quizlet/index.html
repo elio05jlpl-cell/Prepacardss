@@ -22,7 +22,7 @@
 
 <link rel="icon" href="/img/favicon.png?v=2208486d" type="image/png">
 <link rel="apple-touch-icon" href="/img/icone-180.png?v=fcb36135">
-<link rel="stylesheet" href="/style.css?v=b5a8f8e28b">
+<link rel="stylesheet" href="/style.css?v=a177e610e7">
 <link rel="preload" href="/fonts/manrope-400-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/manrope-800-latin.woff2?v=a30ddcd3" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "PrépaCards lit-il vraiment les fichiers .apkg ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, les trois variantes du format produites par Anki au fil des versions : collection.anki2, collection.anki21 et la version compressée collection.anki21b des versions 2.1.50 et suivantes. Les fichiers .colpkg, qui sauvegardent une collection entière, sont également lus."}}, {"@type": "Question", "name": "Mes cartes Anki vont-elles garder leur avancement ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les intervalles d'Anki sont calculés par l'algorithme FSRS, PrépaCards utilise SM-2 : les transposer donnerait des dates de révision fausses. Vos cartes repartent comme neuves. C'est la seule perte que nous considérons comme vraiment gênante, et nous préférons l'annoncer plutôt que d'inventer une conversion approximative."}}, {"@type": "Question", "name": "Et si mon paquet contient des images ?", "acceptedAnswer": {"@type": "Answer", "text": "Les cartes sont importées avec leur texte, sans l'image. Avant de valider, l'application affiche le nombre exact de cartes concernées, ce qui permet de décider en connaissance de cause — et de garder Anki en parallèle si ces cartes vous sont indispensables."}}, {"@type": "Question", "name": "Puis-je importer plusieurs paquets ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, un fichier à la fois. Rien n'est écrasé : un import ajoute des cartes aux paquets existants sans toucher à celles qui s'y trouvent déjà. Les doublons exacts présents dans le fichier source sont écartés automatiquement."}}, {"@type": "Question", "name": "L'import fonctionne-t-il hors ligne ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La conversion se fait entièrement sur votre ordinateur, rien n'est envoyé à un serveur. Vos cartes ne quittent pas votre machine."}}]}</script>
@@ -130,17 +130,32 @@ plutôt par <strong>Choisir un fichier</strong> : le résultat est le même.</p>
 <li><strong>Tout mettre dans un seul paquet</strong> — plus simple pour un jeu Quizlet, qui
   n'a de toute façon qu'un seul niveau.</li>
 </ul>
-<h2 id="questions-frequentes">Questions fréquentes</h2>
-<h3 id="prepacards-lit-il-vraiment-les-fichiers-apkg">PrépaCards lit-il vraiment les fichiers .apkg ?</h3>
-<p>Oui, les trois variantes du format produites par Anki au fil des versions : <code>collection.anki2</code>, <code>collection.anki21</code> et la version compressée <code>collection.anki21b</code> des versions 2.1.50 et suivantes. Les fichiers <code>.colpkg</code>, qui sauvegardent une collection entière, sont également lus.</p>
-<h3 id="mes-cartes-anki-vont-elles-garder-leur-avancement">Mes cartes Anki vont-elles garder leur avancement ?</h3>
-<p>Non. Les intervalles d'Anki sont calculés par l'algorithme FSRS, PrépaCards utilise SM-2 : les transposer donnerait des dates de révision fausses. Vos cartes repartent comme neuves. C'est la seule perte que nous considérons comme vraiment gênante, et nous préférons l'annoncer plutôt que d'inventer une conversion approximative.</p>
-<h3 id="et-si-mon-paquet-contient-des-images">Et si mon paquet contient des images ?</h3>
-<p>Les cartes sont importées avec leur texte, sans l'image. Avant de valider, l'application affiche le nombre exact de cartes concernées, ce qui permet de décider en connaissance de cause — et de garder Anki en parallèle si ces cartes vous sont indispensables.</p>
-<h3 id="puis-je-importer-plusieurs-paquets">Puis-je importer plusieurs paquets ?</h3>
-<p>Oui, un fichier à la fois. Rien n'est écrasé : un import ajoute des cartes aux paquets existants sans toucher à celles qui s'y trouvent déjà. Les doublons exacts présents dans le fichier source sont écartés automatiquement.</p>
-<h3 id="limport-fonctionne-t-il-hors-ligne">L'import fonctionne-t-il hors ligne ?</h3>
-<p>Oui. La conversion se fait entièrement sur votre ordinateur, rien n'est envoyé à un serveur. Vos cartes ne quittent pas votre machine.</p>
+<section class="faq">
+  <p class="faq-eyebrow">FAQ</p>
+  <h2>Questions fréquentes</h2>
+  <div class="faq-liste">
+  <details class="faq-item">
+    <summary><span>PrépaCards lit-il vraiment les fichiers .apkg ?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="faq-reponse"><p>Oui, les trois variantes du format produites par Anki au fil des versions : <code>collection.anki2</code>, <code>collection.anki21</code> et la version compressée <code>collection.anki21b</code> des versions 2.1.50 et suivantes. Les fichiers <code>.colpkg</code>, qui sauvegardent une collection entière, sont également lus.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary><span>Mes cartes Anki vont-elles garder leur avancement ?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="faq-reponse"><p>Non. Les intervalles d'Anki sont calculés par l'algorithme FSRS, PrépaCards utilise SM-2 : les transposer donnerait des dates de révision fausses. Vos cartes repartent comme neuves. C'est la seule perte que nous considérons comme vraiment gênante, et nous préférons l'annoncer plutôt que d'inventer une conversion approximative.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary><span>Et si mon paquet contient des images ?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="faq-reponse"><p>Les cartes sont importées avec leur texte, sans l'image. Avant de valider, l'application affiche le nombre exact de cartes concernées, ce qui permet de décider en connaissance de cause — et de garder Anki en parallèle si ces cartes vous sont indispensables.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary><span>Puis-je importer plusieurs paquets ?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="faq-reponse"><p>Oui, un fichier à la fois. Rien n'est écrasé : un import ajoute des cartes aux paquets existants sans toucher à celles qui s'y trouvent déjà. Les doublons exacts présents dans le fichier source sont écartés automatiquement.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary><span>L'import fonctionne-t-il hors ligne ?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="faq-reponse"><p>Oui. La conversion se fait entièrement sur votre ordinateur, rien n'est envoyé à un serveur. Vos cartes ne quittent pas votre machine.</p></div>
+  </details>
+  </div>
+</section>
 <div class="encart">
   <p>PrépaCards est gratuit pour Windows 10 et 11.
   <a href="/telecharger/">Télécharger</a> ·
